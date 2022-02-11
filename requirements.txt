@@ -1,0 +1,13 @@
+asgiref==3.4.1
+crispy-bootstrap5==0.6
+Django==3.2.6
+django-ajax-selects==2.1.0
+django-crispy-forms==1.13.0
+djangorestframework==3.12.4
+fonttools==4.26.2
+mysql-connector-python==8.0.27
+Pillow==8.3.1
+python-gettext==4.0
+pytz==2021.1
+sqlparse==0.4.1
+ttf2web==0.9.3
