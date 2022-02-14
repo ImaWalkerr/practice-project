@@ -1,3 +1,598 @@
-@import "null.css";
-@import "main_page.css";
-@import "games_detail_page.css";
+@charset "UTF-8";
+/* ОБНУЛЕНИЕ */
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+  background: white;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+.wrapper {
+  width: 1900px;
+}
+
+.content {
+  display: flex;
+  max-width: 1900px;
+}
+
+.content__sidebar {
+  min-height: auto;
+  min-width: 20%;
+}
+
+.content__sections {
+  display: flex;
+  flex-direction: column;
+}
+
+.content__sections-sidebar {
+  min-width: 20%;
+}
+
+.content__sections-search {
+  min-height: 100px;
+  padding: 0 28% 0 6%;
+}
+
+.content__carts {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header__search-label {
+  display: flex;
+  border-bottom: 2px solid black;
+}
+
+.header {
+  display: flex;
+  height: 90px;
+  width: 100%;
+  padding: 20px;
+  background-color: red;
+  border-bottom: 3px solid grey;
+}
+
+.header__logo-image {
+  width: 60px;
+  height: 60px;
+  background-color: red;
+  margin: -5px 0;
+}
+
+.header__name {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  display: inline-block;
+  padding: 10px;
+  font-size: 28px;
+  color: white;
+  font-weight: 700;
+}
+
+.header__search-input {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  margin: 20px 0 0 0;
+}
+
+.header__search-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  background-color: white;
+}
+
+.sidebar-popup li {
+  position: relative;
+}
+
+.sidebar-popup__list {
+  display: flex;
+}
+
+.sidebar-popup__sub-list {
+  display: none;
+  position: absolute;
+  top: 0;
+}
+
+.sidebar-popup__sub-link {
+  font-size: 25px;
+  font-weight: 600;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  color: white;
+  background-color: red;
+  display: inline-block;
+  padding: 25px;
+  height: 100vh;
+  width: 375px;
+}
+
+.sidebar-search__header {
+  text-align: center;
+  padding: 10px 0 15px 0;
+  border-bottom: 2px solid white;
+}
+
+.sidebar-search__form {
+  padding: 40px 0 0 0;
+}
+
+.sidebar-search__label {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+
+.sidebar-search__input {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+  width: 50%;
+  background-color: red;
+  border-bottom: 2px solid white;
+}
+
+.sidebar-search__checkout {
+  display: flex;
+  padding: 30px 15px 30px 0;
+}
+
+.checkout-input__search {
+  margin: 10px;
+}
+
+.checkout-input {
+  display: flex;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-size: 18px;
+  color: red;
+  background-color: white;
+  border-radius: 30%;
+  padding: 0 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 15px 0 0;
+}
+
+.sidebar-search {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.sidebar-search__button {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  padding: 10px 15px;
+  background-color: white;
+  color: red;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+  text-align: center;
+}
+
+body.mouse .sidebar-popup__list > li:hover .sidebar-popup__sub-list {
+  display: block;
+}
+
+body.touch .sidebar-popup__sub-list.open {
+  display: block;
+}
+
+body.touch .sidebar-popup__arrow {
+  display: block;
+}
+
+.center-con {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-popup__arrow {
+  position: relative;
+  border: 2px solid white;
+  width: 85px;
+  height: 85px;
+  border-radius: 100%;
+  background-color: red;
+}
+
+span {
+  z-index: 999;
+  height: 3px;
+  margin: 1px;
+  width: 25px;
+  background: white;
+  transition: 0.4s ease;
+}
+
+span:first-child {
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 25%;
+  bottom: 35%;
+}
+
+span:nth-child(2) {
+  display: block;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 45%;
+  bottom: 35%;
+}
+
+span:nth-child(3) {
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 25%;
+  bottom: 54%;
+}
+
+span:nth-child(4) {
+  display: block;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 45%;
+  bottom: 54%;
+}
+
+.sidebar-popup__arrow:hover span:nth-child(1) {
+  transform: rotate(-135deg);
+}
+
+.sidebar-popup__arrow:hover span:nth-child(2) {
+  transform: rotate(135deg);
+}
+
+.sidebar-popup__arrow:hover span:nth-child(3) {
+  transform: rotate(225deg);
+}
+
+.sidebar-popup__arrow:hover span:nth-child(4) {
+  transform: rotate(-225deg);
+}
+
+.games-cart {
+  position: relative;
+  padding: 0 3% 30px 3%;
+}
+
+.games-cart__image {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+}
+
+.games-cart__hover:hover .games-cart__popup-block {
+  display: block;
+}
+
+.games-cart__popup-block {
+  position: absolute;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  text-align: left;
+  color: white;
+  left: 12%;
+  bottom: 10%;
+  right: 12%;
+  top: 40%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 25px;
+  display: none;
+}
+
+.popup-block__title {
+  font-size: 25px;
+  margin: 15px 0;
+}
+
+.popup-block__description {
+  font-size: 20px;
+  margin: 10px 15px 0 0;
+}
+
+.popup-block__links {
+  display: flex;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+}
+
+.popup-block__links-open,
+.popup-block__links-must {
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 35%;
+  margin: 15px 15px 0 0;
+}
+
+.popup-block__links-open {
+  text-decoration: underline;
+  color: black;
+}
+
+.popup-block__links-must {
+  text-decoration: underline;
+  color: black;
+}
+
+.content__pagination {
+  display: flex;
+  width: 34%;
+  margin: auto;
+}
+
+.content__pagination-item {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: red;
+  margin: 0 5px;
+  padding: 10px 15px;
+  border-bottom: 2px solid grey;
+  border-right: 2px solid grey;
+  cursor: pointer;
+}
+
+.content__pagination-item:hover {
+  text-decoration: underline;
+}
+
+.games-details {
+  display: flex;
+}
+
+.games-info {
+  display: flex;
+  align-items: center;
+}
+
+.games-details__games-info {
+  min-width: 50%;
+  padding: 30px;
+}
+
+.games-info__description {
+  min-width: 32%;
+  padding: 125px 50px 0 0;
+}
+
+.games-details__tweets {
+  min-width: 18%;
+}
+
+.games-info__title {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 35px;
+  color: black;
+  margin: 0 15px 0 0;
+}
+
+.games-info__button {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  background-color: red;
+  padding: 10px 15px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.description-game__title,
+.release-date__title,
+.games-info__screenshots-title,
+.ratings__title,
+.genres__title,
+.platforms__title,
+.tweets__title {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 20px 0 5px 0;
+}
+
+.games-info__genre,
+.description-game__text,
+.release-date__text {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: initial;
+  color: black;
+  padding: 15px 50px 15px 0;
+}
+
+.games-info__screenshots-block {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.games-info__screenshots-image {
+  width: 280px;
+  height: 200px;
+  object-fit: cover;
+  padding: 10px 5px 5px 0;
+}
+
+.ratings__users {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  background-color: limegreen;
+  padding: 15px;
+  margin: 15px 0 5px 0;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.ratings_critics {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  background-color: orange;
+  padding: 15px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.rating__users-title,
+.ratings__users-marks,
+.rating__users-count {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+}
+
+.ratings_critics-title,
+.ratings_critics-marks,
+.ratings_critics-count {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+}
+
+.genres__block,
+.platforms__block {
+  display: flex;
+}
+
+.genres__item,
+.platforms__item {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  background-color: red;
+  padding: 10px 15px;
+  margin: 10px 10px 0 0;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.tweets__block {
+  color: white;
+  background-color: red;
+  margin: 10px 30px 10px 0;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.block__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.block__text {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: initial;
+  color: white;
+  padding: 10px;
+}
+
+.block__date,
+.block__author {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: initial;
+  color: white;
+}
+
+.block__date {
+  padding: 0 10px 10px 10px;
+}
+
+.block__author {
+  padding: 0 10px 10px 0;
+}
+
+/*# sourceMappingURL=base.css.map */
