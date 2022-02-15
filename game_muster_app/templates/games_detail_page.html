@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="games-details">
+    <div class="games-details__games-info">
+        <div class="games-info">
+             <h2 class="games-info__title">PACMAN</h2>
+            <button class="games-info__button">MUST</button>
+        </div>
+        <div class="games-info__genre">arcade oldschool</div>
+        <div class="games-info__description-game description-game">
+            <h3 class="description-game__title">Descriprion</h3>
+            <div class="description-game__text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus vehicula ligula nec condimentum.
+                Duis ac leo vitae nulla aliquam vestibulum. Proin pulvinar sagittis magna, ut tincidunt orci pellentesque sit amet.
+                Nam luctus est sit amet augue ullamcorper lobortis. Sed tempor leo vitae consequat rutrum.
+                Proin eleifend semper arcu, et gravida sapien efficitur a. Maecenas quis felis a eros bibendum sollicitudin nec id turpis.
+                Proin tempor, nisi non bibendum vehicula, quam nisl eleifend sapien, a accumsan turpis nulla vel enim.</p>
+            </div>
+        </div>
+        <div class="games-info__release-date release-date">
+            <h3 class="release-date__title">Release date</h3>
+            <div class="release-date__text">Nov 1992</div>
+        </div>
+        <div class="games-info__screenshots">
+            <h3 class="games-info__screenshots-title">Screenshots</h3>
+            <div class="games-info__screenshots-block">
+                <img class="games-info__screenshots-image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
+                <img class="games-info__screenshots-image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
+                <img class="games-info__screenshots-image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
+                <img class="games-info__screenshots-image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
+                <img class="games-info__screenshots-image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
+                <img class="games-info__screenshots-image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
+            </div>
+        </div>
+        </div>
+        <div class="games-info__description">
+            <div class="description-second__ratings ratings">
+                <h2 class="ratings__title">Ratings</h2>
+                <div class="ratings__users">
+                    <div class="rating__users-title">Users</div>
+                    <div class="ratings__users-marks">7.6 (123 reviews)</div>
+                </div>
+                <div class="ratings__critics">
+                    <div class="ratings__critics-title">Critics</div>
+                    <div class="ratings__critics-marks">4.0 (123 reviews)</div>
+                </div>
+            </div>
+            <div class="description-second__genres genres">
+                <h2 class="genres__title">Genres</h2>
+                <div class="genres__block">
+                    <div class="genres__item">Arcade</div>
+                    <div class="genres__item">Action</div>
+                </div>
+            </div>
+            <div class="description-second__platforms platforms">
+                <h2 class="platforms__title">Platforms</h2>
+                <div class="platforms__block">
+                    <div class="platforms__item">PC</div>
+                    <div class="platforms__item">PS4</div>
+                </div>
+            </div>
+        </div>
+        <div class="games-details__tweets tweets">
+            <h2 class="tweets__title">#Pacman Tweets</h2>
+            <div class="tweets__block">
+                <div class="block__text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus vehicula ligula nec condimentum.
+                        Duis ac leo vitae nulla aliquam vestibulum. Proin pulvinar sagittis magna, ut tincidunt orci pellentesque sit amet.</p>
+                </div>
+                <div class="block__info">
+                    <div class="block__date">15.03.2018 20:20</div>
+                    <div class="block__author">@tweet_author</div>
+                </div>
+            </div>
+            <div class="tweets__block">
+                <div class="block__text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus vehicula ligula nec condimentum.
+                        Duis ac leo vitae nulla aliquam vestibulum. Proin pulvinar sagittis magna, ut tincidunt orci pellentesque sit amet.</p>
+                </div>
+                <div class="block__info">
+                    <div class="block__date">15.03.2018 20:20</div>
+                    <div class="block__author">@tweet_author</div>
+                </div>
+            </div>
+            <div class="tweets__block">
+                <div class="block__text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus vehicula ligula nec condimentum.
+                        Duis ac leo vitae nulla aliquam vestibulum. Proin pulvinar sagittis magna, ut tincidunt orci pellentesque sit amet.</p>
+                </div>
+                <div class="block__info">
+                    <div class="block__date">15.03.2018 20:20</div>
+                    <div class="block__author">@tweet_author</div>
+                </div>
+            </div>
+            <div class="tweets__block">
+                <div class="block__text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus vehicula ligula nec condimentum.
+                        Duis ac leo vitae nulla aliquam vestibulum. Proin pulvinar sagittis magna, ut tincidunt orci pellentesque sit amet.</p>
+                </div>
+                <div class="block__info">
+                    <div class="block__date">15.03.2018 20:20</div>
+                    <div class="block__author">@tweet_author</div>
+                </div>
+            </div>
+            <div class="tweets__block">
+                <div class="block__text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus vehicula ligula nec condimentum.
+                        Duis ac leo vitae nulla aliquam vestibulum. Proin pulvinar sagittis magna, ut tincidunt orci pellentesque sit amet.</p>
+                </div>
+                <div class="block__info">
+                    <div class="block__date">15.03.2018 20:20</div>
+                    <div class="block__author">@tweet_author</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

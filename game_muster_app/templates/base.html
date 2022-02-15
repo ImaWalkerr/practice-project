@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="#"/>
+    <link type="text/css" href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <div class="header__logo">
+        <img src="{% static 'media/games/pacman.png' %}" class="header__logo-image" alt="pacman_logo">
+    </div>
+    <div class="header__name">GameMuster</div>
+</header>
+<main class="wrapper">
+    {% block content %}{% endblock %}
+</main>
+<script type="text/javascript" src="{% static 'js/script_main_page.js' %}"></script>
+</body>
+</html>
