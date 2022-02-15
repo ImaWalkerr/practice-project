@@ -92,7 +92,7 @@
   border-bottom: 2px solid grey;
 }
 
-.ratings_critics {
+.ratings__critics {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -115,9 +115,9 @@
   color: white;
 }
 
-.ratings_critics-title,
-.ratings_critics-marks,
-.ratings_critics-count {
+.ratings__critics-title,
+.ratings__critics-marks,
+.ratings__critics-count {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
   font-size: 16px;

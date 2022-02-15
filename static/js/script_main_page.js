@@ -27,7 +27,7 @@ const isMobile = {
 let body = document.querySelector('body');
 if (isMobile.any()) {
 	body.classList.add('touch');
-	let arrow = document.querySelectorAll('.sidebar-popup__arrow');
+	let arrow = document.querySelectorAll('.sidebar__arrow');
 	for (i = 0; i < arrow.length; i++) {
 		let thisLink = arrow[i].previousElementSibling;
 		let subMenu = arrow[i].nextElementSibling;

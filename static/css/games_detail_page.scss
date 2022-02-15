@@ -1,43 +1,45 @@
+@import "null";
+
 .games-details {
-    display: flex;
+  display: flex;
 }
 
 .games-info {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .games-details__games-info {
-    min-width: 50%;
-    padding: 30px;
+  min-width: 50%;
+  padding: 30px;
 }
 
 .games-info__description {
-    min-width: 32%;
-    padding: 125px 50px 0 0;
+  min-width: 32%;
+  padding: 125px 50px 0 0;
 }
 
 .games-details__tweets {
-    min-width: 18%;
+  min-width: 18%;
 }
 
 .games-info__title {
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 600;
-    font-size: 35px;
-    color: black;
-    margin: 0 15px 0 0;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 35px;
+  color: $font-color-dark;
+  margin: 0 15px 0 0;
 }
 
 .games-info__button {
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-    color: white;
-    background-color: red;
-    padding: 10px 15px;
-    border-right: 2px solid grey;
-    border-bottom: 2px solid grey;
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 20px;
+  color: $font-color-light;
+  background-color: $font-color-main;
+  padding: 10px 15px;
+  border-right: $font-color-border;
+  border-bottom: $font-color-border;
 }
 
 .description-game__title,
@@ -47,143 +49,137 @@
 .genres__title,
 .platforms__title,
 .tweets__title {
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    color: black;
-    padding: 20px 0 5px 0;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 20px;
+  color: $font-color-dark;
+  padding: 20px 0 5px 0;
 }
-
-.description-game {}
-.games-info__description-game {}
 
 .games-info__genre,
 .description-game__text,
 .release-date__text {
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: initial;
-    color: black;
-    padding: 15px 50px 15px 0;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: initial;
+  color: $font-color-dark;
+  padding: 15px 50px 15px 0;
 }
 
-.games-info__release-date {}
-.release-date {}
-
 .games-info__screenshots-block {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .games-info__screenshots-image {
-    width: 280px;
-    height: 200px;
-    object-fit: cover;
-    padding: 10px 5px 5px 0;
+  width: 280px;
+  height: 200px;
+  object-fit: cover;
+  padding: 10px 5px 5px 0;
 }
 
 .ratings__users {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-    color: white;
-    background-color: limegreen;
-    padding: 15px;
-    margin: 15px 0 5px 0;
-    border-right: 2px solid grey;
-    border-bottom: 2px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 20px;
+  color: $font-color-light;
+  background-color: limegreen;
+  padding: 15px;
+  margin: 15px 0 5px 0;
+  border-right: $font-color-border;
+  border-bottom: $font-color-border;
 }
 
-.ratings_critics {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-    color: white;
-    background-color: orange;
-    padding: 15px;
-    border-right: 2px solid grey;
-    border-bottom: 2px solid grey;
+.ratings__critics {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 20px;
+  color: $font-color-light;
+  background-color: orange;
+  padding: 15px;
+  border-right: $font-color-border;
+  border-bottom: $font-color-border;
 }
 
 .rating__users-title,
 .ratings__users-marks,
 .rating__users-count {
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: white;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 16px;
+  color: $font-color-light;
 }
 
-.ratings_critics-title,
-.ratings_critics-marks,
-.ratings_critics-count {
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: white;
+.ratings__critics-title,
+.ratings__critics-marks,
+.ratings__critics-count {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 16px;
+  color: $font-color-light;
 }
 
 .genres__block,
 .platforms__block {
-    display: flex;
+  display: flex;
 }
 
 .genres__item,
 .platforms__item {
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-    color: white;
-    background-color: red;
-    padding: 10px 15px;
-    margin: 10px 10px 0 0;
-    border-right: 2px solid grey;
-    border-bottom: 2px solid grey;
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 20px;
+  color: $font-color-light;
+  background-color: $font-color-main;
+  padding: 10px 15px;
+  margin: 10px 10px 0 0;
+  border-right: $font-color-border;
+  border-bottom: $font-color-border;
 }
 
 .tweets__block {
-    color: white;
-    background-color: red;
-    margin: 10px 30px 10px 0;
-    border-right: 2px solid grey;
-    border-bottom: 2px solid grey;
+  color: $font-color-light;
+  background-color: $font-color-main;
+  margin: 10px 30px 10px 0;
+  border-right: $font-color-border;
+  border-bottom: $font-color-border;
 }
 
 .block__info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .block__text {
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: initial;
-    color: white;
-    padding: 10px;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: initial;
+  color: $font-color-light;
+  padding: 10px;
 }
 
 .block__date,
 .block__author {
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: initial;
-    color: white;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: initial;
+  color: $font-color-light;
 }
 
 .block__date {
-    padding: 0 10px 10px 10px;
+  padding: 0 10px 10px 10px;
 }
 
 .block__author {
-    padding: 0 10px 10px 0;
+  padding: 0 10px 10px 0;
 }
