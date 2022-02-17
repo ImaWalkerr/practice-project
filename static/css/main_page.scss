@@ -282,20 +282,22 @@ span:nth-child(4) {
   left: 12%;
   bottom: 10%;
   right: 12%;
-  top: 40%;
+  top: 0;
   background: rgba(0, 0, 0, 0.5);
   padding: 25px;
   display: none;
 }
 
 .popup-block__title {
-  font-size: 25px;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 20px;
   margin: 15px 0;
 }
 
 .popup-block__description {
   font-size: 20px;
-  margin: 10px 15px 0 0;
+  text-align: left;
 }
 
 .popup-block__links {

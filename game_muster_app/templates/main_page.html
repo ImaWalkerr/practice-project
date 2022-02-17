@@ -80,85 +80,31 @@
                 </form>
             </div>
             <div class="content__carts games-cart">
+
+                {% for game in games %}
+
                 <div class="games-cart">
                     <div class="games-cart__hover">
-                        <img class="games-cart__image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
+                        <img class="games-cart__image" src={{ game.cover.url }} alt="game-icon">
                         <div class="games-cart__popup-block popup-block">
-                            <div class="popup-block__title">PACMAN</div>
-                            <div class="popup-block__description">arcade oldschool</div>
+                            <div class="popup-block__title">{{ game.name }}</div>
+
+                            {% for genre in game.genres %}
+
+                            <div class="popup-block__description">{{ genre.name }}</div>
+
+                            {% endfor %}
+
                             <div class="popup-block__links">
-                                <a href="#" class="popup-block__links-open">Open</a>
+                                <a href="/{{ game.id }}" class="popup-block__links-open">Open</a>
                                 <a href="#" class="popup-block__links-must">MUST</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="games-cart">
-                    <div class="games-cart__hover">
-                        <img class="games-cart__image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
-                        <div class="games-cart__popup-block popup-block">
-                            <div class="popup-block__title">PACMAN</div>
-                            <div class="popup-block__description">arcade oldschool</div>
-                            <div class="popup-block__links">
-                                <a href="#" class="popup-block__links-open">Open</a>
-                                <a href="#" class="popup-block__links-must">MUST</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="games-cart">
-                    <div class="games-cart__hover">
-                        <img class="games-cart__image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
-                        <div class="games-cart__popup-block popup-block">
-                            <div class="popup-block__title">PACMAN</div>
-                            <div class="popup-block__description">arcade oldschool</div>
-                            <div class="popup-block__links">
-                                <a href="#" class="popup-block__links-open">Open</a>
-                                <a href="#" class="popup-block__links-must">MUST</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="games-cart">
-                    <div class="games-cart__hover">
-                        <img class="games-cart__image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
-                        <div class="games-cart__popup-block popup-block">
-                            <div class="popup-block__title">PACMAN</div>
-                            <div class="popup-block__description">arcade oldschool</div>
-                            <div class="popup-block__links">
-                                <a href="#" class="popup-block__links-open">Open</a>
-                                <a href="#" class="popup-block__links-must">MUST</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="games-cart">
-                    <div class="games-cart__hover">
-                        <img class="games-cart__image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
-                        <div class="games-cart__popup-block popup-block">
-                            <div class="popup-block__title">PACMAN</div>
-                            <div class="popup-block__description">arcade oldschool</div>
-                            <div class="popup-block__links">
-                                <a href="#" class="popup-block__links-open">Open</a>
-                                <a href="#" class="popup-block__links-must">MUST</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="games-cart">
-                    <div class="games-cart__hover">
-                        <img class="games-cart__image" src="{% static 'media/games/pacman.png' %}" alt="game-icon">
-                        <div class="games-cart__popup-block popup-block">
-                            <div class="popup-block__title">PACMAN</div>
-                            <div class="popup-block__description">arcade oldschool</div>
-                            <div class="popup-block__links">
-                                <a href="#" class="popup-block__links-open">Open</a>
-                                <a href="#" class="popup-block__links-must">MUST</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+                {% endfor %}
+
             <div class="content__pagination">
                 <div class="content__pagination-item">1</div>
                 <div class="content__pagination-item">2</div>

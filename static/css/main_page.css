@@ -1,3 +1,65 @@
+/* Variables */
+/* Null */
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+  background: white;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 .wrapper {
   width: 1900px;
 }
@@ -33,7 +95,7 @@
 
 .header__search-label {
   display: flex;
-  border-bottom: 2px solid black;
+  border-bottom: black;
 }
 
 .header {
@@ -42,7 +104,7 @@
   width: 100%;
   padding: 20px;
   background-color: red;
-  border-bottom: 3px solid grey;
+  border-bottom: 2px solid grey;
 }
 
 .header__logo-image {
@@ -107,7 +169,7 @@
 .sidebar-search__header {
   text-align: center;
   padding: 10px 0 15px 0;
-  border-bottom: 2px solid white;
+  border-bottom: 2px white;
 }
 
 .sidebar-search__form {
@@ -128,7 +190,7 @@
   color: white;
   width: 50%;
   background-color: red;
-  border-bottom: 2px solid white;
+  border-bottom: 2px white;
 }
 
 .sidebar-search__checkout {
@@ -192,7 +254,7 @@ body.touch .sidebar__arrow {
 
 .sidebar__arrow {
   position: relative;
-  border: 2px solid white;
+  border: 2px white;
   width: 85px;
   height: 85px;
   border-radius: 100%;
@@ -280,20 +342,22 @@ span:nth-child(4) {
   left: 12%;
   bottom: 10%;
   right: 12%;
-  top: 40%;
+  top: 0;
   background: rgba(0, 0, 0, 0.5);
   padding: 25px;
   display: none;
 }
 
 .popup-block__title {
-  font-size: 25px;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
   margin: 15px 0;
 }
 
 .popup-block__description {
   font-size: 20px;
-  margin: 10px 15px 0 0;
+  text-align: left;
 }
 
 .popup-block__links {
