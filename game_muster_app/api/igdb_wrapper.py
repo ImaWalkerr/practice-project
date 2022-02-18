@@ -1,16 +1,10 @@
 import sys
 import requests
 import json
+import datetime
 
 
 # Authentication
-# Client ID
-# t8yrz76lhx8qv5cz7kjpwm61tyni8h
-
-
-# Client Secret
-# 5et0yyr48p4wlsqs26nam8f2mpqm4d
-
 
 # result = requests.post(
 #    'https://id.twitch.tv/oauth2/token?'
@@ -21,13 +15,11 @@ import json
 # print(result.text)
 
 
-# Token
-# {"access_token":"yrvss4kvvoggki5m30v6t7uhguybrq","expires_in":4702816,"token_type":"bearer"}
-
-# The base URL is: https://api.igdb.com/v4
-
-
 class IGDBWrapper:
+
+    """
+    The base URL is: https://api.igdb.com/v4
+    """
 
     headers = {
         "Authorization": "Bearer yrvss4kvvoggki5m30v6t7uhguybrq",
@@ -40,9 +32,21 @@ class IGDBWrapper:
         return requests.post(
             'https://api.igdb.com/v4/games',
             headers=self.headers,
-            data='fields id,name,summary,cover.url,genres.name,'
-                 'platforms.name,first_release_date,aggregated_rating,aggregated_rating_count,rating,rating_count,'
-                 'screenshots.url;' + where_condition).json()
+            data='fields id,'
+                 'name,'
+                 'summary,'
+                 'cover.url,'
+                 'genres.name,'
+                 'platforms.name,'
+                 'release_dates.human,'
+                 'aggregated_rating,'
+                 'aggregated_rating_count,'
+                 'rating,'
+                 'rating_count,'
+                 'total_rating,'
+                 'total_rating_count,'
+                 'screenshots.url;'
+                 'limit 100;' + where_condition).json()
 
     def get_game(self, game_id):
         return self.get_games(ids=[game_id])

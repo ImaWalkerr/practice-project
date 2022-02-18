@@ -9,13 +9,15 @@
              <h2 class="games-info__title">{{ target_game.name }}</h2>
             <button class="games-info__button">MUST</button>
         </div>
+        <div class="games-info__genre">
 
-        {% for genre in genres  %}
+            {% for genre in genres  %}
 
-        <div class="games-info__genre">{{ genre.name }}</div>
+            <div class="games-info__genre">{{ genre.name }}</div>
 
-        {% endfor %}
+            {% endfor %}
 
+        </div>
         <div class="games-info__description-game description-game">
             <h3 class="description-game__title">Descriprion</h3>
             <div class="description-game__text">
@@ -24,18 +26,29 @@
         </div>
         <div class="games-info__release-date release-date">
             <h3 class="release-date__title">Release date</h3>
-            <div class="release-date__text">{{ target_game.first_release_date }}</div>
+            <div class="release-date__text-block">
+
+                {% for release_date in release_dates %}
+
+                <div class="release-date__text">{{ release_date.human }}</div>
+
+                {% endfor %}
+
+            </div>
         </div>
         <div class="games-info__screenshots">
             <h3 class="games-info__screenshots-title">Screenshots</h3>
-
-             {% for screenshot in screenshots %}
-
             <div class="games-info__screenshots-block">
-                <img class="games-info__screenshots-image" src={{ screenshot.url }} alt="game-icon">
-            </div>
 
-            {% endfor %}
+                {% for screenshot in screenshots %}
+
+                <div class="games-info__screenshots">
+                    <img class="games-info__screenshots-image" src={{ screenshot.url }} alt="game-icon">
+                </div>
+
+                {% endfor %}
+
+            </div>
         </div>
         </div>
         <div class="games-info__description">
@@ -43,11 +56,11 @@
                 <h2 class="ratings__title">Ratings</h2>
                 <div class="ratings__users">
                     <div class="rating__users-title">Users</div>
-                    <div class="ratings__users-marks">{{ game.rating }} {{ game.rating_count }}</div>
+                    <div class="ratings__users-marks">{{ target_game.rating }} {{target_game.rating_count}}</div>
                 </div>
                 <div class="ratings__critics">
                     <div class="ratings__critics-title">Critics</div>
-                    <div class="ratings__critics-marks">{{ game.aggregated_rating }} {{ game.aggregated_rating_count }}</div>
+                    <div class="ratings__critics-marks">{{ target_game.aggregated_rating }} {{ target_game.aggregated_rating_count}}</div>
                 </div>
             </div>
             <div class="description-second__genres genres">
@@ -76,59 +89,23 @@
             </div>
         </div>
         <div class="games-details__tweets tweets">
-            <h2 class="tweets__title">#Pacman Tweets</h2>
+            <h2 class="tweets__title">{{ game_name }} #Pacman Tweets</h2>
+
+            {% for tweet in tweets %}
+
             <div class="tweets__block">
                 <div class="block__text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus vehicula ligula nec condimentum.
-                        Duis ac leo vitae nulla aliquam vestibulum. Proin pulvinar sagittis magna, ut tincidunt orci pellentesque sit amet.</p>
+                    <p>{{ tweet.content }}</p>
                 </div>
                 <div class="block__info">
-                    <div class="block__date">15.03.2018 20:20</div>
-                    <div class="block__author">@tweet_author</div>
+                    <div class="block__date">{{ tweet.date|date:'M Y' }}</div>
+                    <div class="block__author">@{{ tweet.publisher }}</div>
                 </div>
             </div>
-            <div class="tweets__block">
-                <div class="block__text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus vehicula ligula nec condimentum.
-                        Duis ac leo vitae nulla aliquam vestibulum. Proin pulvinar sagittis magna, ut tincidunt orci pellentesque sit amet.</p>
-                </div>
-                <div class="block__info">
-                    <div class="block__date">15.03.2018 20:20</div>
-                    <div class="block__author">@tweet_author</div>
-                </div>
-            </div>
-            <div class="tweets__block">
-                <div class="block__text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus vehicula ligula nec condimentum.
-                        Duis ac leo vitae nulla aliquam vestibulum. Proin pulvinar sagittis magna, ut tincidunt orci pellentesque sit amet.</p>
-                </div>
-                <div class="block__info">
-                    <div class="block__date">15.03.2018 20:20</div>
-                    <div class="block__author">@tweet_author</div>
-                </div>
-            </div>
-            <div class="tweets__block">
-                <div class="block__text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus vehicula ligula nec condimentum.
-                        Duis ac leo vitae nulla aliquam vestibulum. Proin pulvinar sagittis magna, ut tincidunt orci pellentesque sit amet.</p>
-                </div>
-                <div class="block__info">
-                    <div class="block__date">15.03.2018 20:20</div>
-                    <div class="block__author">@tweet_author</div>
-                </div>
-            </div>
-            <div class="tweets__block">
-                <div class="block__text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus vehicula ligula nec condimentum.
-                        Duis ac leo vitae nulla aliquam vestibulum. Proin pulvinar sagittis magna, ut tincidunt orci pellentesque sit amet.</p>
-                </div>
-                <div class="block__info">
-                    <div class="block__date">15.03.2018 20:20</div>
-                    <div class="block__author">@tweet_author</div>
-                </div>
-            </div>
+
+            {% endfor %}
+
         </div>
     </div>
 </div>
-
 {% endblock %}

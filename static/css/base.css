@@ -593,7 +593,12 @@ html, body {
   padding: 20px 0 5px 0;
 }
 
-.games-info__genre,
+.release-date__text-block {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .description-game__text,
 .release-date__text {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
@@ -602,6 +607,22 @@ html, body {
   line-height: initial;
   color: black;
   padding: 15px 50px 15px 0;
+}
+
+.games-info__genre {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: initial;
+  color: black;
+  padding: 15px 50px 15px 0;
+}
+
+.games-info__genre-block {
+  padding: 0 15px 0 0;
 }
 
 .games-info__screenshots-block {
@@ -671,6 +692,7 @@ html, body {
 .genres__item,
 .platforms__item {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  text-align: center;
   font-weight: 500;
   font-size: 20px;
   color: white;
