@@ -12,9 +12,7 @@
         <div class="games-info__genre">
 
             {% for genre in genres  %}
-
-            <div class="games-info__genre">{{ genre.name }}</div>
-
+                <div class="games-info__genre">{{ genre.name }}</div>
             {% endfor %}
 
         </div>
@@ -25,13 +23,11 @@
             </div>
         </div>
         <div class="games-info__release-date release-date">
-            <h3 class="release-date__title">Release date</h3>
+            <h3 class="release-date__title">Platform release date</h3>
             <div class="release-date__text-block">
 
                 {% for release_date in release_dates %}
-
-                <div class="release-date__text">{{ release_date.human }}</div>
-
+                    <div class="release-date__text">{{ release_date.human }}</div>
                 {% endfor %}
 
             </div>
@@ -41,11 +37,9 @@
             <div class="games-info__screenshots-block">
 
                 {% for screenshot in screenshots %}
-
-                <div class="games-info__screenshots">
-                    <img class="games-info__screenshots-image" src={{ screenshot.url }} alt="game-icon">
-                </div>
-
+                    <div class="games-info__screenshots">
+                        <img class="games-info__screenshots-image" src={{ screenshot.url }} alt="game-icon">
+                    </div>
                 {% endfor %}
 
             </div>
@@ -55,7 +49,7 @@
             <div class="description-second__ratings ratings">
                 <h2 class="ratings__title">Ratings</h2>
                 <div class="ratings__users">
-                    <div class="rating__users-title">Users</div>
+                    <div class="ratings__users-title">Users</div>
                     <div class="ratings__users-marks">{{ target_game.rating }} {{target_game.rating_count}}</div>
                 </div>
                 <div class="ratings__critics">
@@ -68,9 +62,7 @@
                 <div class="genres__block">
 
                     {% for genre in genres  %}
-
-                    <div class="genres__item">{{ genre.name }}</div>
-
+                        <div class="genres__item">{{ genre.name }}</div>
                     {% endfor %}
 
                 </div>
@@ -80,9 +72,7 @@
                 <div class="platforms__block">
 
                     {% for platform in platforms %}
-
-                    <div class="platforms__item">{{ platform.name }}</div>
-
+                        <div class="platforms__item">{{ platform.name }}</div>
                     {% endfor %}
 
                 </div>
@@ -92,17 +82,15 @@
             <h2 class="tweets__title">{{ game_name }} #Pacman Tweets</h2>
 
             {% for tweet in tweets %}
-
-            <div class="tweets__block">
-                <div class="block__text">
-                    <p>{{ tweet.content }}</p>
+                <div class="tweets__block">
+                    <div class="block__text">
+                        <p>{{ tweet.content }}</p>
+                    </div>
+                    <div class="block__info">
+                        <div class="block__date">{{ tweet.date|date:'M Y' }}</div>
+                        <div class="block__author">@{{ tweet.publisher }}</div>
+                    </div>
                 </div>
-                <div class="block__info">
-                    <div class="block__date">{{ tweet.date|date:'M Y' }}</div>
-                    <div class="block__author">@{{ tweet.publisher }}</div>
-                </div>
-            </div>
-
             {% endfor %}
 
         </div>

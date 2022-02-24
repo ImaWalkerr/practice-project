@@ -18,44 +18,41 @@
                                 <li>
                                     <div class="sidebar__sub-link">
                                         <h4 class="sidebar-search__header">Filters</h4>
-                                        <form class="sidebar-search__form" action="#" method="get">
-                                            <label class="sidebar-search__label">
-                                                <b>Platforms</b>
-                                                <input class="sidebar-search__input" type="text" name="Search">
-                                            </label>
-                                            <div class="sidebar-search__checkout checkout-search">
-                                                <label class="checkout-input">
-                                                    <input class="checkout-input__search" type="checkbox" name="Search">
-                                                    <b>PC</b>
-                                                </label>
-                                                <label class="checkout-input">
-                                                    <input class="checkout-input__search" type="checkbox" name="Search">
-                                                    <b>PS4</b>
+                                        <form class="sidebar-search__form" action="#" method="GET">
+                                            <div class="sidebar-search__block">
+                                                <div class="sidebar-search__name">Platforms</div>
+                                                <label>
+                                                    <input type="text" class="sidebar-search__input">
                                                 </label>
                                             </div>
-                                            <label class="sidebar-search__label">
-                                                <b>Genre</b>
-                                                <input class="sidebar-search__input" type="text" name="Search">
-                                            </label>
-                                            <div class="sidebar-search__checkout checkout-search">
-                                                <label class="checkout-input">
-                                                    <input class="checkout-input__search" type="checkbox" name="Search">
-                                                    <b>Platformer</b>
+                                            <div class="sidebar-search__checkout checkout-search" data-simplebar>
+
+                                                {% for el in all_platforms_filter %}
+                                                    <label class="checkout-input">
+                                                        <input class="checkout-input__search" type="checkbox" name="Search">
+                                                        <b>{{ el.name }}</b>
+                                                    </label>
+                                                {% endfor %}
+
+                                            </div>
+                                            <div class="sidebar-search__block">
+                                                <div class="sidebar-search__name">Genres</div>
+                                                <label>
+                                                    <input type="text" class="sidebar-search__input">
                                                 </label>
                                             </div>
-                                             <div class="sidebar-search__label">
-                                                <b>User rating</b>
+                                            <div class="sidebar-search__checkout checkout-search" data-simplebar>
+
+                                                {% for el in all_genres_filter %}
+                                                    <label class="checkout-input">
+                                                        <input class="checkout-input__search" type="checkbox" name="Search">
+                                                        <b>{{ el.name }}</b>
+                                                    </label>
+                                                {% endfor %}
+
                                             </div>
-                                            <div class="sidebar-search__checkout checkout-search">
-                                                <label class="checkout-input">
-                                                    <input class="checkout-input__search" type="checkbox" name="Search">
-                                                    <b>5.0</b>
-                                                </label>
-                                                 <label class="checkout-input">
-                                                    <input class="checkout-input__search" type="checkbox" name="Search">
-                                                    <b>10.0</b>
-                                                </label>
-                                            </div>
+                                            <div class="sidebar-search__name">User Rating</div>
+                                            <div class="sidebar-search__slider" id="range-slider"></div>
                                             <div class="sidebar-search">
                                                 <button type="button" class="sidebar-search__button">Apply</button>
                                             </div>
@@ -70,9 +67,10 @@
         </div>
         <div class="content__sections">
             <div class="content__sections-search">
-                <form action="#" method="get">
+                <form action="{% url 'main_page' %}" method="GET">
+                    {% csrf_token %}
                     <label class="header__search-label">
-                        <input class="header__search-input" type="text" name="Search" placeholder="Search...">
+                        <input class="header__search-input" type="search" name="search_game" placeholder="Search...">
                         <button class="header__search-button" type="submit">
                             <img class="header__search-icon" src="{% static 'media/images/icon_search.png' %}" alt="icon-search">
                         </button>
@@ -81,23 +79,27 @@
             </div>
             <div class="content__carts games-cart">
 
-                {% for game in games %}
+                {% for game in page_obj %}
 
                 <div class="games-cart">
                     <div class="games-cart__hover">
                         <img class="games-cart__image" src={{ game.cover.url }} alt="game-icon">
                         <div class="games-cart__popup-block popup-block">
-                            <div class="popup-block__title">{{ game.name }}</div>
+                            <h3 class="popup-block__title">{{ game.name }}</h3>
+                            <div class="popup-block__description">
+                                
+                                {% for genre in game.genres %}
+                                    {{ genre.name }}
+                                {% endfor %}
 
-                            {% for genre in game.genres %}
-
-                            <div class="popup-block__description">{{ genre.name }}</div>
-
-                            {% endfor %}
-
+                            </div>
                             <div class="popup-block__links">
-                                <a href="/{{ game.id }}" class="popup-block__links-open">Open</a>
-                                <a href="#" class="popup-block__links-must">MUST</a>
+                                <button type="button" class="popup-block__links-open">
+                                    <a class="popup-block__links-a" href="/{{ game.id }}">Open</a>
+                                </button>
+                                <button type="button" class="popup-block__links-must">
+                                    <a class="popup-block__links-a" href="#">MUST</a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -107,10 +109,17 @@
 
             </div>
             <div class="content__pagination">
-                <div class="content__pagination-item">1</div>
-                <div class="content__pagination-item">2</div>
-                <div class="content__pagination-item">3</div>
+                <nav aria-label="content__pagination-navigation">
+                    <ul class="content__pagination-menu">
+
+                        {% for el in nums %}
+                            <li><a class="content__pagination-item" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                        {% endfor %}
+
+                     </ul>
+                </nav>
             </div>
         </div>
+        <div class="content__pass"></div>
     </div>
 {% endblock %}

@@ -1,128 +1,75 @@
-/* Variables */
-/* Null */
-* {
-  padding: 0;
+/* Variables+plugins */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
   margin: 0;
-  border: 0;
 }
 
-*, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-:focus, :active {
-  outline: none;
-}
-
-a:focus, a:active {
-  outline: none;
-}
-
-nav, footer, header, aside {
-  display: block;
-}
-
-input::-ms-clear {
-  display: none;
-}
-
-button {
-  cursor: pointer;
-  background: white;
-}
-
-button::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
-a, a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-ul li {
-  list-style: none;
-}
-
-html, body {
-  height: 100%;
-  width: 100%;
-  line-height: 1;
-  font-size: 14px;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .wrapper {
-  width: 1900px;
+  width: 100%;
 }
 
 .content {
   display: flex;
-  max-width: 1900px;
+  max-width: 100%;
 }
-
 .content__sidebar {
   min-height: auto;
   min-width: 20%;
 }
-
 .content__sections {
   display: flex;
   flex-direction: column;
+  min-width: 60%;
 }
-
+.content__pass {
+  min-width: 20%;
+}
 .content__sections-sidebar {
   min-width: 20%;
 }
-
 .content__sections-search {
   min-height: 100px;
-  padding: 0 28% 0 6%;
+  padding: 0 6%;
 }
-
 .content__carts {
   display: flex;
   flex-wrap: wrap;
-}
-
-.header__search-label {
-  display: flex;
-  border-bottom: black;
+  align-items: center;
+  justify-content: center;
 }
 
 .header {
   display: flex;
-  height: 90px;
+  height: 75px;
   width: 100%;
   padding: 20px;
-  background-color: red;
+  background-color: #e23232;
   border-bottom: 2px solid grey;
 }
-
 .header__logo-image {
-  width: 60px;
-  height: 60px;
-  background-color: red;
-  margin: -5px 0;
+  width: 70px;
+  height: 55px;
+  background-color: #e23232;
+  margin: -10px 0;
 }
-
 .header__name {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   display: inline-block;
-  padding: 10px;
-  font-size: 28px;
+  font-size: 22px;
   color: white;
   font-weight: 700;
 }
-
+.header__search-label {
+  display: flex;
+  border-bottom: 2px solid grey;
+}
 .header__search-input {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
@@ -132,7 +79,6 @@ html, body {
   height: 50px;
   margin: 20px 0 0 0;
 }
-
 .header__search-icon {
   width: 50px;
   height: 50px;
@@ -143,94 +89,223 @@ html, body {
 .sidebar li {
   position: relative;
 }
-
 .sidebar__list {
   display: flex;
 }
-
 .sidebar__sub-list {
   display: none;
   position: absolute;
   top: 0;
 }
-
 .sidebar__sub-link {
   font-size: 25px;
   font-weight: 600;
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   color: white;
-  background-color: red;
+  background-color: #e23232;
   display: inline-block;
   padding: 25px;
   height: 100vh;
-  width: 375px;
+  width: 400px;
+}
+.sidebar__arrow {
+  position: absolute;
+  border: 2px solid white;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background-color: #e23232;
+}
+.sidebar__arrow span {
+  z-index: 999;
+  height: 3px;
+  margin: 1px;
+  width: 20px;
+  background: white;
+  transition: 0.4s ease;
+}
+.sidebar__arrow span:first-child {
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 25%;
+  bottom: 35%;
+}
+.sidebar__arrow span:nth-child(2) {
+  display: block;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 45%;
+  bottom: 35%;
+}
+.sidebar__arrow span:nth-child(3) {
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 25%;
+  bottom: 54%;
+}
+.sidebar__arrow span:nth-child(4) {
+  display: block;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 45%;
+  bottom: 54%;
 }
 
+.sidebar-search {
+  width: 50%;
+  margin: 10% auto;
+}
 .sidebar-search__header {
   text-align: center;
   padding: 10px 0 15px 0;
-  border-bottom: 2px white;
+  border-bottom: 2px solid white;
 }
-
+.sidebar-search__name {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  margin: 5% 0;
+}
+.sidebar-search__block {
+  display: flex;
+}
 .sidebar-search__form {
-  padding: 40px 0 0 0;
+  margin: 20px 0 0 0;
 }
-
 .sidebar-search__label {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 400;
   font-size: 20px;
   color: white;
 }
-
 .sidebar-search__input {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 20px;
+  font-weight: 600;
+  font-size: 14px;
   color: white;
-  width: 50%;
-  background-color: red;
-  border-bottom: 2px white;
+  background-color: #e23232;
+  border-bottom: 2px solid white;
+  margin: 20px 0 10px 10px;
 }
-
 .sidebar-search__checkout {
   display: flex;
-  padding: 30px 15px 30px 0;
+  flex-wrap: inherit;
+  height: 250px;
+  overflow: auto;
 }
-
-.checkout-input__search {
+.sidebar-search__search {
   margin: 10px;
 }
-
-.checkout-input {
-  display: flex;
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-  font-size: 18px;
-  color: red;
-  background-color: white;
-  border-radius: 30%;
-  padding: 0 10px;
-  align-items: center;
-  justify-content: center;
-  margin: 0 15px 0 0;
-}
-
-.sidebar-search {
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
 .sidebar-search__button {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-size: 28px;
   font-weight: 600;
   padding: 10px 15px;
   background-color: white;
-  color: red;
+  color: #e23232;
   border-right: 2px solid grey;
   border-bottom: 2px solid grey;
   text-align: center;
+}
+
+.checkout-input {
+  display: flex;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-size: 14px;
+  color: #e23232;
+  background-color: white;
+  border-radius: 30px;
+  padding: 5px 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+}
+.checkout-input__search {
+  margin: 0 5px 0 0;
+}
+
+.slider {
+  margin: 0 0 0 20px;
+}
+.slider__inputs {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.slider__input {
+  border: none;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  padding: 0 10px;
+  background: #e23232;
+}
+.slider__label {
+  display: flex;
+  align-items: center;
+  height: 20px;
+}
+.slider__text {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: grey;
+}
+
+.noUi-target {
+  background: white;
+  border: none;
+  border-radius: 100px;
+  box-shadow: none;
+  height: 2px;
+  width: 90%;
+  margin: auto;
+}
+
+.noUi-connect {
+  background: white;
+}
+
+.noUi-handle:after, .noUi-handle:before {
+  display: none;
+}
+
+.noUi-handle {
+  box-shadow: none;
+  border-radius: 100%;
+  background: white;
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 10px;
+  height: 10px;
+  right: -6px;
+  top: -4px;
+}
+
+.noUi-tooltip {
+  display: block;
+  position: absolute;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+  color: white;
+  background: none;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+  top: 10px;
+}
+
+.noUi-active .noUi-tooltip {
+  display: block;
 }
 
 body.mouse .sidebar__list > li:hover .sidebar__sub-list {
@@ -245,104 +320,31 @@ body.touch .sidebar__arrow {
   display: block;
 }
 
-.center-con {
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-}
-
-.sidebar__arrow {
-  position: relative;
-  border: 2px white;
-  width: 85px;
-  height: 85px;
-  border-radius: 100%;
-  background-color: red;
-}
-
-span {
-  z-index: 999;
-  height: 3px;
-  margin: 1px;
-  width: 25px;
-  background: white;
-  transition: 0.4s ease;
-}
-
-span:first-child {
-  display: block;
-  position: absolute;
-  transform: rotate(45deg);
-  left: 25%;
-  bottom: 35%;
-}
-
-span:nth-child(2) {
-  display: block;
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 45%;
-  bottom: 35%;
-}
-
-span:nth-child(3) {
-  display: block;
-  position: absolute;
-  transform: rotate(45deg);
-  left: 25%;
-  bottom: 54%;
-}
-
-span:nth-child(4) {
-  display: block;
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 45%;
-  bottom: 54%;
-}
-
-.sidebar__arrow:hover span:nth-child(1) {
-  transform: rotate(-135deg);
-}
-
-.sidebar__arrow:hover span:nth-child(2) {
-  transform: rotate(135deg);
-}
-
-.sidebar__arrow:hover span:nth-child(3) {
-  transform: rotate(225deg);
-}
-
-.sidebar__arrow:hover span:nth-child(4) {
-  transform: rotate(-225deg);
-}
-
 .games-cart {
   position: relative;
-  padding: 0 3% 30px 3%;
+  margin: 0 3% 3% 3%;
 }
-
 .games-cart__image {
   width: 280px;
   height: 280px;
   object-fit: contain;
+  background-image: url("/static/media/images/games.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
 .games-cart__hover:hover .games-cart__popup-block {
   display: block;
 }
-
 .games-cart__popup-block {
   position: absolute;
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
   text-align: left;
   color: white;
-  left: 12%;
-  bottom: 10%;
-  right: 12%;
-  top: 0;
+  left: 0;
+  bottom: 1%;
+  right: 0;
+  top: 45%;
   background: rgba(0, 0, 0, 0.5);
   padding: 25px;
   display: none;
@@ -351,15 +353,18 @@ span:nth-child(4) {
 .popup-block__title {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
-  font-size: 20px;
-  margin: 15px 0;
-}
-
-.popup-block__description {
-  font-size: 20px;
   text-align: left;
+  color: white;
+  margin: 0 0 10px 0;
 }
-
+.popup-block__description {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: left;
+  color: white;
+  margin: 0 0 10px 0;
+}
 .popup-block__links {
   display: flex;
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
@@ -369,31 +374,27 @@ span:nth-child(4) {
   text-align: center;
   color: black;
 }
-
-.popup-block__links-open,
-.popup-block__links-must {
+.popup-block__links-open, .popup-block__links-must {
   background-color: white;
   padding: 5px 10px;
-  border-radius: 35%;
-  margin: 15px 15px 0 0;
+  border-radius: 35px;
+  margin: 10px 15px 0 0;
 }
-
-.popup-block__links-open {
-  text-decoration: underline;
-  color: black;
-}
-
-.popup-block__links-must {
-  text-decoration: underline;
+.popup-block__links-a {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
   color: black;
 }
 
 .content__pagination {
-  display: flex;
-  width: 34%;
-  margin: auto;
+  margin: 0 auto 30px auto;
 }
-
+.content__pagination-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .content__pagination-item {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
@@ -401,16 +402,12 @@ span:nth-child(4) {
   text-align: center;
   text-decoration: none;
   color: white;
-  background-color: red;
+  background-color: #e23232;
   margin: 0 5px;
   padding: 10px 15px;
   border-bottom: 2px solid grey;
   border-right: 2px solid grey;
   cursor: pointer;
-}
-
-.content__pagination-item:hover {
-  text-decoration: underline;
 }
 
 /*# sourceMappingURL=main_page.css.map */
