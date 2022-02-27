@@ -113,6 +113,15 @@ input[type=number] {
   padding: 20px;
   background-color: #e23232;
   border-bottom: 2px solid grey;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__registration {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  margin: 0 10px;
 }
 .header__logo-image {
   width: 70px;
@@ -123,7 +132,7 @@ input[type=number] {
 .header__name {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   display: inline-block;
-  font-size: 22px;
+  font-size: 23px;
   color: white;
   font-weight: 700;
 }
@@ -145,6 +154,34 @@ input[type=number] {
   height: 50px;
   object-fit: contain;
   background-color: white;
+}
+.header__profile, .header__register {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #e23232;
+  background: white;
+  padding: 10px 15px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+.header__profile a, .header__register a {
+  text-decoration: none;
+  color: #e23232;
+}
+.header__must {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  background: limegreen;
+  padding: 10px 15px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+.header__must a {
+  text-decoration: none;
+  color: #e23232;
 }
 
 .sidebar li {
@@ -214,35 +251,31 @@ input[type=number] {
   bottom: 54%;
 }
 
-.sidebar-search {
-  width: 50%;
-  margin: 10% auto;
-}
-.sidebar-search__header {
+.search__header {
   text-align: center;
   padding: 10px 0 15px 0;
   border-bottom: 2px solid white;
 }
-.sidebar-search__name {
+.search__name {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
   font-size: 20px;
   color: white;
   margin: 5% 0;
 }
-.sidebar-search__block {
+.search__block {
   display: flex;
 }
-.sidebar-search__form {
+.search__form {
   margin: 20px 0 0 0;
 }
-.sidebar-search__label {
+.search__label {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 400;
   font-size: 20px;
   color: white;
 }
-.sidebar-search__input {
+.search__input {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
   font-size: 14px;
@@ -251,16 +284,16 @@ input[type=number] {
   border-bottom: 2px solid white;
   margin: 20px 0 10px 10px;
 }
-.sidebar-search__checkout {
+.search__checkout {
   display: flex;
   flex-wrap: inherit;
   height: 250px;
   overflow: auto;
 }
-.sidebar-search__search {
+.search__search {
   margin: 10px;
 }
-.sidebar-search__button {
+.search__button {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-size: 28px;
   font-weight: 600;
@@ -270,9 +303,34 @@ input[type=number] {
   border-right: 2px solid grey;
   border-bottom: 2px solid grey;
   text-align: center;
+  margin: 15% 33%;
 }
 
-.checkout-input {
+.search-platforms li {
+  transition: all ease 500ms;
+}
+
+.search-platforms li.hide {
+  display: none;
+}
+
+.search-genres li {
+  transition: all ease 500ms;
+}
+
+.search-genres li.hide {
+  display: none;
+}
+
+.games-cart {
+  transition: all ease 500ms;
+}
+
+.games-cart.hide {
+  display: none;
+}
+
+.checkout__input {
   display: flex;
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-size: 14px;
@@ -281,10 +339,10 @@ input[type=number] {
   border-radius: 30px;
   padding: 5px 10px;
   align-items: center;
-  justify-content: center;
   margin: 5px;
+  width: fit-content;
 }
-.checkout-input__search {
+.checkout__search {
   margin: 0 5px 0 0;
 }
 
@@ -316,6 +374,11 @@ input[type=number] {
   font-weight: 600;
   font-size: 14px;
   color: grey;
+}
+
+li mark {
+  color: white;
+  background: none;
 }
 
 .noUi-target {
@@ -393,10 +456,10 @@ body.touch .sidebar__arrow {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.games-cart__hover:hover .games-cart__popup-block {
+.games-cart__hover:hover .games-cart__block {
   display: block;
 }
-.games-cart__popup-block {
+.games-cart__block {
   position: absolute;
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
@@ -411,14 +474,14 @@ body.touch .sidebar__arrow {
   display: none;
 }
 
-.popup-block__title {
+.block__title {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
   text-align: left;
   color: white;
   margin: 0 0 10px 0;
 }
-.popup-block__description {
+.block__description {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
   font-size: 16px;
@@ -426,7 +489,7 @@ body.touch .sidebar__arrow {
   color: white;
   margin: 0 0 10px 0;
 }
-.popup-block__links {
+.block__links {
   display: flex;
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
@@ -435,13 +498,13 @@ body.touch .sidebar__arrow {
   text-align: center;
   color: black;
 }
-.popup-block__links-open, .popup-block__links-must {
+.block__links-open, .block__links-must {
   background-color: white;
   padding: 5px 10px;
   border-radius: 35px;
   margin: 10px 15px 0 0;
 }
-.popup-block__links-a {
+.block__links-a {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
   font-size: 14px;
@@ -715,6 +778,103 @@ input[type=number] {
 }
 .tweets__block__author {
   padding: 0 10px 10px 0;
+}
+
+/* Variables+plugins */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.form__header {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  text-align: center;
+  color: black;
+  padding: 10px 0;
+}
+.form__container {
+  display: flex;
+  width: 100%;
+}
+.form__block-up {
+  width: 100%;
+  min-height: 25vh;
+}
+.form__block-left, .form__block-right {
+  width: 35%;
+}
+.form__block-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+.form__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+.form__button-style {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 55%;
+  color: white;
+  border-left: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 5px 0;
+}
+
+.control-label {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 0 10px 0 0;
+}
+
+.emailinput,
+.textInput {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: grey;
+  height: 30px;
+}
+
+.help-block {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
 }
 
 /*# sourceMappingURL=base.css.map */

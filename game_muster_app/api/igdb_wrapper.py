@@ -55,7 +55,7 @@ class IGDBWrapper:
                  'total_rating_count,'
                  'screenshots.url;'
                  'limit 100;'
-                 'where (platforms = [6,48] & genres.id = 13) | (platforms = [130,48] & genres = 12);' + where_condition).json()
+                 'where (platforms = [6,48] & genres = 13) | (platforms = [130,48] & genres = 12);' + where_condition).json()
 
     def get_game(self, game_id):
         return self.get_games(ids=[game_id])
@@ -65,7 +65,7 @@ class IGDBWrapper:
             'https://api.igdb.com/v4/genres',
             headers=self.headers,
             data='fields name;'
-                 'limit 15;'
+                 'limit 100;'
         ).json()
 
     def get_platforms(self):
@@ -73,7 +73,7 @@ class IGDBWrapper:
             'https://api.igdb.com/v4/platforms',
             headers=self.headers,
             data='fields name;'
-                 'limit 15;'
+                 'limit 100;'
         ).json()
 
     @staticmethod

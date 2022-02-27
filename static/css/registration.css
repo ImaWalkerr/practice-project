@@ -1,0 +1,98 @@
+/* Variables+plugins */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.form__header {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  text-align: center;
+  color: black;
+  padding: 10px 0;
+}
+.form__container {
+  display: flex;
+  width: 100%;
+}
+.form__block-up {
+  width: 100%;
+  min-height: 25vh;
+}
+.form__block-left, .form__block-right {
+  width: 35%;
+}
+.form__block-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+.form__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+.form__button-style {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 55%;
+  color: white;
+  border-left: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 5px 0;
+}
+
+.control-label {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 0 10px 0 0;
+}
+
+.emailinput,
+.textInput {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: grey;
+  height: 30px;
+}
+
+.help-block {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+}
+
+/*# sourceMappingURL=registration.css.map */

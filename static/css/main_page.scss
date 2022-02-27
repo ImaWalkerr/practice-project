@@ -41,6 +41,15 @@
   padding: 20px;
   background-color: $font-color-main;
   border-bottom: 2px solid $font-color-border;
+  align-items: center;
+  justify-content: space-between;
+  &__registration {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-light;
+    margin: 0 10px;
+  }
   &__logo-image {
     width: 70px;
     height: 55px;
@@ -50,7 +59,7 @@
   &__name {
     font-family: $font-family;
     display: inline-block;
-    font-size: 22px;
+    font-size: 23px;
     color: $font-color-light;
     font-weight: 700;
   }
@@ -72,6 +81,35 @@
     height: 50px;
     object-fit: contain;
     background-color: $font-color-light;
+  }
+  &__profile,
+  &__register {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-main;
+    background: $font-color-light;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+    a {
+      text-decoration: none;
+      color: $font-color-main;
+    }
+  }
+  &__must {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-light;
+    background: limegreen;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+    a {
+      text-decoration: none;
+      color: $font-color-main;
+    }
   }
 }
 
@@ -144,9 +182,7 @@
   }
 }
 
-.sidebar-search {
-  width: 50%;
-  margin: 10% auto;
+.search {
   &__header {
     text-align: center;
     padding: 10px 0 15px 0;
@@ -162,6 +198,7 @@
   &__block {
     display: flex;
   }
+  &__slider-block {}
   &__form {
     margin: 20px 0 0 0;
   }
@@ -199,20 +236,44 @@
     border-right: 2px solid $font-color-border;
     border-bottom: 2px solid $font-color-border;
     text-align: center;
+    margin: 15% 33%;
   }
 }
 
-.checkout-input {
-  display: flex;
-  font-family: $font-family;
-  font-size: 14px;
-  color: $font-color-main;
-  background-color: $font-color-light;
-  border-radius: 30px;
-  padding: 5px 10px;
-  align-items: center;
-  justify-content: center;
-  margin: 5px;
+.search-platforms li {
+  transition: all ease 500ms;
+}
+.search-platforms li.hide {
+  display: none;
+}
+
+.search-genres li {
+  transition: all ease 500ms;
+}
+.search-genres li.hide {
+  display: none;
+}
+
+.games-cart {
+  transition: all ease 500ms;
+}
+.games-cart.hide {
+  display: none;
+}
+
+.checkout{
+  &__input {
+    display: flex;
+    font-family: $font-family;
+    font-size: 14px;
+    color: $font-color-main;
+    background-color: $font-color-light;
+    border-radius: 30px;
+    padding: 5px 10px;
+    align-items: center;
+    margin: 5px;
+    width: fit-content;
+  }
   &__search {
     margin: 0 5px 0 0;
   }
@@ -245,6 +306,13 @@
     font-weight: 600;
     font-size: 14px;
     color: $font-color-border;
+  }
+}
+
+li {
+  mark {
+    color: white;
+    background: none;
   }
 }
 
@@ -296,7 +364,7 @@
 }
 
 .noUi-active .noUi-tooltip {
-    display: block;
+  display: block;
 }
 
 body.mouse .sidebar__list > li:hover .sidebar__sub-list {
@@ -322,10 +390,10 @@ body.touch .sidebar__arrow {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  &__hover:hover .games-cart__popup-block {
+  &__hover:hover .games-cart__block {
     display: block;
   }
-  &__popup-block {
+  &__block {
     position: absolute;
     font-family: $font-family;
     font-weight: 600;
@@ -341,7 +409,7 @@ body.touch .sidebar__arrow {
   }
 }
 
-.popup-block {
+.block {
   &__title {
     font-family: $font-family;
     font-weight: 600;

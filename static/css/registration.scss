@@ -1,0 +1,89 @@
+@import "base_variables";
+
+.form {
+  &__header {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+    color: $font-color-dark;
+    padding: 10px 0;
+  }
+  &__container {
+    display: flex;
+    width: 100%;
+  }
+  &__block-up {
+    width: 100%;
+    min-height: 25vh;
+  }
+  &__block-left,
+  &__block-right {
+    width: 35%;
+  }
+  &__block-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+  }
+  &__block {}
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  &__button-style {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-light;
+    background: $font-color-main;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 55%;
+  color: $font-color-light;
+  border-left: 2px solid $font-color-border;
+  border-bottom: 2px solid $font-color-border;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 5px 0;
+}
+
+.control-label {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 20px;
+  color: $font-color-dark;
+  padding: 0 10px 0 0;
+}
+
+.emailinput,
+.textInput {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 20px;
+  color: $font-color-border;
+  height: 30px;
+}
+
+.help-block {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  color: $font-color-dark;
+}
