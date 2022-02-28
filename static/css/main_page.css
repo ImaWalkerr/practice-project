@@ -242,7 +242,7 @@ input[type=number] {
   border-right: 2px solid grey;
   border-bottom: 2px solid grey;
   text-align: center;
-  margin: 15% 33%;
+  margin: 10% 33% 0 33%;
 }
 
 .search-platforms li {

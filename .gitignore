@@ -142,7 +142,7 @@ dmypy.json
 cython_debug/
 
 # IDE and Editor files
-.idea
+.idea/
 
 mocked_*.pickle
 

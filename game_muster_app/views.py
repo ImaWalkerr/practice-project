@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
 from django.views.generic import ListView, CreateView
 
-from .models import Profile
+from .models import *
 from .forms import LoginForm, RegistrationForm
 
 from game_muster_app.api.igdb_wrapper import IGDB_WRAPPER
@@ -35,7 +35,7 @@ class MainPageView(views.View):
         all_platforms_filter = IGDB_WRAPPER.get_platforms()
         all_genres_filter = IGDB_WRAPPER.get_genres()
 
-        users = Profile.objects.all()
+        users = GameUser.objects.all()
 
         context = {
             'games': games,
@@ -126,7 +126,7 @@ class RegistrationView(views.View):
             new_user.save()
             new_user.set_password(form.cleaned_data['password'])
             new_user.save()
-            Profile.objects.create(
+            GameUser.objects.create(
                 user=new_user,
                 birthday=form.cleaned_data['birthday'],
             )
@@ -145,13 +145,3 @@ def do_logout(request):
         return HttpResponseRedirect('/')
     else:
         return HttpResponse(f'You must login first!')
-
-
-class ProfileView(views.View):
-
-    def get(self, request):
-        user_info = Profile.objects.all()
-        context = {
-            'user_info': user_info
-        }
-        return render(request, 'profile_page.html', context)

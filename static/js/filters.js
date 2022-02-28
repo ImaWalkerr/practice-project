@@ -3,7 +3,7 @@ document.querySelector('#search-platforms').oninput = function () {
     let filterPlatformItems = document.querySelectorAll('.search-platforms li');
     if (val !== '') {
         filterPlatformItems.forEach(function (elem) {
-            if (elem.innerText.search(val) === -1) {
+            if (elem.innerText.toLowerCase().search(val.toLowerCase()) === -1) {
                 elem.classList.add('hide');
             }
             else {
@@ -23,7 +23,7 @@ document.querySelector('#search-genres').oninput = function () {
     let filterGenreItems = document.querySelectorAll('.search-genres li');
     if (val !== '') {
         filterGenreItems.forEach(function (elem) {
-            if (elem.innerText.search(val) === -1) {
+            if (elem.innerText.toLowerCase().search(val.toLowerCase()) === -1) {
                 elem.classList.add('hide');
             }
             else {
@@ -38,12 +38,15 @@ document.querySelector('#search-genres').oninput = function () {
     }
 }
 
+
+
+
 document.querySelector('#search-games-cart').oninput = function () {
     let val = this.value.trim();
     let filterGamesItems = document.querySelectorAll('.games-cart');
     if (val !== '') {
         filterGamesItems.forEach(function (elem) {
-            if (elem.innerText.search(val) === -1) {
+            if (elem.innerText.toLowerCase().search(val.toLowerCase()) === -1) {
                 elem.classList.add('hide');
             }
             else {
