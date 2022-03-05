@@ -37,26 +37,3 @@ document.querySelector('#search-genres').oninput = function () {
         });
     }
 }
-
-
-
-
-document.querySelector('#search-games-cart').oninput = function () {
-    let val = this.value.trim();
-    let filterGamesItems = document.querySelectorAll('.games-cart');
-    if (val !== '') {
-        filterGamesItems.forEach(function (elem) {
-            if (elem.innerText.toLowerCase().search(val.toLowerCase()) === -1) {
-                elem.classList.add('hide');
-            }
-            else {
-              elem.classList.remove('hide');
-            }
-        });
-    }
-    else {
-        filterGamesItems.forEach(function (elem) {
-            elem.classList.remove('hide');
-        });
-    }
-}

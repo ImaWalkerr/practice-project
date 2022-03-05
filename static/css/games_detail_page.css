@@ -104,6 +104,7 @@ input[type=number] {
 }
 .release-date__text-block {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
 }
@@ -189,6 +190,9 @@ input[type=number] {
 }
 .platforms__block {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
 }
 .platforms__item {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;

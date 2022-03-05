@@ -390,10 +390,7 @@ body.touch .sidebar__arrow {
 .games-cart__image {
   width: 280px;
   height: 280px;
-  object-fit: contain;
-  background-image: url("/static/media/images/games.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  object-fit: cover;
 }
 .games-cart__hover:hover .games-cart__block {
   display: block;

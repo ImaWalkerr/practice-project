@@ -1,11 +1,8 @@
-import requests
 from django import views
-from django.db.models import Q
-from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponse
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
-from django.views.generic import ListView, CreateView
 
 from .models import *
 from .forms import LoginForm, RegistrationForm
@@ -15,17 +12,25 @@ from game_muster_app.api.igdb_wrapper import IGDB_WRAPPER
 
 class MainPageView(views.View):
     """
-    Список всех игр на главной странице
+    Functional for main page
     """
-
     def get(self, request):
 
-        try:
-            games = IGDB_WRAPPER.get_games()
-            if not games:
-                raise LookupError
-        except LookupError:
-            return HttpResponseNotFound(f"<h1>There are no games found!</h1>")
+        igdb_search = request.GET.get('search_game')
+        filter_platforms = request.GET.get('platform_id')
+        filter_genres = request.GET.get('genre_id')
+        games = IGDB_WRAPPER.get_base_page_games()
+
+        if igdb_search and filter_platforms and filter_genres is None:
+            games = IGDB_WRAPPER.get_base_page_games()
+        elif igdb_search is not None:
+            games = IGDB_WRAPPER.get_games_by_search(search=igdb_search)
+        elif filter_platforms and filter_genres is not None:
+            games = IGDB_WRAPPER.get_games_by_filtering(platforms=filter_platforms, genres=filter_genres)
+        elif filter_platforms is None and filter_genres is not None:
+            games = IGDB_WRAPPER.get_games_by_filtering(genres=filter_genres)
+        elif filter_platforms is not None and filter_genres is None:
+            games = IGDB_WRAPPER.get_games_by_filtering(platforms=filter_platforms)
 
         pagination = Paginator(games, 6)
         page_number = request.GET.get('page')
@@ -43,7 +48,9 @@ class MainPageView(views.View):
             'nums': nums,
             'all_platforms_filter': all_platforms_filter,
             'all_genres_filter': all_genres_filter,
-            'users': users
+            'users': users,
+            'filter_platforms': filter_platforms,
+            'filter_genres': filter_genres,
         }
 
         return render(request, 'main_page.html', context)
@@ -51,24 +58,23 @@ class MainPageView(views.View):
 
 class GamesDetailPageView(views.View):
     """
-    Информация по конкретной игре
+    Functional for current game page
     """
-
     def get(self, request, game_id):
-        target_game = IGDB_WRAPPER.get_game(game_id)
-        target_game = target_game[0] if target_game else None
-        genres = target_game.get('genres')
-        platforms = target_game.get('platforms')
-        release_dates = target_game.get('release_dates')
-        rating = target_game.get('rating')
-        total_rating = target_game.get('total_rating')
-        aggregated_rating = target_game.get('aggregated_rating')
-        aggregated_rating_count = target_game.get('aggregated_rating_count')
-        cover = target_game.get('cover')
-        screenshots = target_game.get('screenshots')
+        current_game = IGDB_WRAPPER.get_game_id(game_id)
+        current_game = current_game[0] if current_game else None
+        genres = current_game.get('genres')
+        platforms = current_game.get('platforms')
+        release_dates = current_game.get('release_dates')
+        rating = current_game.get('rating')
+        total_rating = current_game.get('total_rating')
+        aggregated_rating = current_game.get('aggregated_rating')
+        aggregated_rating_count = current_game.get('aggregated_rating_count')
+        cover = current_game.get('cover')
+        screenshots = current_game.get('screenshots')
 
         context = {
-            'target_game': target_game,
+            'current_game': current_game,
             'genres': genres,
             'platforms': platforms,
             'release_dates': release_dates,
