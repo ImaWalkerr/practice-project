@@ -44,6 +44,7 @@
   }
   &__genre {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
     font-family: $font-family;
@@ -166,6 +167,9 @@
   }
   &__block {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
   }
   &__item {
     font-family: $font-family;

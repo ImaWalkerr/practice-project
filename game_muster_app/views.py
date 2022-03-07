@@ -17,20 +17,23 @@ class MainPageView(views.View):
     def get(self, request):
 
         igdb_search = request.GET.get('search_game')
-        filter_platforms = request.GET.get('platform_id')
-        filter_genres = request.GET.get('genre_id')
+        platforms = request.GET.get('platform_id')
+        genres = request.GET.get('genre_id')
+        ratings_min = request.GET.get('min')
+        ratings_max = request.GET.get('max')
+        ratings = ratings_min, ratings_max
         games = IGDB_WRAPPER.get_base_page_games()
 
-        if igdb_search and filter_platforms and filter_genres is None:
+        if igdb_search and platforms and genres and ratings is None:
             games = IGDB_WRAPPER.get_base_page_games()
         elif igdb_search is not None:
             games = IGDB_WRAPPER.get_games_by_search(search=igdb_search)
-        elif filter_platforms and filter_genres is not None:
-            games = IGDB_WRAPPER.get_games_by_filtering(platforms=filter_platforms, genres=filter_genres)
-        elif filter_platforms is None and filter_genres is not None:
-            games = IGDB_WRAPPER.get_games_by_filtering(genres=filter_genres)
-        elif filter_platforms is not None and filter_genres is None:
-            games = IGDB_WRAPPER.get_games_by_filtering(platforms=filter_platforms)
+        elif platforms and genres and ratings is not None:
+            games = IGDB_WRAPPER.get_games_by_filtering(platforms=platforms, genres=genres, ratings=ratings)
+        elif platforms is None and genres and ratings is not None:
+            games = IGDB_WRAPPER.get_games_by_filtering(genres=genres, ratings=ratings)
+        elif platforms and ratings is not None and genres is None:
+            games = IGDB_WRAPPER.get_games_by_filtering(platforms=platforms, ratings=ratings)
 
         pagination = Paginator(games, 6)
         page_number = request.GET.get('page')
@@ -49,8 +52,8 @@ class MainPageView(views.View):
             'all_platforms_filter': all_platforms_filter,
             'all_genres_filter': all_genres_filter,
             'users': users,
-            'filter_platforms': filter_platforms,
-            'filter_genres': filter_genres,
+            'platforms': platforms,
+            'genres': genres,
         }
 
         return render(request, 'main_page.html', context)

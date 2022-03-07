@@ -60,7 +60,7 @@ class IGDBWrapper:
                  + f'search "{search}";' if search else ''
         ).json()
 
-    def get_games_by_filtering(self, platforms='', genres=''):
+    def get_games_by_filtering(self, platforms='', genres='', ratings=''):
         return requests.post(
             f"{self.GAME_URL}",
             headers=self.headers,
@@ -71,6 +71,7 @@ class IGDBWrapper:
                  'platforms.name;'
                  'limit 100;'
                  + f'where platforms = ["{platforms}"] & genres = ["{genres}"];' if platforms else '' if genres else ''
+                 + f'where rating = ("{ratings}");' if ratings else ''
         ).json()
 
     def get_current_game(self, ids=None):

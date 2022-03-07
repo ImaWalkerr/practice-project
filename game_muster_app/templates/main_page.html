@@ -59,7 +59,14 @@
                                             <div class="search__slider-block">
                                                 <div class="search__name">User Rating</div>
                                                 <div class="search__slider" id="range-slider"></div>
-                                                <!--<input type="range" class="search__slider-input" value="{{ rating }}" name="rating" min="0" max="100" step="5">-->
+                                                <div class="search__slider-inputs">
+                                                    <label class="search__slider-label">
+                                                        <input type="number" min="0" max="100" placeholder="0" class="search__slider-input" name="min" id="input-0">
+                                                    </label>
+                                                    <label class="search__slider-label">
+                                                        <input type="number" min="0" max="100" placeholder="100" class="search__slider-input" name="max" id="input-1">
+                                                    </label>
+                                                </div>
                                             </div>
                                             <button type="submit" class="search__button">Apply</button>
                                         </form>
