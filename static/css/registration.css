@@ -25,7 +25,7 @@ input[type=number] {
 }
 .form__block-up {
   width: 100%;
-  min-height: 25vh;
+  min-height: 20vh;
 }
 .form__block-left, .form__block-right {
   width: 35%;
@@ -79,12 +79,13 @@ input[type=number] {
   padding: 0 10px 0 0;
 }
 
+.dateinput,
 .emailinput,
 .textInput {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
   font-size: 20px;
-  color: grey;
+  color: black;
   height: 30px;
 }
 
@@ -93,6 +94,68 @@ input[type=number] {
   font-weight: 400;
   font-size: 16px;
   color: black;
+}
+
+.alert {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: #e23232;
+  margin: 15px;
+}
+
+.select,
+.numberinput {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  height: 30px;
+}
+.select option,
+.numberinput option {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+}
+
+.profile__header {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  color: black;
+  text-align: left;
+}
+.profile__block {
+  width: 100%;
+  padding: 25px;
+}
+.profile__user {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+.profile__user-info {
+  text-align: right;
+}
+.profile__user-info_load {
+  text-align: left;
+}
+.profile__name {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: grey;
+  margin: 0 0 3px 0;
+}
+.profile__name-load {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  margin: 0 0 3px 0;
 }
 
 /*# sourceMappingURL=registration.css.map */

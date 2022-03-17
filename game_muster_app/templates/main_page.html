@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load page_url %}
 
 {% block content %}
     <div class="content">
@@ -91,7 +92,7 @@
                 </form>
             </div>
             <div class="content__carts">
-                {% for game in page_obj %}
+                {% for game in games %}
                     <div class="games-cart">
                         <div class="games-cart__hover">
                             {% if game.cover %}
@@ -118,15 +119,15 @@
                         </div>
                     </div>
                 {% endfor %}
-            </div>
+                </div>
             <div class="content__pagination">
-                <nav aria-label="content__pagination-navigation">
-                    <ul class="content__pagination-menu">
-                        {% for el in nums %}
-                            <li><a class="content__pagination-item" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
-                        {% endfor %}
-                     </ul>
-                </nav>
+                <div class="content__pagination-horizontal_scroll">
+                    {% for num_of_page in games_count %}
+                    <div class="content__pagination-block">
+                        <a class="content__pagination-item" href="{{ request.get_full_path|get_page_url:num_of_page }}">{{ num_of_page }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="content__pass"></div>

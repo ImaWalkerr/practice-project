@@ -1,4 +1,6 @@
 from django import forms
+
+from .models import *
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -6,20 +8,34 @@ User = get_user_model()
 
 class RegistrationForm(forms.ModelForm):
 
-    confirm_password = forms.CharField(widget=forms.PasswordInput)
+    MALE = 'MALE'
+    FEMALE = 'FEMALE'
+    GENRES_CHOICES = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female')
+    ]
+
+    username = forms.CharField(widget=forms.TextInput, required=True)
+    email = forms.EmailField(widget=forms.EmailInput, required=True)
+    first_name = forms.CharField(widget=forms.TextInput, required=True)
+    last_name = forms.CharField(widget=forms.TextInput, required=True)
+    birthday = forms.DateField(widget=forms.DateInput, required=True)
+    gender = forms.ChoiceField(choices=GENRES_CHOICES, required=True)
+    age = forms.IntegerField(widget=forms.NumberInput, required=True)
     password = forms.CharField(widget=forms.PasswordInput)
-    birthday = forms.CharField(required=False)
-    email = forms.EmailField()
+    confirm_password = forms.CharField(widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].label = 'Login'
-        self.fields['email'].label = 'Email'
-        self.fields['first_name'].label = 'First name'
-        self.fields['last_name'].label = 'Last name'
-        self.fields['birthday'].label = 'Birthday'
-        self.fields['password'].label = 'Password'
-        self.fields['confirm_password'].label = 'Confirm Password'
+        self.fields['username'].widget.attrs['placeholder'] = self.fields['username'].label or 'Enter username here...'
+        self.fields['email'].widget.attrs['placeholder'] = self.fields['email'].label or 'Enter email here...'
+        self.fields['first_name'].widget.attrs['placeholder'] = self.fields['first_name'].label or 'Enter first name here...'
+        self.fields['last_name'].widget.attrs['placeholder'] = self.fields['last_name'].label or 'Enter last name here...'
+        self.fields['birthday'].widget.attrs['placeholder'] = self.fields['birthday'].label or 'Enter birthday here...'
+        self.fields['gender'].label = 'Gender'
+        self.fields['age'].widget.attrs['placeholder'] = self.fields['age'].label or 'Enter age here...'
+        self.fields['password'].widget.attrs['placeholder'] = self.fields['password'].label or 'Enter password here...'
+        self.fields['confirm_password'].widget.attrs['placeholder'] = self.fields['confirm_password'].label or 'Confirm password...'
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -45,12 +61,13 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'birthday', 'password', 'confirm_password']
+        fields = ['username', 'email', 'first_name', 'last_name', 'birthday', 'gender', 'age', 'password', 'confirm_password']
 
 
 class LoginForm(forms.ModelForm):
 
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.TextInput, required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True)
 
     class Meta:
         model = User
@@ -58,8 +75,8 @@ class LoginForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].label = 'Login'
-        self.fields['password'].label = 'Password'
+        self.fields['username'].widget.attrs['placeholder'] = self.fields['username'].label or 'Enter username here...'
+        self.fields['password'].widget.attrs['placeholder'] = self.fields['password'].label or 'Enter password here...'
 
     def clean(self):
         username = self.cleaned_data['username']

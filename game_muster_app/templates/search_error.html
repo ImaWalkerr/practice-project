@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="error">
+        <div class="error__block">
+            <div class="error__block-title">No games found for your search, please try again!</div>
+            <div class="error__block-list">
+                <a href="/" class="error__block-link">Return to main</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

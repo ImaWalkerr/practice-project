@@ -1,13 +1,32 @@
 from django import views
+from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.core.paginator import Paginator
+from django.contrib.auth.tokens import default_token_generator as token_generator
+from django.utils.http import urlsafe_base64_decode
+from django.views.generic.base import TemplateView
+from math import ceil
 
 from .models import *
 from .forms import LoginForm, RegistrationForm
-
 from game_muster_app.api.igdb_wrapper import IGDB_WRAPPER
+from .utils import send_email_for_verify
+
+
+class BasePageView(TemplateView):
+
+    template_name = 'base.html'
+
+    def get(self, *args, **kwargs):
+
+        users = GameUser.objects.all()
+
+        context = {
+            'users': users
+        }
+
+        return context
 
 
 class MainPageView(views.View):
@@ -17,46 +36,42 @@ class MainPageView(views.View):
     def get(self, request):
 
         igdb_search = request.GET.get('search_game')
-        platforms = request.GET.get('platform_id')
-        genres = request.GET.get('genre_id')
-        ratings_min = request.GET.get('min')
-        ratings_max = request.GET.get('max')
+        platforms = request.GET.getlist('platform_id')
+        genres = request.GET.getlist('genre_id')
+        ratings_min = int(request.GET.get('min') or 0)
+        ratings_max = int(request.GET.get('max') or 100)
         ratings = ratings_min, ratings_max
-        games = IGDB_WRAPPER.get_base_page_games()
+        page_number = request.GET.get('page') or 1
 
-        if igdb_search and platforms and genres and ratings is None:
-            games = IGDB_WRAPPER.get_base_page_games()
-        elif igdb_search is not None:
-            games = IGDB_WRAPPER.get_games_by_search(search=igdb_search)
-        elif platforms and genres and ratings is not None:
-            games = IGDB_WRAPPER.get_games_by_filtering(platforms=platforms, genres=genres, ratings=ratings)
-        elif platforms is None and genres and ratings is not None:
-            games = IGDB_WRAPPER.get_games_by_filtering(genres=genres, ratings=ratings)
-        elif platforms and ratings is not None and genres is None:
-            games = IGDB_WRAPPER.get_games_by_filtering(platforms=platforms, ratings=ratings)
+        try:
+            games = IGDB_WRAPPER.get_games_by_filtering(
+                search=igdb_search, platforms=platforms, genres=genres, ratings=ratings, page=int(page_number)
+            )
+            if not games:
+                raise LookupError
+        except LookupError:
+            return render(request, 'search_error.html')
 
-        pagination = Paginator(games, 6)
-        page_number = request.GET.get('page')
-        page_obj = pagination.get_page(page_number)
-        nums = "a" * page_obj.paginator.num_pages
+        count = IGDB_WRAPPER.get_games_count(
+            search=igdb_search, platforms=platforms, genres=genres, ratings=ratings
+        )
+        games_count = ceil(count / 6)
 
         all_platforms_filter = IGDB_WRAPPER.get_platforms()
         all_genres_filter = IGDB_WRAPPER.get_genres()
 
-        users = GameUser.objects.all()
-
         context = {
             'games': games,
-            'page_obj': page_obj,
-            'nums': nums,
+            'games_count': range(games_count),
             'all_platforms_filter': all_platforms_filter,
             'all_genres_filter': all_genres_filter,
-            'users': users,
-            'platforms': platforms,
-            'genres': genres,
         }
 
         return render(request, 'main_page.html', context)
+
+
+class ErrorSearchView(TemplateView):
+    template_name = 'error_search.html'
 
 
 class GamesDetailPageView(views.View):
@@ -91,6 +106,17 @@ class GamesDetailPageView(views.View):
         return render(request, 'games_detail_page.html', context)
 
 
+class ProfileView(views.View):
+
+    def get(self, request):
+        users = GameUser.objects.filter(user=request.user)
+        context = {
+            'users': users
+        }
+
+        return render(request, 'registration/profile_page.html', context)
+
+
 class LoginView(views.View):
 
     def get(self, request, *args, **kwargs):
@@ -98,7 +124,7 @@ class LoginView(views.View):
         context = {
             'form': form
         }
-        return render(request, 'log_in_page.html', context)
+        return render(request, 'registration/log_in_page.html', context)
 
     def post(self, request, *args, **kwargs):
         form = LoginForm(request.POST or None)
@@ -108,11 +134,11 @@ class LoginView(views.View):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return redirect('/')
         context = {
             'form': form
         }
-        return render(request, 'log_in_page.html', context)
+        return render(request, 'registration/log_in_page.html', context)
 
 
 class RegistrationView(views.View):
@@ -122,7 +148,7 @@ class RegistrationView(views.View):
         context = {
             'form': form
         }
-        return render(request, 'sign_up_page.html', context)
+        return render(request, 'registration/sign_up_page.html', context)
 
     def post(self, request, *args, **kwargs):
         form = RegistrationForm(request.POST or None)
@@ -138,14 +164,47 @@ class RegistrationView(views.View):
             GameUser.objects.create(
                 user=new_user,
                 birthday=form.cleaned_data['birthday'],
+                gender=form.cleaned_data['gender'],
+                age=form.cleaned_data['age']
             )
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-            login(request, user)
-            return HttpResponseRedirect('/')
+            send_email_for_verify(request, user)
+            return redirect('confirm_email')
         context = {
             'form': form
         }
-        return render(request, 'sign_up_page.html', context)
+        return render(request, 'registration/sign_up_page.html', context)
+
+
+class EmailVerify(views.View):
+
+    def get(self, request, uidb64, token):
+        user = self.get_user(uidb64)
+
+        if user is not None and token_generator.check_token(user, token):
+            user.email_verify = True
+            user.save()
+            login(request, user)
+            return redirect('/')
+        return redirect('invalid_verify')
+
+    @staticmethod
+    def get_user(uidb64):
+        try:
+            uid = urlsafe_base64_decode(uidb64).decode()
+            user = User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError,
+                User.DoesNotExist, ValidationError):
+            user = None
+        return user
+
+
+class InvalidVerifyView(TemplateView):
+    template_name = 'registration/invalid_verify.html'
+
+
+class ConfirmEmailView(TemplateView):
+    template_name = 'registration/confirm_email.html'
 
 
 def do_logout(request):

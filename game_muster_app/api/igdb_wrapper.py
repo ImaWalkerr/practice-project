@@ -35,44 +35,40 @@ class IGDBWrapper:
         "Client-ID": CLIENT_ID,
     }
 
-    def get_base_page_games(self):
+    PAGE_GAMES_COUNT = 6
+
+    def get_games_count(self, search='', platforms='', genres='', ratings=''):
+        data = ('fields id;'
+                'limit 500;'
+                + (f'where platforms = {platforms} & genres = {genres}' if platforms else '' if genres else '')
+                + (f' & rating >= {ratings[0]} & rating <= {ratings[1]};' if any(ratings) and ratings != (0, 100) else ';')
+                + (f'search "{search}";' if search else ''))
+        return len(requests.post(
+            f"{self.GAME_URL}",
+            headers=self.headers,
+            data=data
+        ).json())
+
+    def get_games_by_filtering(self, search='', platforms='', genres='', ratings='', page=1):
+        data = ('fields id,'
+                'name,'
+                'cover.url,'
+                'genres.name,'
+                'platforms.name;'
+                f'limit {self.PAGE_GAMES_COUNT};'
+                f'offset {self.PAGE_GAMES_COUNT * page};'
+                + (f'where platforms = {platforms} & genres = {genres}' if platforms else '' if genres else '')
+                + (f' & rating >= {ratings[0]} & rating <= {ratings[1]};' if any(ratings) and ratings != (0, 100) else ';')
+                + (f'search "{search}";' if search else ''))
         return requests.post(
             f"{self.GAME_URL}",
             headers=self.headers,
-            data='fields id,'
-                 'name,'
-                 'cover.url,'
-                 'genres.name,'
-                 'platforms.name;'
-                 'limit 100;'
+            data=data
         ).json()
 
-    def get_games_by_search(self, search=''):
-        return requests.post(
-            f"{self.GAME_URL}",
-            headers=self.headers,
-            data='fields id,'
-                 'name,'
-                 'cover.url,'
-                 'genres.name,'
-                 'platforms.name;'
-                 'limit 100;'
-                 + f'search "{search}";' if search else ''
-        ).json()
-
-    def get_games_by_filtering(self, platforms='', genres='', ratings=''):
-        return requests.post(
-            f"{self.GAME_URL}",
-            headers=self.headers,
-            data='fields id,'
-                 'name,'
-                 'cover.url,'
-                 'genres.name,'
-                 'platforms.name;'
-                 'limit 100;'
-                 + f'where platforms = ["{platforms}"] & genres = ["{genres}"];' if platforms else '' if genres else ''
-                 + f'where rating = ("{ratings}");' if ratings else ''
-        ).json()
+    @staticmethod
+    def get_img_path(img_id):
+        return "https://images.igdb.com/igdb/" f"image/upload/t_cover_big/{img_id}.jpg"
 
     def get_current_game(self, ids=None):
         where_condition = 'where id=(' + ','.join(map(str, ids)) + ');' if ids else ''
