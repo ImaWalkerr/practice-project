@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
     <link rel="shortcut icon" href="#"/>
+    <link type="text/css" href="{% static 'css/swiper.min.css' %}" rel="stylesheet">
     <link type="text/css" href="{% static 'css/nouislider.min.css' %}" rel="stylesheet">
     <link type="text/css" href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
@@ -29,14 +30,16 @@
         {% else %}
             <a href="{% url 'sign_up_page' %}" class="header__register">Sign Up</a>
             or
-            <a href="{% url 'log_in_page' %}" class="header__register">Log in</a>
+            <a href="{% url 'login_page' %}" class="header__register">Log in</a>
         {% endif %}
     </div>
 </header>
 <main class="wrapper">
     {% block content %}{% endblock %}
 </main>
+<script type="text/javascript" src="{% static 'js/swiper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/nouislider.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/slider_pagination.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/range_slider.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/script_main_page.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/filters.js' %}"></script>

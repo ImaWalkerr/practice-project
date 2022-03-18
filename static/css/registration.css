@@ -53,6 +53,32 @@ input[type=number] {
   border-right: 2px solid grey;
   border-bottom: 2px solid grey;
 }
+.form__information {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+}
+.form__information-title {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: black;
+  margin: 0 15px 0 0;
+}
+.form__information-link {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
 
 .controls {
   display: flex;
@@ -87,13 +113,14 @@ input[type=number] {
   font-size: 20px;
   color: black;
   height: 30px;
+  background: white;
 }
 
 .help-block {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: black;
+  font-weight: 600;
+  font-size: 20px;
+  color: #e23232;
 }
 
 .alert {
@@ -115,6 +142,47 @@ input[type=number] {
 }
 .select option,
 .numberinput option {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+}
+
+.verify__invalid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 90vh;
+}
+.verify__invalid-title {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+}
+.verify__invalid-link {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.confirm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 90vh;
+}
+.confirm__title {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
   font-size: 20px;
@@ -156,6 +224,33 @@ input[type=number] {
   font-size: 20px;
   color: black;
   margin: 0 0 3px 0;
+}
+
+.logout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 90vh;
+}
+.logout__title {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+}
+.logout__link {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+  margin: 0 10px 0 0;
 }
 
 /*# sourceMappingURL=registration.css.map */

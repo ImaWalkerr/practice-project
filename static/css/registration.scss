@@ -1,5 +1,6 @@
 @import "base_variables";
 
+//Registration forms styles//
 .form {
   &__header {
     font-family: $font-family;
@@ -45,6 +46,32 @@
     border-right: 2px solid $font-color-border;
     border-bottom: 2px solid $font-color-border;
   }
+  &__information {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100%;
+  }
+  &__information-title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-dark;
+    margin: 0 15px 0 0;
+  }
+  &__information-link {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-light;
+    background: $font-color-main;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
 }
 
 .controls {
@@ -80,13 +107,14 @@
   font-size: 20px;
   color: $font-color-dark;
   height: 30px;
+  background: $font-color-light;
 }
 
 .help-block {
   font-family: $font-family;
-  font-weight: 400;
-  font-size: 16px;
-  color: $font-color-dark;
+  font-weight: 600;
+  font-size: 20px;
+  color: $font-color-main;
 }
 
 .alert {
@@ -113,6 +141,52 @@
   }
 }
 
+//Verify page//
+.verify {
+  &__invalid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 90vh;
+  }
+  &__invalid-title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+  }
+  &__invalid-link {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-light;
+    background: $font-color-main;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
+}
+
+//Confirm page//
+.confirm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 90vh;
+  &__title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+  }
+}
+
+//Profile page//
 .profile {
   &__header {
     font-family: $font-family;
@@ -149,5 +223,33 @@
     font-size: 20px;
     color: $font-color-dark;
     margin: 0 0 3px 0;
+  }
+}
+
+//Logout page//
+.logout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 90vh;
+  &__title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+  }
+  &__link {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-light;
+    background: $font-color-main;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+    margin: 0 10px 0 0;
   }
 }

@@ -120,16 +120,38 @@
                     </div>
                 {% endfor %}
                 </div>
-            <div class="content__pagination">
-                <div class="content__pagination-horizontal_scroll">
+            <div class="content__pagination slider">
+                <div class="slider__block-left"></div>
+                <div class="slider__container">
+                    <div class="slider__navigation-prev">
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {% for num_of_page in games_count %}
+                                <div class="swiper-slide">
+                                    <a class="slider__pagination" href="{{ request.get_full_path|get_page_url:num_of_page }}">{{ forloop.counter }}</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="slider__navigation-next">
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+                <div class="slider__block-right"></div>
+            </div>
+        </div>
+        <div class="content__pass"></div>
+    </div>
+{% endblock %}
+
+<!--
+<div class="content__pagination-horizontal_scroll">
                     {% for num_of_page in games_count %}
                     <div class="content__pagination-block">
                         <a class="content__pagination-item" href="{{ request.get_full_path|get_page_url:num_of_page }}">{{ num_of_page }}</a>
                     </div>
                     {% endfor %}
                 </div>
-            </div>
-        </div>
-        <div class="content__pass"></div>
-    </div>
-{% endblock %}
+-->

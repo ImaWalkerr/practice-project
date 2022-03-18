@@ -119,14 +119,14 @@ class ProfileView(views.View):
 
 class LoginView(views.View):
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         form = LoginForm(request.POST or None)
         context = {
             'form': form
         }
-        return render(request, 'registration/log_in_page.html', context)
+        return render(request, 'registration/login_page.html', context)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         form = LoginForm(request.POST or None)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -138,19 +138,19 @@ class LoginView(views.View):
         context = {
             'form': form
         }
-        return render(request, 'registration/log_in_page.html', context)
+        return render(request, 'registration/login_page.html', context)
 
 
 class RegistrationView(views.View):
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         form = RegistrationForm(request.POST or None)
         context = {
             'form': form
         }
         return render(request, 'registration/sign_up_page.html', context)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         form = RegistrationForm(request.POST or None)
         if form.is_valid():
             new_user = form.save(commit=False)
@@ -210,6 +210,10 @@ class ConfirmEmailView(TemplateView):
 def do_logout(request):
     if request.user.is_authenticated:
         logout(request)
-        return HttpResponseRedirect('/')
+        return redirect('logout_done')
     else:
         return HttpResponse(f'You must login first!')
+
+
+class LogoutDoneView(TemplateView):
+    template_name = 'registration/logout_done.html'

@@ -10,7 +10,7 @@
             <div class="form__block-center">
                 <div class="form__block">
                     <h3 class="form__header">Login</h3>
-                    <form action="{% url 'log_in_page' %}" method="POST">
+                    <form action="{% url 'login_page' %}" method="POST">
                         {% csrf_token %}
                         {{ form|crispy }}
                         <div class="form__button">
@@ -20,6 +20,10 @@
                 </div>
             </div>
             <div class="form__block-right"></div>
+        </div>
+        <div class="form__information">
+            <h3 class="form__information-title">Don't have an account?</h3>
+            <a href="{% url 'sign_up_page' %}" class="form__information-link">Sign up</a>
         </div>
     </div>
 {% endblock %}

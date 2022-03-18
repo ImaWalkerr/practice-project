@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <div class="row">
-        <p>Ваша ссылка не корректна, залогиньтесь снова</p>
-        <a href="{% url 'log_in_page' %}">Залогиниться</a>
+    <div class="verify">
+        <div class="verify__invalid">
+            <h3 class="verify__invalid-title">Your link is not correct, please try
+                <a class="verify__invalid-link" href="{% url 'login_page' %}">login</a> again
+            </h3>
+        </div>
     </div>
 {% endblock %}

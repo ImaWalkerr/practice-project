@@ -32,6 +32,9 @@
     align-items: center;
     justify-content: center;
   }
+  &__pagination {
+    width: 100%;
+  }
 }
 
 .header {
@@ -433,25 +436,19 @@ body.touch .sidebar__arrow {
   }
 }
 
-.content {
+.slider {
+  display: flex;
+  &__block-right,
+  &__block-left {
+    width: 25%;
+  }
+  &__container {
+    display: flex;
+    width: 50%;
+  }
+  &__navigation-prev,
+  &__navigation-next {}
   &__pagination {
-    margin: -30% 0 0 80%;
-  }
-  &__pagination-horizontal_scroll {
-    width: 130px;
-    height: 500px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    transform-origin: left bottom;
-    transform:rotate(-90deg) translateY(-100px);
-    div {
-      width: 100px;
-      height: 100px;
-      transform: rotate(90deg);
-      transform-origin: right top;
-    }
-  }
-  &__pagination-item {
     font-family: $font-family;
     font-weight: 600;
     font-size: 25px;
@@ -465,4 +462,38 @@ body.touch .sidebar__arrow {
     border-right: 2px solid $font-color-border;
     cursor: pointer;
   }
+}
+
+.swiper-container {
+    width: 80%;
+    padding: 10px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev {
+  position: relative;
+  background-image: url('/static/media/images/back.svg');
+}
+
+.swiper-button-next {
+  position: relative;
+  background-image: url('/static/media/images/right.svg');
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: $font-color-light;
+  border: 2px solid $font-color-main;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  left: auto;
+  right: auto;
 }
