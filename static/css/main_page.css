@@ -1,66 +1,87 @@
+/* Variables+plugins */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .wrapper {
-  width: 1900px;
+  width: 100%;
 }
 
 .content {
   display: flex;
-  max-width: 1900px;
+  max-width: 100%;
 }
-
 .content__sidebar {
   min-height: auto;
   min-width: 20%;
 }
-
 .content__sections {
   display: flex;
   flex-direction: column;
+  min-width: 60%;
 }
-
+.content__pass {
+  min-width: 20%;
+}
 .content__sections-sidebar {
   min-width: 20%;
 }
-
 .content__sections-search {
   min-height: 100px;
-  padding: 0 28% 0 6%;
+  padding: 0 6%;
 }
-
 .content__carts {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
-
-.header__search-label {
-  display: flex;
-  border-bottom: 2px solid black;
+.content__pagination {
+  width: 100%;
 }
 
 .header {
   display: flex;
-  height: 90px;
+  height: 75px;
   width: 100%;
   padding: 20px;
-  background-color: red;
-  border-bottom: 3px solid grey;
+  background-color: #e23232;
+  border-bottom: 2px solid grey;
+  align-items: center;
+  justify-content: space-between;
 }
-
+.header__registration {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  margin: 0 10px;
+}
 .header__logo-image {
-  width: 60px;
-  height: 60px;
-  background-color: red;
-  margin: -5px 0;
+  width: 70px;
+  height: 55px;
+  background-color: #e23232;
+  margin: -10px 0;
 }
-
 .header__name {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   display: inline-block;
-  padding: 10px;
-  font-size: 28px;
+  font-size: 23px;
   color: white;
   font-weight: 700;
 }
-
+.header__search-label {
+  display: flex;
+  border-bottom: 2px solid grey;
+}
 .header__search-input {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
@@ -70,105 +91,277 @@
   height: 50px;
   margin: 20px 0 0 0;
 }
-
 .header__search-icon {
   width: 50px;
   height: 50px;
   object-fit: contain;
   background-color: white;
 }
+.header__profile, .header__register {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #e23232;
+  background: white;
+  padding: 10px 15px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+.header__profile a, .header__register a {
+  text-decoration: none;
+  color: #e23232;
+}
+.header__must {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  background: limegreen;
+  padding: 10px 15px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+.header__must a {
+  text-decoration: none;
+  color: #e23232;
+}
 
 .sidebar li {
   position: relative;
 }
-
 .sidebar__list {
   display: flex;
 }
-
 .sidebar__sub-list {
   display: none;
   position: absolute;
   top: 0;
 }
-
 .sidebar__sub-link {
   font-size: 25px;
   font-weight: 600;
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   color: white;
-  background-color: red;
+  background-color: #e23232;
   display: inline-block;
   padding: 25px;
-  height: 100vh;
-  width: 375px;
+}
+@media (max-height: 1080px) {
+  .sidebar__sub-link {
+    height: 92vh;
+    width: 400px;
+  }
+}
+@media (min-height: 1080px) {
+  .sidebar__sub-link {
+    height: 100vh;
+    width: 400px;
+  }
+}
+.sidebar__arrow {
+  position: absolute;
+  border: 2px solid white;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background-color: #e23232;
+}
+.sidebar__arrow span {
+  z-index: 999;
+  height: 3px;
+  margin: 1px;
+  width: 20px;
+  background: white;
+  transition: 0.4s ease;
+}
+.sidebar__arrow span:first-child {
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 25%;
+  bottom: 35%;
+}
+.sidebar__arrow span:nth-child(2) {
+  display: block;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 45%;
+  bottom: 35%;
+}
+.sidebar__arrow span:nth-child(3) {
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 25%;
+  bottom: 54%;
+}
+.sidebar__arrow span:nth-child(4) {
+  display: block;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 45%;
+  bottom: 54%;
 }
 
-.sidebar-search__header {
+.search__header {
   text-align: center;
   padding: 10px 0 15px 0;
   border-bottom: 2px solid white;
 }
-
-.sidebar-search__form {
-  padding: 40px 0 0 0;
-}
-
-.sidebar-search__label {
+.search__name {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 20px;
   color: white;
+  margin: 5% 0;
 }
-
-.sidebar-search__input {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 20px;
-  color: white;
-  width: 50%;
-  background-color: red;
-  border-bottom: 2px solid white;
-}
-
-.sidebar-search__checkout {
+.search__block {
   display: flex;
-  padding: 30px 15px 30px 0;
 }
-
-.checkout-input__search {
+.search__label {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+.search__input {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
+  background-color: #e23232;
+  border-bottom: 2px solid white;
+  margin: 20px 0 10px 10px;
+}
+.search__checkout {
+  display: flex;
+  flex-wrap: inherit;
+  height: 250px;
+  overflow: auto;
+}
+.search__search {
   margin: 10px;
 }
-
-.checkout-input {
-  display: flex;
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-  font-size: 18px;
-  color: red;
-  background-color: white;
-  border-radius: 30%;
-  padding: 0 10px;
-  align-items: center;
-  justify-content: center;
-  margin: 0 15px 0 0;
-}
-
-.sidebar-search {
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
-.sidebar-search__button {
+.search__button {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-size: 28px;
   font-weight: 600;
   padding: 10px 15px;
   background-color: white;
-  color: red;
+  color: #e23232;
   border-right: 2px solid grey;
   border-bottom: 2px solid grey;
   text-align: center;
+  margin: 3% 33% 0 33%;
+}
+.search__slider-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search__slider-input {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background: #e23232;
+}
+
+.search-platforms li {
+  transition: all ease 500ms;
+}
+
+.search-platforms li.hide {
+  display: none;
+}
+
+.search-genres li {
+  transition: all ease 500ms;
+}
+
+.search-genres li.hide {
+  display: none;
+}
+
+.games-cart {
+  transition: all ease 500ms;
+}
+
+.games-cart.hide {
+  display: none;
+}
+
+.checkout__input {
+  display: flex;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-size: 14px;
+  color: #e23232;
+  background-color: white;
+  border-radius: 30px;
+  padding: 5px 10px;
+  align-items: center;
+  margin: 5px;
+  width: fit-content;
+}
+.checkout__search {
+  margin: 0 5px 0 0;
+}
+
+li mark {
+  color: white;
+  background: none;
+}
+
+.noUi-target {
+  background: white;
+  border: none;
+  border-radius: 100px;
+  box-shadow: none;
+  height: 2px;
+  width: 90%;
+  margin: auto;
+}
+
+.noUi-connect {
+  background: white;
+}
+
+.noUi-handle:after, .noUi-handle:before {
+  display: none;
+}
+
+.noUi-handle {
+  box-shadow: none;
+  border-radius: 100%;
+  background: white;
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 10px;
+  height: 10px;
+  right: -6px;
+  top: -4px;
+}
+
+.noUi-tooltip {
+  display: block;
+  position: absolute;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+  color: white;
+  background: none;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+  top: 10px;
+}
+
+.noUi-active .noUi-tooltip {
+  display: block;
 }
 
 body.mouse .sidebar__list > li:hover .sidebar__sub-list {
@@ -183,120 +376,49 @@ body.touch .sidebar__arrow {
   display: block;
 }
 
-.center-con {
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-}
-
-.sidebar__arrow {
-  position: relative;
-  border: 2px solid white;
-  width: 85px;
-  height: 85px;
-  border-radius: 100%;
-  background-color: red;
-}
-
-span {
-  z-index: 999;
-  height: 3px;
-  margin: 1px;
-  width: 25px;
-  background: white;
-  transition: 0.4s ease;
-}
-
-span:first-child {
-  display: block;
-  position: absolute;
-  transform: rotate(45deg);
-  left: 25%;
-  bottom: 35%;
-}
-
-span:nth-child(2) {
-  display: block;
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 45%;
-  bottom: 35%;
-}
-
-span:nth-child(3) {
-  display: block;
-  position: absolute;
-  transform: rotate(45deg);
-  left: 25%;
-  bottom: 54%;
-}
-
-span:nth-child(4) {
-  display: block;
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 45%;
-  bottom: 54%;
-}
-
-.sidebar__arrow:hover span:nth-child(1) {
-  transform: rotate(-135deg);
-}
-
-.sidebar__arrow:hover span:nth-child(2) {
-  transform: rotate(135deg);
-}
-
-.sidebar__arrow:hover span:nth-child(3) {
-  transform: rotate(225deg);
-}
-
-.sidebar__arrow:hover span:nth-child(4) {
-  transform: rotate(-225deg);
-}
-
 .games-cart {
   position: relative;
-  padding: 0 3% 30px 3%;
+  margin: 0 3% 3% 3%;
 }
-
 .games-cart__image {
   width: 280px;
   height: 280px;
-  object-fit: contain;
+  object-fit: cover;
 }
-
-.games-cart__hover:hover .games-cart__popup-block {
+.games-cart__hover:hover .games-cart__block {
   display: block;
 }
-
-.games-cart__popup-block {
+.games-cart__block {
   position: absolute;
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
   text-align: left;
   color: white;
-  left: 12%;
-  bottom: 10%;
-  right: 12%;
-  top: 40%;
+  left: 0;
+  bottom: 1%;
+  right: 0;
+  top: 45%;
   background: rgba(0, 0, 0, 0.5);
   padding: 25px;
   display: none;
 }
 
-.popup-block__title {
-  font-size: 25px;
-  margin: 15px 0;
+.block__title {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  text-align: left;
+  color: white;
+  margin: 0 0 10px 0;
 }
-
-.popup-block__description {
-  font-size: 20px;
-  margin: 10px 15px 0 0;
+.block__description {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: left;
+  color: white;
+  margin: 0 0 10px 0;
 }
-
-.popup-block__links {
+.block__links {
   display: flex;
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
@@ -305,39 +427,37 @@ span:nth-child(4) {
   text-align: center;
   color: black;
 }
-
-.popup-block__links-open,
-.popup-block__links-must {
+.block__links-open, .block__links-must {
   background-color: white;
   padding: 5px 10px;
-  border-radius: 35%;
-  margin: 15px 15px 0 0;
+  border-radius: 35px;
+  margin: 10px 15px 0 0;
 }
-
-.popup-block__links-open {
-  text-decoration: underline;
+.block__links-a {
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
   color: black;
 }
 
-.popup-block__links-must {
-  text-decoration: underline;
-  color: black;
-}
-
-.content__pagination {
+.slider {
   display: flex;
-  width: 34%;
-  margin: auto;
 }
-
-.content__pagination-item {
+.slider__block-right, .slider__block-left {
+  width: 25%;
+}
+.slider__container {
+  display: flex;
+  width: 50%;
+}
+.slider__pagination {
   font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
   font-weight: 600;
   font-size: 25px;
   text-align: center;
   text-decoration: none;
   color: white;
-  background-color: red;
+  background-color: #e23232;
   margin: 0 5px;
   padding: 10px 15px;
   border-bottom: 2px solid grey;
@@ -345,8 +465,38 @@ span:nth-child(4) {
   cursor: pointer;
 }
 
-.content__pagination-item:hover {
-  text-decoration: underline;
+.swiper-container {
+  width: 80%;
+  padding: 10px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev {
+  position: relative;
+  background-image: url("/static/media/images/back.svg");
+}
+
+.swiper-button-next {
+  position: relative;
+  background-image: url("/static/media/images/right.svg");
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: white;
+  border: 2px solid #e23232;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  left: auto;
+  right: auto;
 }
 
 /*# sourceMappingURL=main_page.css.map */

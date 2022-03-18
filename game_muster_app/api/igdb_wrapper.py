@@ -1,74 +1,112 @@
-import sys
 import requests
-
-
-# Authentication
-# Client ID
-# t8yrz76lhx8qv5cz7kjpwm61tyni8h
-
-# Client Secret
-# 5et0yyr48p4wlsqs26nam8f2mpqm4d
-
-
-result = requests.post(
-    'https://id.twitch.tv/oauth2/token?'
-    'client_id=t8yrz76lhx8qv5cz7kjpwm61tyni8h&'
-    'client_secret=5et0yyr48p4wlsqs26nam8f2mpqm4d&'
-    'grant_type=client_credentials')
-
-print(result.text)
-
-
-# Token
-# {"access_token":"dqwnjlzhfr6stjbb1gyfbqkbwl5r29","expires_in":4702816,"token_type":"bearer"}
-
-# The base URL is: https://api.igdb.com/v4
-
-
-headers = {
-    "Authorization": "Bearer r49ax90ibisv5fweftduanc7qoao11",
-    "Client-ID": "t8yrz76lhx8qv5cz7kjpwm61tyni8h",
-}
-
-results = requests.post(
-    'https://api.igdb.com/v4/games', headers=headers, data='fields age_ratings,aggregated_rating,aggregated_rating_count,alternative_names,artworks,bundles,category,checksum,collection,cover,created_at,dlcs,expanded_games,expansions,external_games,first_release_date,follows,forks,franchise,franchises,game_engines,game_modes,genres,hypes,involved_companies,keywords,multiplayer_modes,name,parent_game,platforms,player_perspectives,ports,rating,rating_count,release_dates,remakes,remasters,screenshots,similar_games,slug,standalone_expansions,status,storyline,summary,tags,themes,total_rating,total_rating_count,updated_at,url,version_parent,version_title,videos,websites;')
-with open('test.html', 'w') as output_file:
-    output_file.write(results.text)
+from decouple import config
 
 
 class IGDBWrapper:
     """
-    IGDBWrapper
+    Authentication + wrapper
     """
-
-    def __init__(self, client_id, client_secret):
-        self.main_url = 'https://api.igdb.com/v4/'
-        self.client_id = client_id
-        self.client_secret = client_secret
-        self.default_params = {
-            "fields": [
-                'id',
-                'name',
-                'summary',
-                'cover.image_id',
-                'genres.name',
-                'platforms.name',
-                'created_at.date',
-                'first_release_date'
-                'aggregated_rating',
-                'aggregated_rating_count',
-                'rating',
-                'rating_count',
-                'total_rating',
-                'total_rating_count',
-                'screenshots.image_id',
-            ]
-        }
+    LOG_URL = config('LOG_URL', default='')
+    BASE_URL = config('BASE_URL', default='')
+    GAME_URL = config('GAME_URL', default='')
+    GENRES_URL = config('GENRES_URL', default='')
+    PLATFORMS_URL = config('PLATFORMS_URL', default='')
+    CLIENT_ID = config('CLIENT_ID', default='')
+    CLIENT_SECRET = config('CLIENT_SECRET', default='')
+    BEARER_TOKEN = config('BEARER_TOKEN', default='')
 
     def get_header(self):
         response = requests.post(
-            "https://id.twitch.tv/oauth2/"
-            f"token?client_id={self.client_id}"
-            f"&client_secret={self.client_secret}"
+            f"{self.LOG_URL}"
+            f"token?client_id={self.CLIENT_ID}"
+            f"&client_secret={self.CLIENT_SECRET}"
             "&grant_type=client_credentials"
         )
+        if response.status_code == 401:
+            raise Exception("Incorrect client id or client secret")
+
+        return {
+            "Client-ID": self.CLIENT_ID,
+            "Authorization": "Bearer {}".format(response.json()["access_token"]),
+        }
+
+    headers = {
+        "Authorization": BEARER_TOKEN,
+        "Client-ID": CLIENT_ID,
+    }
+
+    PAGE_GAMES_COUNT = 6
+
+    def get_games_count(self, search='', platforms='', genres='', ratings=''):
+        data = ('fields id;'
+                'limit 500;'
+                + (f'where platforms = {platforms} & genres = {genres}' if platforms else '' if genres else '')
+                + (f' & rating >= {ratings[0]} & rating <= {ratings[1]};' if any(ratings) and ratings != (0, 100) else ';')
+                + (f'search "{search}";' if search else ''))
+        return len(requests.post(
+            f"{self.GAME_URL}",
+            headers=self.headers,
+            data=data
+        ).json())
+
+    def get_games_by_filtering(self, search='', platforms='', genres='', ratings='', page=1):
+        data = ('fields id,'
+                'name,'
+                'cover.url,'
+                'genres.name,'
+                'platforms.name;'
+                f'limit {self.PAGE_GAMES_COUNT};'
+                f'offset {self.PAGE_GAMES_COUNT * page};'
+                + (f'where platforms = {platforms} & genres = {genres}' if platforms else '' if genres else '')
+                + (f' & rating >= {ratings[0]} & rating <= {ratings[1]};' if any(ratings) and ratings != (0, 100) else ';')
+                + (f'search "{search}";' if search else ''))
+        return requests.post(
+            f"{self.GAME_URL}",
+            headers=self.headers,
+            data=data
+        ).json()
+
+    @staticmethod
+    def get_img_path(img_id):
+        return "https://images.igdb.com/igdb/" f"image/upload/t_cover_big/{img_id}.jpg"
+
+    def get_current_game(self, ids=None):
+        where_condition = 'where id=(' + ','.join(map(str, ids)) + ');' if ids else ''
+        return requests.post(
+            f"{self.GAME_URL}",
+            headers=self.headers,
+            data='fields id,'
+                 'name,'
+                 'summary,'
+                 'genres.name,'
+                 'platforms.name,'
+                 'release_dates.human,'
+                 'aggregated_rating,'
+                 'aggregated_rating_count,'
+                 'rating,'
+                 'rating_count,'
+                 'screenshots.url;'
+                 + where_condition
+        ).json()
+
+    def get_game_id(self, game_id):
+        return self.get_current_game(ids=[game_id])
+
+    def get_genres(self):
+        return requests.post(
+            f"{self.GENRES_URL}",
+            headers=self.headers,
+            data='fields name;'
+                 'limit 23;'
+        ).json()
+
+    def get_platforms(self):
+        return requests.post(
+            f"{self.PLATFORMS_URL}",
+            headers=self.headers,
+            data='fields name;'
+                 'limit 182;'
+        ).json()
+
+
+IGDB_WRAPPER = IGDBWrapper()

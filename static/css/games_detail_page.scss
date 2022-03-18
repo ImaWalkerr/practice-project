@@ -1,185 +1,258 @@
-@import "null";
+@import "base_variables";
 
 .games-details {
   display: flex;
+  &__games-info {
+    min-width: 50%;
+    padding: 30px;
+  }
+  &__tweets {
+    min-width: 18%;
+  }
 }
 
 .games-info {
   display: flex;
   align-items: center;
+  &__description {
+    min-width: 32%;
+    padding: 125px 50px 0 0;
+  }
+  &__title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 35px;
+    color: $font-color-dark;
+    margin: 0 15px 0 0;
+  }
+  &__button {
+    font-family: $font-family;
+    font-weight: 500;
+    font-size: 20px;
+    color: $font-color-light;
+    background-color: $font-color-main;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
+  &__screenshots-title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+    padding: 20px 0 5px 0;
+  }
+  &__genre {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: initial;
+    color: $font-color-dark;
+    padding: 15px 50px 15px 0;
+  }
+  &__genre-block {
+    padding: 0 15px 0 0;
+  }
+  &__screenshots-block {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__screenshots-image {
+    width: 280px;
+    height: 200px;
+    object-fit: cover;
+    padding: 10px 5px 5px 0;
+  }
 }
 
-.games-details__games-info {
-  min-width: 50%;
-  padding: 30px;
+.description-game {
+  &__title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+    padding: 20px 0 5px 0;
+  }
+  &__text {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: initial;
+    color: $font-color-dark;
+    padding: 15px 50px 15px 0;
+  }
 }
 
-.games-info__description {
-  min-width: 32%;
-  padding: 125px 50px 0 0;
+.release-date {
+  &__title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+    padding: 20px 0 5px 0;
+  }
+  &__text-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  &__text {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: initial;
+    color: $font-color-dark;
+    padding: 15px 50px 15px 0;
+  }
 }
 
-.games-details__tweets {
-  min-width: 18%;
+.ratings {
+  &__title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+    padding: 20px 0 5px 0;
+  }
+  &__users {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: $font-family;
+    font-weight: 500;
+    font-size: 20px;
+    color: $font-color-light;
+    background-color: limegreen;
+    padding: 15px;
+    margin: 15px 0 5px 0;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
+  &__critics {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: $font-family;
+    font-weight: 500;
+    font-size: 20px;
+    color: $font-color-light;
+    background-color: orange;
+    padding: 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
+  &__users-title,
+  &__users-marks,
+  &__critics-title,
+  &__critics-marks {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 16px;
+    color: $font-color-light;
+  }
 }
 
-.games-info__title {
-  font-family: $font-family;
-  font-weight: 600;
-  font-size: 35px;
-  color: $font-color-dark;
-  margin: 0 15px 0 0;
+.genres {
+  &__title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+    padding: 20px 0 5px 0;
+  }
+  &__block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  &__item {
+    font-family: $font-family;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    color: $font-color-light;
+    background-color: $font-color-main;
+    padding: 10px 15px;
+    margin: 10px 10px 0 0;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
 }
 
-.games-info__button {
-  font-family: $font-family;
-  font-weight: 500;
-  font-size: 20px;
-  color: $font-color-light;
-  background-color: $font-color-main;
-  padding: 10px 15px;
-  border-right: $font-color-border;
-  border-bottom: $font-color-border;
+.platforms {
+  &__title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+    padding: 20px 0 5px 0;
+  }
+  &__block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  &__item {
+    font-family: $font-family;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    color: $font-color-light;
+    background-color: $font-color-main;
+    padding: 10px 15px;
+    margin: 10px 10px 0 0;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
 }
 
-.description-game__title,
-.release-date__title,
-.games-info__screenshots-title,
-.ratings__title,
-.genres__title,
-.platforms__title,
-.tweets__title {
-  font-family: $font-family;
-  font-weight: 600;
-  font-size: 20px;
-  color: $font-color-dark;
-  padding: 20px 0 5px 0;
-}
-
-.games-info__genre,
-.description-game__text,
-.release-date__text {
-  font-family: $font-family;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: initial;
-  color: $font-color-dark;
-  padding: 15px 50px 15px 0;
-}
-
-.games-info__screenshots-block {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.games-info__screenshots-image {
-  width: 280px;
-  height: 200px;
-  object-fit: cover;
-  padding: 10px 5px 5px 0;
-}
-
-.ratings__users {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: $font-family;
-  font-weight: 500;
-  font-size: 20px;
-  color: $font-color-light;
-  background-color: limegreen;
-  padding: 15px;
-  margin: 15px 0 5px 0;
-  border-right: $font-color-border;
-  border-bottom: $font-color-border;
-}
-
-.ratings__critics {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: $font-family;
-  font-weight: 500;
-  font-size: 20px;
-  color: $font-color-light;
-  background-color: orange;
-  padding: 15px;
-  border-right: $font-color-border;
-  border-bottom: $font-color-border;
-}
-
-.rating__users-title,
-.ratings__users-marks,
-.rating__users-count {
-  font-family: $font-family;
-  font-weight: 600;
-  font-size: 16px;
-  color: $font-color-light;
-}
-
-.ratings__critics-title,
-.ratings__critics-marks,
-.ratings__critics-count {
-  font-family: $font-family;
-  font-weight: 600;
-  font-size: 16px;
-  color: $font-color-light;
-}
-
-.genres__block,
-.platforms__block {
-  display: flex;
-}
-
-.genres__item,
-.platforms__item {
-  font-family: $font-family;
-  font-weight: 500;
-  font-size: 20px;
-  color: $font-color-light;
-  background-color: $font-color-main;
-  padding: 10px 15px;
-  margin: 10px 10px 0 0;
-  border-right: $font-color-border;
-  border-bottom: $font-color-border;
-}
-
-.tweets__block {
-  color: $font-color-light;
-  background-color: $font-color-main;
-  margin: 10px 30px 10px 0;
-  border-right: $font-color-border;
-  border-bottom: $font-color-border;
-}
-
-.block__info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.block__text {
-  font-family: $font-family;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: initial;
-  color: $font-color-light;
-  padding: 10px;
-}
-
-.block__date,
-.block__author {
-  font-family: $font-family;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: initial;
-  color: $font-color-light;
-}
-
-.block__date {
-  padding: 0 10px 10px 10px;
-}
-
-.block__author {
-  padding: 0 10px 10px 0;
+.tweets {
+  &__title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+    padding: 20px 0 5px 0;
+  }
+  &__block {
+    color: $font-color-light;
+    background-color: $font-color-main;
+    margin: 10px 30px 10px 0;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+    &__info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &__text {
+      font-family: $font-family;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: initial;
+      color: $font-color-light;
+      padding: 10px;
+    }
+    &__date,
+    &__author {
+      font-family: $font-family;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: initial;
+      color: $font-color-light;
+    }
+    &__date {
+      padding: 0 10px 10px 10px;
+    }
+    &__author {
+      padding: 0 10px 10px 0;
+    }
+  }
 }

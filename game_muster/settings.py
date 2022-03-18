@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 import os
 
@@ -27,7 +28,7 @@ SECRET_KEY = 'django-insecure-h@%v52_9oxml*_xtxpkyx05$8%$qn=6qc!iv5)^-7@kj_7fss7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'game_muster_app'
 ]
 
@@ -78,11 +80,14 @@ WSGI_APPLICATION = 'game_muster.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres_db',
+        'USER': 'postgres',
+        'PASSWORD': '12345',
+        'HOST': '127.0.0.1',
+        'PORT': '65432',
+    },
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -132,3 +137,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR / 'static' / 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# SMTP Configuration
+
+EMAIL_HOST_USER_CONF = config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD_CONF = config('EMAIL_HOST_PASSWORD', default='')
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'EMAIL_HOST_USER_CONF'
+# EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD_CONF'
