@@ -1,4 +1,5 @@
 /* Variables+plugins */
+@import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -12,7 +13,7 @@ input[type=number] {
 }
 
 .form__header {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 30px;
   text-align: center;
@@ -43,7 +44,7 @@ input[type=number] {
   padding: 10px 0;
 }
 .form__button-style {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   text-align: center;
@@ -61,7 +62,7 @@ input[type=number] {
   width: 100%;
 }
 .form__information-title {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   text-align: center;
@@ -69,7 +70,7 @@ input[type=number] {
   margin: 0 15px 0 0;
 }
 .form__information-link {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   text-align: center;
@@ -98,7 +99,7 @@ input[type=number] {
 }
 
 .control-label {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   color: black;
@@ -108,7 +109,7 @@ input[type=number] {
 .dateinput,
 .emailinput,
 .textInput {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   color: black;
@@ -117,14 +118,14 @@ input[type=number] {
 }
 
 .help-block {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   color: #e23232;
 }
 
 .alert {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   text-align: center;
@@ -134,7 +135,7 @@ input[type=number] {
 
 .select,
 .numberinput {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   color: black;
@@ -142,7 +143,7 @@ input[type=number] {
 }
 .select option,
 .numberinput option {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   color: black;
@@ -157,13 +158,13 @@ input[type=number] {
   min-height: 90vh;
 }
 .verify__invalid-title {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   color: black;
 }
 .verify__invalid-link {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   text-align: center;
@@ -183,14 +184,14 @@ input[type=number] {
   min-height: 90vh;
 }
 .confirm__title {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   color: black;
 }
 
 .profile__header {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 28px;
   color: black;
@@ -212,14 +213,14 @@ input[type=number] {
   text-align: left;
 }
 .profile__name {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   color: grey;
   margin: 0 0 3px 0;
 }
 .profile__name-load {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   color: black;
@@ -235,13 +236,13 @@ input[type=number] {
   min-height: 90vh;
 }
 .logout__title {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   color: black;
 }
 .logout__link {
-  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   text-align: center;

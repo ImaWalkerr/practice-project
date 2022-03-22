@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.utils.http import urlsafe_base64_decode
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 from math import ceil
 

@@ -25,7 +25,7 @@ def send_email_for_verify(request, user):
     email = EmailMessage(
         'Verify email',
         message,
-        # EMAIL_HOST_USER_CONF,
+        EMAIL_HOST_USER_CONF,
         to=[user.email],
     )
     email.send()
