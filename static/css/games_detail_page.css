@@ -45,8 +45,8 @@ input[type=number] {
   color: white;
   background-color: #e23232;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .games-info__screenshots-title {
   font-family: "Volkhov", serif;
@@ -137,8 +137,8 @@ input[type=number] {
   background-color: limegreen;
   padding: 15px;
   margin: 15px 0 5px 0;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .ratings__critics {
   display: flex;
@@ -150,8 +150,8 @@ input[type=number] {
   color: white;
   background-color: orange;
   padding: 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .ratings__users-title, .ratings__users-marks, .ratings__critics-title, .ratings__critics-marks {
   font-family: "Volkhov", serif;
@@ -182,8 +182,8 @@ input[type=number] {
   background-color: #e23232;
   padding: 10px 15px;
   margin: 10px 10px 0 0;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 
 .platforms__title {
@@ -208,8 +208,8 @@ input[type=number] {
   background-color: #e23232;
   padding: 10px 15px;
   margin: 10px 10px 0 0;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 
 .tweets__title {
@@ -223,8 +223,8 @@ input[type=number] {
   color: white;
   background-color: #e23232;
   margin: 10px 30px 10px 0;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .tweets__block__info {
   display: flex;

@@ -101,19 +101,19 @@
                                 <img class="games-cart__image" src="{% static 'media/images/default_cover.png' %}" alt="default-game-cover">
                             {% endif %}
                             <div class="games-cart__block block">
-                                <h3 class="block__title">{{ game.name }}</h3>
-                                <div class="block__description">
-                                    {% for genre in game.genres %}
-                                        {{ genre.name }}
-                                    {% endfor %}
-                                </div>
-                                <div class="block__links">
-                                    <button type="button" class="block__links-open">
-                                        <a class="block__links-a" href="/{{ game.id }}" target="_blank" rel="nofollow noopener">Open</a>
-                                    </button>
-                                    <button type="button" class="block__links-must">
-                                        <a class="block__links-a" href="#">MUST</a>
-                                    </button>
+                                <div class="block__main">
+                                    <div class="block__title">{{ game.name }}</div>
+                                    <div class="block__description">
+                                        {% for genre in game.genres %}
+                                            {{ genre.name }}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="block__links">
+                                        <button type="button" class="block__links-open">
+                                            <a class="block__links-a" href="/{{ game.id }}" target="_blank" rel="nofollow noopener">Open</a>
+                                        </button>
+                                        <button type="submit" class="block__links-must">MUST</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -145,13 +145,3 @@
         <div class="content__pass"></div>
     </div>
 {% endblock %}
-
-<!--
-<div class="content__pagination-horizontal_scroll">
-                    {% for num_of_page in games_count %}
-                    <div class="content__pagination-block">
-                        <a class="content__pagination-item" href="{{ request.get_full_path|get_page_url:num_of_page }}">{{ num_of_page }}</a>
-                    </div>
-                    {% endfor %}
-                </div>
--->

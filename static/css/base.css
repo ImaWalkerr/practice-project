@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -119,7 +120,7 @@ input[type=number] {
   width: 100%;
   padding: 20px;
   background-color: #e23232;
-  border-bottom: 2px solid grey;
+  border-bottom: 2px solid #808080;
   align-items: center;
   justify-content: space-between;
 }
@@ -150,7 +151,7 @@ input[type=number] {
 }
 .header__search-label {
   display: flex;
-  border-bottom: 2px solid grey;
+  border-bottom: 2px solid #808080;
 }
 .header__search-input {
   font-family: "Volkhov", serif;
@@ -174,8 +175,8 @@ input[type=number] {
   color: #e23232;
   background: white;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
   margin: 0 5px;
 }
 .header__profile a, .header__register a {
@@ -189,8 +190,8 @@ input[type=number] {
   color: white;
   background: limegreen;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .header__must a {
   text-decoration: none;
@@ -320,15 +321,16 @@ input[type=number] {
   padding: 10px 15px;
   background-color: white;
   color: #e23232;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
   text-align: center;
-  margin: 3% 33% 0 33%;
+  margin: 0 33%;
 }
 .search__slider-inputs {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 5px;
 }
 .search__slider-input {
   font-family: "Volkhov", serif;
@@ -474,11 +476,17 @@ body.touch .sidebar__arrow {
   display: none;
 }
 
+.block__main {
+  display: flex;
+  flex-wrap: wrap;
+}
 .block__title {
   font-family: "Volkhov", serif;
   font-weight: 600;
+  font-size: 20px;
   text-align: left;
   color: white;
+  width: 100%;
   margin: 0 0 10px 0;
 }
 .block__description {
@@ -487,6 +495,7 @@ body.touch .sidebar__arrow {
   font-size: 16px;
   text-align: left;
   color: white;
+  width: 100%;
   margin: 0 0 10px 0;
 }
 .block__links {
@@ -496,6 +505,7 @@ body.touch .sidebar__arrow {
   font-size: 16px;
   text-decoration: none;
   text-align: center;
+  width: 100%;
   color: black;
 }
 .block__links-open, .block__links-must {
@@ -503,6 +513,12 @@ body.touch .sidebar__arrow {
   padding: 5px 10px;
   border-radius: 35px;
   margin: 10px 15px 0 0;
+}
+.block__links-must {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
 }
 .block__links-a {
   font-family: "Volkhov", serif;
@@ -531,8 +547,8 @@ body.touch .sidebar__arrow {
   background-color: #e23232;
   margin: 0 5px;
   padding: 10px 15px;
-  border-bottom: 2px solid grey;
-  border-right: 2px solid grey;
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
   cursor: pointer;
 }
 
@@ -616,8 +632,8 @@ input[type=number] {
   color: white;
   background-color: #e23232;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .games-info__screenshots-title {
   font-family: "Volkhov", serif;
@@ -708,8 +724,8 @@ input[type=number] {
   background-color: limegreen;
   padding: 15px;
   margin: 15px 0 5px 0;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .ratings__critics {
   display: flex;
@@ -721,8 +737,8 @@ input[type=number] {
   color: white;
   background-color: orange;
   padding: 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .ratings__users-title, .ratings__users-marks, .ratings__critics-title, .ratings__critics-marks {
   font-family: "Volkhov", serif;
@@ -753,8 +769,8 @@ input[type=number] {
   background-color: #e23232;
   padding: 10px 15px;
   margin: 10px 10px 0 0;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 
 .platforms__title {
@@ -779,8 +795,8 @@ input[type=number] {
   background-color: #e23232;
   padding: 10px 15px;
   margin: 10px 10px 0 0;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 
 .tweets__title {
@@ -794,8 +810,8 @@ input[type=number] {
   color: white;
   background-color: #e23232;
   margin: 10px 30px 10px 0;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .tweets__block__info {
   display: flex;
@@ -876,8 +892,8 @@ input[type=number] {
   color: white;
   background: #e23232;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .form__information {
   display: flex;
@@ -902,8 +918,8 @@ input[type=number] {
   color: white;
   background: #e23232;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 
 .controls {
@@ -912,8 +928,8 @@ input[type=number] {
   flex-direction: column;
   width: 55%;
   color: white;
-  border-left: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-left: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 
 .control-group {
@@ -996,8 +1012,8 @@ input[type=number] {
   color: white;
   background: #e23232;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 
 .confirm {
@@ -1041,7 +1057,7 @@ input[type=number] {
   font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
-  color: grey;
+  color: #808080;
   margin: 0 0 3px 0;
 }
 .profile__name-load {
@@ -1074,8 +1090,8 @@ input[type=number] {
   color: white;
   background: #e23232;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
   margin: 0 10px 0 0;
 }
 
@@ -1114,9 +1130,111 @@ input[type=number] {
   color: white;
   background: #e23232;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
   cursor: pointer;
+}
+
+/* Variables+plugins */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.must__block {
+  padding: 25px;
+}
+.must__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: black;
+}
+.must__carts {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px 100px;
+}
+.must__games {
+  display: flex;
+  flex-direction: column;
+  height: 304px;
+  width: 230px;
+  margin: 20px;
+}
+
+.games__block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #808080;
+  width: 230px;
+  height: 90px;
+}
+.games__block-left {
+  width: 50%;
+  text-align: left;
+  padding: 10px;
+}
+.games__block-right {
+  width: 50%;
+}
+.games__image {
+  border: 1px solid #808080;
+}
+.games__image img {
+  height: 210px;
+  width: 228px;
+  object-fit: cover;
+}
+.games__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  margin: 5px;
+}
+.games__genres {
+  font-family: "Volkhov", serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+  margin: 5px;
+}
+.games__users-added {
+  font-family: "Volkhov", serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: black;
+  margin: 5px;
+}
+.games__button-submit {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+  background: limegreen;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+.games__button-reset {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 
 /*# sourceMappingURL=base.css.map */

@@ -55,7 +55,7 @@ input[type=number] {
   width: 100%;
   padding: 20px;
   background-color: #e23232;
-  border-bottom: 2px solid grey;
+  border-bottom: 2px solid #808080;
   align-items: center;
   justify-content: space-between;
 }
@@ -86,7 +86,7 @@ input[type=number] {
 }
 .header__search-label {
   display: flex;
-  border-bottom: 2px solid grey;
+  border-bottom: 2px solid #808080;
 }
 .header__search-input {
   font-family: "Volkhov", serif;
@@ -110,8 +110,8 @@ input[type=number] {
   color: #e23232;
   background: white;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
   margin: 0 5px;
 }
 .header__profile a, .header__register a {
@@ -125,8 +125,8 @@ input[type=number] {
   color: white;
   background: limegreen;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .header__must a {
   text-decoration: none;
@@ -256,15 +256,16 @@ input[type=number] {
   padding: 10px 15px;
   background-color: white;
   color: #e23232;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
   text-align: center;
-  margin: 3% 33% 0 33%;
+  margin: 0 33%;
 }
 .search__slider-inputs {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 5px;
 }
 .search__slider-input {
   font-family: "Volkhov", serif;
@@ -410,11 +411,17 @@ body.touch .sidebar__arrow {
   display: none;
 }
 
+.block__main {
+  display: flex;
+  flex-wrap: wrap;
+}
 .block__title {
   font-family: "Volkhov", serif;
   font-weight: 600;
+  font-size: 20px;
   text-align: left;
   color: white;
+  width: 100%;
   margin: 0 0 10px 0;
 }
 .block__description {
@@ -423,6 +430,7 @@ body.touch .sidebar__arrow {
   font-size: 16px;
   text-align: left;
   color: white;
+  width: 100%;
   margin: 0 0 10px 0;
 }
 .block__links {
@@ -432,6 +440,7 @@ body.touch .sidebar__arrow {
   font-size: 16px;
   text-decoration: none;
   text-align: center;
+  width: 100%;
   color: black;
 }
 .block__links-open, .block__links-must {
@@ -439,6 +448,12 @@ body.touch .sidebar__arrow {
   padding: 5px 10px;
   border-radius: 35px;
   margin: 10px 15px 0 0;
+}
+.block__links-must {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
 }
 .block__links-a {
   font-family: "Volkhov", serif;
@@ -467,8 +482,8 @@ body.touch .sidebar__arrow {
   background-color: #e23232;
   margin: 0 5px;
   padding: 10px 15px;
-  border-bottom: 2px solid grey;
-  border-right: 2px solid grey;
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
   cursor: pointer;
 }
 

@@ -16,7 +16,7 @@
 <header class="header">
     <div class="header__base">
         <a href="/" class="header__logo">
-            <img src="{% static 'media/images/logo.png' %}" class="header__logo-image" alt="pacman_logo">
+            <img src="{% static 'media/images/logo.png' %}" class="header__logo-image" alt="header_logo">
         </a>
         <a href="/" class="header__name">
             <h2>GameMuster</h2>
@@ -25,7 +25,7 @@
     <div class="header__registration">
         {% if user.is_authenticated %}
             <a href="{% url 'profile' %}" class="header__profile">{{ user.username }}</a>
-            <a href="#" class="header__must">My MUSTs</a>
+            <a href="{% url 'my_must' %}" class="header__must">My MUSTs</a>
             <a href="{% url 'logout' %}" class="header__register">Log out</a>
         {% else %}
             <a href="{% url 'sign_up_page' %}" class="header__register">Sign Up</a>
@@ -37,6 +37,7 @@
 <main class="wrapper">
     {% block content %}{% endblock %}
 </main>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="{% static 'js/swiper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/nouislider.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/slider_pagination.js' %}"></script>

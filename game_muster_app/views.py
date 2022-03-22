@@ -218,3 +218,7 @@ def do_logout(request):
 
 class LogoutDoneView(TemplateView):
     template_name = 'registration/logout_done.html'
+
+
+class MyMustView(TemplateView):
+    template_name = 'must_page.html'

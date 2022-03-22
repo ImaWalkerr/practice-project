@@ -1,0 +1,104 @@
+/* Variables+plugins */
+@import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.must__block {
+  padding: 25px;
+}
+.must__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: black;
+}
+.must__carts {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px 100px;
+}
+.must__games {
+  display: flex;
+  flex-direction: column;
+  height: 304px;
+  width: 230px;
+  margin: 20px;
+}
+
+.games__block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #808080;
+  width: 230px;
+  height: 90px;
+}
+.games__block-left {
+  width: 50%;
+  text-align: left;
+  padding: 10px;
+}
+.games__block-right {
+  width: 50%;
+}
+.games__image {
+  border: 1px solid #808080;
+}
+.games__image img {
+  height: 210px;
+  width: 228px;
+  object-fit: cover;
+}
+.games__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  margin: 5px;
+}
+.games__genres {
+  font-family: "Volkhov", serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+  margin: 5px;
+}
+.games__users-added {
+  font-family: "Volkhov", serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: black;
+  margin: 5px;
+}
+.games__button-submit {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+  background: limegreen;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+.games__button-reset {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+
+/*# sourceMappingURL=must_page.css.map */

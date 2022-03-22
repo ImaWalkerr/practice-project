@@ -51,8 +51,8 @@ input[type=number] {
   color: white;
   background: #e23232;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 .form__information {
   display: flex;
@@ -77,8 +77,8 @@ input[type=number] {
   color: white;
   background: #e23232;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 
 .controls {
@@ -87,8 +87,8 @@ input[type=number] {
   flex-direction: column;
   width: 55%;
   color: white;
-  border-left: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-left: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 
 .control-group {
@@ -171,8 +171,8 @@ input[type=number] {
   color: white;
   background: #e23232;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
 }
 
 .confirm {
@@ -216,7 +216,7 @@ input[type=number] {
   font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
-  color: grey;
+  color: #808080;
   margin: 0 0 3px 0;
 }
 .profile__name-load {
@@ -249,8 +249,8 @@ input[type=number] {
   color: white;
   background: #e23232;
   padding: 10px 15px;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
   margin: 0 10px 0 0;
 }
 
