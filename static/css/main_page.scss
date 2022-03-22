@@ -53,6 +53,11 @@
     color: $font-color-light;
     margin: 0 10px;
   }
+  &__base {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   &__logo-image {
     width: 70px;
     height: 55px;
@@ -95,6 +100,7 @@
     padding: 10px 15px;
     border-right: 2px solid $font-color-border;
     border-bottom: 2px solid $font-color-border;
+    margin: 0 5px;
     a {
       text-decoration: none;
       color: $font-color-main;

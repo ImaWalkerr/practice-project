@@ -1,7 +1,11 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from .models import *
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth.forms import (AuthenticationForm as DjangoAuthenticationForm)
+
+from .utils import send_email_for_verify
 
 User = get_user_model()
 
