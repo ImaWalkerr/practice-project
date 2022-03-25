@@ -85,6 +85,7 @@ class IGDBWrapper:
                  'aggregated_rating_count,'
                  'rating,'
                  'rating_count,'
+                 'cover.url,'
                  'screenshots.url;'
                  + where_condition
         ).json()

@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+    {{ title }}
+{% endblock %}
+
 {% block content %}
     <div class="games-details">
         <div class="games-details__games-info">
             <div class="games-info">
-                 <h2 class="games-info__title">{{ current_game.name }}</h2>
-                <button type="submit" class="games-info__button">MUST</button>
+                <h2 class="games-info__title">{{ current_game.name }}</h2>
+                {% include "favorites/add_to_favorites_detail_page.html" with genres=genre.name url_root=current_game.cover.url type=current_game.name id=current_game.id %}
             </div>
             <div class="games-info__genre">
                 {% for genre in genres  %}

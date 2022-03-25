@@ -60,6 +60,8 @@ input[type=number] {
   justify-content: space-between;
 }
 .header__registration {
+  display: flex;
+  flex-wrap: wrap;
   font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
@@ -83,6 +85,10 @@ input[type=number] {
   font-size: 23px;
   color: white;
   font-weight: 700;
+}
+.header__link a {
+  margin: 0 10px 0 0;
+  color: white;
 }
 .header__search-label {
   display: flex;
@@ -119,6 +125,10 @@ input[type=number] {
   color: #e23232;
 }
 .header__must {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
@@ -128,9 +138,12 @@ input[type=number] {
   border-right: 2px solid #808080;
   border-bottom: 2px solid #808080;
 }
-.header__must a {
-  text-decoration: none;
-  color: #e23232;
+
+.favorites_statistics {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
 }
 
 .sidebar li {
@@ -407,7 +420,7 @@ body.touch .sidebar__arrow {
   right: 0;
   top: 45%;
   background: rgba(0, 0, 0, 0.5);
-  padding: 25px;
+  padding: 15px;
   display: none;
 }
 
@@ -435,6 +448,9 @@ body.touch .sidebar__arrow {
 }
 .block__links {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
   font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 16px;
@@ -447,7 +463,6 @@ body.touch .sidebar__arrow {
   background-color: white;
   padding: 5px 10px;
   border-radius: 35px;
-  margin: 10px 15px 0 0;
 }
 .block__links-must {
   font-family: "Volkhov", serif;

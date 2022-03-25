@@ -2,6 +2,10 @@
 {% load static %}
 {% load page_url %}
 
+{% block title %}
+    {{ title }}
+{% endblock %}
+
 {% block content %}
     <div class="content">
         <div class="content__sidebar">
@@ -112,7 +116,7 @@
                                         <button type="button" class="block__links-open">
                                             <a class="block__links-a" href="/{{ game.id }}" target="_blank" rel="nofollow noopener">Open</a>
                                         </button>
-                                        <button type="submit" class="block__links-must">MUST</button>
+                                        {% include "favorites/add_to_favorites.html" with genres=genre.name url_root=game.cover.url type=game.name id=game.id %}
                                     </div>
                                 </div>
                             </div>

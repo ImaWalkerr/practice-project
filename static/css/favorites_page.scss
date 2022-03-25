@@ -1,6 +1,11 @@
 @import "base_variables";
 
 .must {
+  &__main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
   &__block {
     padding: 25px;
   }
@@ -9,16 +14,17 @@
     font-weight: 600;
     font-size: 30px;
     color: $font-color-dark;
+    margin: 0 15px 0 0;
   }
   &__carts {
     display: flex;
     flex-wrap: wrap;
-    padding: 30px 100px;
+    padding: 25px 100px;
   }
   &__games {
     display: flex;
     flex-direction: column;
-    height: 304px;
+    height: fit-content;
     width: 230px;
     margin: 20px;
   }
@@ -27,23 +33,26 @@
 .games {
   &__block {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     background: $font-color-light;
-    border: 1px solid $font-color-border;
+    border-bottom: 1px solid $font-color-border;
+    border-right: 1px solid $font-color-border;
+    border-left: 1px solid $font-color-border;
     width: 230px;
-    height: 90px;
   }
   &__block-left {
     width: 50%;
     text-align: left;
-    padding: 10px;
   }
   &__block-right {
     width: 50%;
   }
   &__image {
-    border: 1px solid $font-color-border;
+    border-top: 1px solid $font-color-border;
+    border-right: 1px solid $font-color-border;
+    border-left: 1px solid $font-color-border;
     img {
       height: 210px;
       width: 228px;
@@ -51,45 +60,73 @@
     }
   }
   &__title {
+    margin: 5px;
+  }
+  &__title-a {
     font-family: $font-family;
     font-weight: 600;
     font-size: 20px;
     color: $font-color-dark;
-    margin: 5px;
   }
-  &__genres {
-    font-family: $font-family;
-    font-weight: 400;
-    font-size: 16px;
-    color: $font-color-dark;
-    margin: 5px;
-  }
+  &__genres,
   &__users-added {
     font-family: $font-family;
-    font-weight: 400;
-    font-size: 13px;
+    font-weight: 600;
+    font-size: 14px;
     color: $font-color-dark;
     margin: 5px;
   }
-  &__buttons {}
+  &__buttons {
+    padding: 5px;
+  }
   &__button-submit {
     font-family: $font-family;
     font-weight: 600;
     font-size: 18px;
     color: $font-color-light;
     background: limegreen;
-    padding: 10px 15px;
+    padding: 10px;
     border-right: 2px solid $font-color-border;
     border-bottom: 2px solid $font-color-border;
   }
   &__button-reset {
     font-family: $font-family;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
     color: $font-color-light;
     background: $font-color-main;
     padding: 10px 15px;
     border-right: 2px solid $font-color-border;
     border-bottom: 2px solid $font-color-border;
+  }
+}
+
+.add-to-favorites {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 18px;
+  color: $font-color-light;
+  background: limegreen;
+  padding: 10px;
+  border-right: 2px solid $font-color-border;
+  border-bottom: 2px solid $font-color-border;
+  cursor: pointer;
+}
+
+.add-to-favorites.added {
+  background: $font-color-main;
+}
+
+//test_favorites//
+
+.test-sessions {
+  height: 300px;
+  width:fit-content;
+  padding: 25px;
+  background: grey;
+  div {
+    color: black;
+    background: white;
+    padding: 25px;
   }
 }

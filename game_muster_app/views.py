@@ -1,13 +1,13 @@
 from django import views
 from django.core.exceptions import ValidationError
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.utils.http import urlsafe_base64_decode
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 from math import ceil
+import json
 
 from .models import *
 from .forms import LoginForm, RegistrationForm
@@ -16,11 +16,9 @@ from .utils import send_email_for_verify
 
 
 class BasePageView(TemplateView):
-
     template_name = 'base.html'
 
     def get(self, *args, **kwargs):
-
         users = GameUser.objects.all()
 
         context = {
@@ -34,6 +32,7 @@ class MainPageView(views.View):
     """
     Functional for main page
     """
+
     def get(self, request):
 
         igdb_search = request.GET.get('search_game')
@@ -66,6 +65,7 @@ class MainPageView(views.View):
             'games_count': range(games_count),
             'all_platforms_filter': all_platforms_filter,
             'all_genres_filter': all_genres_filter,
+            'title': 'GameMuster',
         }
 
         return render(request, 'main_page.html', context)
@@ -79,6 +79,7 @@ class GamesDetailPageView(views.View):
     """
     Functional for current game page
     """
+
     def get(self, request, game_id):
         current_game = IGDB_WRAPPER.get_game_id(game_id)
         current_game = current_game[0] if current_game else None
@@ -103,6 +104,7 @@ class GamesDetailPageView(views.View):
             'aggregated_rating_count': aggregated_rating_count,
             'cover': cover,
             'screenshots': screenshots,
+            'title': 'Game details',
         }
         return render(request, 'games_detail_page.html', context)
 
@@ -112,7 +114,8 @@ class ProfileView(views.View):
     def get(self, request):
         users = GameUser.objects.filter(user=request.user)
         context = {
-            'users': users
+            'users': users,
+            'title': 'Profile',
         }
 
         return render(request, 'registration/profile_page.html', context)
@@ -123,7 +126,8 @@ class LoginView(views.View):
     def get(self, request):
         form = LoginForm(request.POST or None)
         context = {
-            'form': form
+            'form': form,
+            'title': 'Login',
         }
         return render(request, 'registration/login_page.html', context)
 
@@ -137,7 +141,8 @@ class LoginView(views.View):
                 login(request, user)
                 return redirect('/')
         context = {
-            'form': form
+            'form': form,
+            'title': 'Login',
         }
         return render(request, 'registration/login_page.html', context)
 
@@ -147,7 +152,8 @@ class RegistrationView(views.View):
     def get(self, request):
         form = RegistrationForm(request.POST or None)
         context = {
-            'form': form
+            'form': form,
+            'title': 'Registration',
         }
         return render(request, 'registration/sign_up_page.html', context)
 
@@ -172,7 +178,8 @@ class RegistrationView(views.View):
             send_email_for_verify(request, user)
             return redirect('confirm_email')
         context = {
-            'form': form
+            'form': form,
+            'title': 'Registration',
         }
         return render(request, 'registration/sign_up_page.html', context)
 
@@ -220,5 +227,93 @@ class LogoutDoneView(TemplateView):
     template_name = 'registration/logout_done.html'
 
 
-class MyMustView(TemplateView):
-    template_name = 'must_page.html'
+class MyFavoritesView(views.View):
+
+    def get(self, request):
+        favorites_list = request.session.get('favorites')
+        context = {
+            'favorites_list': favorites_list,
+            'title': 'My favorites',
+        }
+        return render(request, 'favorites/favorites_page.html', context)
+
+
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+
+def add_to_favorites(request):
+    if request.method == 'POST':
+        if not request.session.get('favorites'):
+            request.session['favorites'] = list()
+        else:
+            request.session['favorites'] = list(request.session['favorites'])
+
+        item_exist = next(
+            (item for item in request.session['favorites']
+             if item["type"] == request.POST.get('type')
+             and item["id"] == request.POST.get('id')
+             and item["genres"] == request.POST.get('genres')
+             and item["url_root"] == request.POST.get('url_root')), False
+        )
+        add_data = {
+            'type': request.POST.get('type'),
+            'id': request.POST.get('id'),
+            'genres': request.POST.get('genres'),
+            'url_root': request.POST.get('url_root'),
+        }
+        if not item_exist:
+            request.session['favorites'].append(add_data)
+            request.session.modified = True
+
+    if is_ajax(request=request):
+        data = {
+            'type': request.POST.get('type'),
+            'id': request.POST.get('id'),
+            'genres': request.POST.get('genres'),
+            'url_root': request.POST.get('url_root'),
+        }
+        request.session.modified = True
+        return JsonResponse(data)
+    return redirect(request.POST.get('url_from'))
+
+
+def remove_from_favorites(request):
+    if request.method == 'POST':
+
+        for item in request.session['favorites']:
+            if item['id'] == request.POST.get('id') \
+                    and item['type'] == request.POST.get('type') \
+                    and item['genres'] == request.POST.get('genres') \
+                    and item['url_root'] == request.POST.get('url_root'):
+                item.clear()
+
+        while {} in request.session['favorites']:
+            request.session['favorites'].remove({})
+
+        if not request.session['favorites']:
+            del request.session['favorites']
+
+        request.session.modified = True
+
+        if is_ajax(request=request):
+            data = {
+                'type': request.POST.get('type'),
+                'id': request.POST.get('id'),
+                'genres': request.POST.get('genres'),
+                'url_root': request.POST.get('url_root'),
+            }
+            request.session.modified = True
+            return JsonResponse(data)
+        return redirect(request.POST.get('url_from'))
+
+
+def delete_favorites(request):
+    if request.session.get('favorites'):
+        del request.session['favorites']
+        request.session.modified = True
+    return redirect(request.POST.get('url_from'))
+
+
+def favorites_api(request):
+    return JsonResponse(request.session.get('favorites'), safe=False)
