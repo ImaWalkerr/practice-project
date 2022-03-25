@@ -85,7 +85,6 @@ function add_to_favorites() {
     })
 }
 
-
 //Save favorites list for user
 function get_session_favorites() {
     get_session_favorites_statistics()
@@ -99,7 +98,7 @@ function get_session_favorites() {
                     const genres = $(el).data('genres')
                     const url_root = $(el).data('url_root')
 
-                    if (json[i].type === type && json[i].id === id && json[i].genres === genres && json[i].url_root === url_root) {
+                    if (json[i].type == type && json[i].id == id && json[i].genres == genres && json[i].url_root == url_root) {
                         $(el).addClass(added_for_favorites_class).text('UnMust')
                     }
                 })
