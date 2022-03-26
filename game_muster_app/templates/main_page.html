@@ -134,7 +134,7 @@
                         <div class="swiper-wrapper">
                             {% for num_of_page in games_count %}
                                 <div class="swiper-slide">
-                                    <a class="slider__pagination" href="{{ request.get_full_path|get_page_url:num_of_page }}">{{ forloop.counter }}</a>
+                                    <a class="slider__pagination" href="{{ request.get_full_path|get_page_url:forloop.counter }}">{{ forloop.counter }}</a>
                                 </div>
                             {% endfor %}
                         </div>

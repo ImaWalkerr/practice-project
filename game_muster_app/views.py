@@ -1,5 +1,6 @@
 from django import views
 from django.core.exceptions import ValidationError
+from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -231,10 +232,15 @@ class MyFavoritesView(views.View):
 
     def get(self, request):
         favorites_list = request.session.get('favorites')
-        favorites_count = ceil(len(favorites_list) / 12)
+        paginator = Paginator(favorites_list, 12)
+        page = request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        num_of_pages = "a" * page_obj.paginator.num_pages
+
         context = {
             'favorites_list': favorites_list,
-            'favorites_count': range(favorites_count),
+            'page_obj': page_obj,
+            'num_of_pages': num_of_pages,
             'title': 'My favorites',
         }
         return render(request, 'favorites/favorites_page.html', context)
