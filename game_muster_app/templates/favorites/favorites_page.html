@@ -59,15 +59,9 @@
                     </div>
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-<<<<<<< HEAD
                             {% for page in num_of_pages %}
                                 <div class="swiper-slide">
                                     <a class="slider-favorites__pagination" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
-=======
-                            {% for num_of_page in favorites_count %}
-                                <div class="swiper-slide">
-                                    <a class="slider-favorites__pagination" href="{{ request.get_full_path|get_page_url:num_of_page }}">{{ forloop.counter }}</a>
->>>>>>> 379ed2242bab800352577e078e7e031a8af268a1
                                 </div>
                             {% endfor %}
                         </div>
