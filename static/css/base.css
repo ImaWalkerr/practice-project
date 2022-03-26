@@ -4,6 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -540,65 +541,6 @@ body.touch .sidebar__arrow {
   font-weight: 600;
   font-size: 14px;
   color: black;
-}
-
-.slider {
-  display: flex;
-}
-.slider__block-right, .slider__block-left {
-  width: 25%;
-}
-.slider__container {
-  display: flex;
-  width: 50%;
-}
-.slider__pagination {
-  font-family: "Volkhov", serif;
-  font-weight: 600;
-  font-size: 25px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  background-color: #e23232;
-  margin: 0 5px;
-  padding: 10px 15px;
-  border-bottom: 2px solid #808080;
-  border-right: 2px solid #808080;
-  cursor: pointer;
-}
-
-.swiper-container {
-  width: 80%;
-  padding: 10px;
-}
-
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  display: none;
-}
-
-.swiper-button-prev {
-  position: relative;
-  background-image: url("/static/media/images/back.svg");
-}
-
-.swiper-button-next {
-  position: relative;
-  background-image: url("/static/media/images/right.svg");
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  background-color: white;
-  border: 2px solid #e23232;
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-  left: auto;
-  right: auto;
 }
 
 /* Variables+plugins */
@@ -1225,7 +1167,7 @@ input[type=number] {
 .games__title-a {
   font-family: "Volkhov", serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: calc(14px + 2 * ((100vw - 420px) / 860));
   color: black;
 }
 .games__genres, .games__users-added {
@@ -1263,6 +1205,7 @@ input[type=number] {
   font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 18px;
+  text-align: center;
   color: white;
   background: limegreen;
   padding: 10px;
@@ -1285,6 +1228,103 @@ input[type=number] {
   color: black;
   background: white;
   padding: 25px;
+}
+
+/* Variables+plugins */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.slider {
+  display: flex;
+}
+.slider__block-right, .slider__block-left {
+  width: 25%;
+}
+.slider__container {
+  display: flex;
+  width: 50%;
+}
+.slider__pagination {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #e23232;
+  margin: 0 5px;
+  padding: 10px 15px;
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
+  cursor: pointer;
+}
+
+.slider-favorites {
+  display: flex;
+}
+.slider-favorites__block-right, .slider-favorites__block-left {
+  width: 40%;
+}
+.slider-favorites__container {
+  display: flex;
+  width: 20%;
+}
+.slider-favorites__pagination {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #e23232;
+  margin: 0 5px;
+  padding: 10px 15px;
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
+  cursor: pointer;
+}
+
+.swiper-container {
+  width: 80%;
+  padding: 10px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev {
+  position: relative;
+  background-image: url("/static/media/images/back.svg");
+}
+
+.swiper-button-next {
+  position: relative;
+  background-image: url("/static/media/images/right.svg");
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: white;
+  border: 2px solid #e23232;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  left: auto;
+  right: auto;
 }
 
 /*# sourceMappingURL=base.css.map */
