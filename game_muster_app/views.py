@@ -231,8 +231,10 @@ class MyFavoritesView(views.View):
 
     def get(self, request):
         favorites_list = request.session.get('favorites')
+        favorites_count = ceil(len(favorites_list) / 12)
         context = {
             'favorites_list': favorites_list,
+            'favorites_count': range(favorites_count),
             'title': 'My favorites',
         }
         return render(request, 'favorites/favorites_page.html', context)
@@ -262,6 +264,9 @@ def add_to_favorites(request):
             'genres': request.POST.get('genres'),
             'url_root': request.POST.get('url_root'),
         }
+        # add_data = json.dumps(add_data)
+        # print(type(add_data))
+
         if not item_exist:
             request.session['favorites'].append(add_data)
             request.session.modified = True

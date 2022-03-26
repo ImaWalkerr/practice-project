@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load page_url %}
 
 {% block title %}
     {{ title }}
@@ -49,6 +50,27 @@
                         </div>
                     </div>
                 {% endfor %}
+            </div>
+            <div class="content__pagination slider-favorites">
+                <div class="slider-favorites__block-left"></div>
+                <div class="slider-favorites__container">
+                    <div class="slider-favorites__navigation-prev">
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {% for num_of_page in favorites_count %}
+                                <div class="swiper-slide">
+                                    <a class="slider-favorites__pagination" href="{{ request.get_full_path|get_page_url:num_of_page }}">{{ forloop.counter }}</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="slider-favorites__navigation-next">
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+                <div class="slider__block-right"></div>
             </div>
         </div>
     </div>

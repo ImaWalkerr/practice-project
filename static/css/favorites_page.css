@@ -74,7 +74,7 @@ input[type=number] {
 .games__title-a {
   font-family: "Volkhov", serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: calc(14px + 2 * ((100vw - 420px) / 860));
   color: black;
 }
 .games__genres, .games__users-added {
@@ -112,6 +112,7 @@ input[type=number] {
   font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 18px;
+  text-align: center;
   color: white;
   background: limegreen;
   padding: 10px;
