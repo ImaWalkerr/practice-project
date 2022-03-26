@@ -232,6 +232,7 @@ class MyFavoritesView(views.View):
 
     def get(self, request):
         favorites_list = request.session.get('favorites')
+<<<<<<< HEAD
         paginator = Paginator(favorites_list, 12)
         page = request.GET.get('page')
         page_obj = paginator.get_page(page)
@@ -241,6 +242,12 @@ class MyFavoritesView(views.View):
             'favorites_list': favorites_list,
             'page_obj': page_obj,
             'num_of_pages': num_of_pages,
+=======
+        favorites_count = ceil(len(favorites_list) / 12)
+        context = {
+            'favorites_list': favorites_list,
+            'favorites_count': range(favorites_count),
+>>>>>>> 379ed2242bab800352577e078e7e031a8af268a1
             'title': 'My favorites',
         }
         return render(request, 'favorites/favorites_page.html', context)
