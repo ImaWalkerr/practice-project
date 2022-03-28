@@ -75,7 +75,7 @@ class Games(models.Model):
     aggregated_rating = models.DecimalField(max_digits=4, decimal_places=2, null=True, default=None)
     aggregated_rating_count = models.IntegerField(null=True, default=None)
     must = models.BooleanField(default=False)
-    favorite_games = models.ManyToManyField(User, through="UserFavoriteGames")
+    # favorite_games = models.ManyToManyField(User, through="UserFavoriteGames")
 
     def __str__(self):
         return f"{self.game_name}"
@@ -105,8 +105,8 @@ class UserFavoriteGames(models.Model):
     """
     User wishlist
     """
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Owner', related_name='user_favorite_game')
-    games = models.ForeignKey(Games, on_delete=models.CASCADE, verbose_name='User games', related_name='user_games')
+    # owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Owner', related_name='user_favorite_game')
+    # games = models.ForeignKey(Games, on_delete=models.CASCADE, verbose_name='User games', related_name='user_games')
 
     def __str__(self):
         return f"{self.owner}"

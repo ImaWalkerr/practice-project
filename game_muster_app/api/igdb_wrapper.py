@@ -14,6 +14,7 @@ class IGDBWrapper:
     CLIENT_ID = config('CLIENT_ID', default='')
     CLIENT_SECRET = config('CLIENT_SECRET', default='')
     BEARER_TOKEN = config('BEARER_TOKEN', default='')
+    PAGE_GAMES_COUNT = config('PAGE_GAMES_COUNT', default='')
 
     def get_header(self):
         response = requests.post(
@@ -24,7 +25,6 @@ class IGDBWrapper:
         )
         if response.status_code == 401:
             raise Exception("Incorrect client id or client secret")
-
         return {
             "Client-ID": self.CLIENT_ID,
             "Authorization": "Bearer {}".format(response.json()["access_token"]),
@@ -34,8 +34,6 @@ class IGDBWrapper:
         "Authorization": BEARER_TOKEN,
         "Client-ID": CLIENT_ID,
     }
-
-    PAGE_GAMES_COUNT = 6
 
     def get_games_count(self, search='', platforms='', genres='', ratings=''):
         data = ('fields id;'
@@ -98,7 +96,7 @@ class IGDBWrapper:
             f"{self.GENRES_URL}",
             headers=self.headers,
             data='fields name;'
-                 'limit 23;'
+                 'limit 500;'
         ).json()
 
     def get_platforms(self):
@@ -106,7 +104,7 @@ class IGDBWrapper:
             f"{self.PLATFORMS_URL}",
             headers=self.headers,
             data='fields name;'
-                 'limit 182;'
+                 'limit 500;'
         ).json()
 
 

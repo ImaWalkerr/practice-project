@@ -5,8 +5,10 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.tokens import default_token_generator as token_generator
+from django.utils.decorators import method_decorator
 from django.utils.http import urlsafe_base64_decode
 from django.views.generic.base import TemplateView
+from django.views.decorators.cache import cache_page
 from math import ceil
 import json
 
@@ -29,6 +31,7 @@ class BasePageView(TemplateView):
         return context
 
 
+@method_decorator(cache_page(60*60), name='get')
 class MainPageView(views.View):
     """
     Functional for main page
@@ -76,6 +79,7 @@ class ErrorSearchView(TemplateView):
     template_name = 'error_search.html'
 
 
+@method_decorator(cache_page(60*60), name='get')
 class GamesDetailPageView(views.View):
     """
     Functional for current game page
@@ -228,6 +232,7 @@ class LogoutDoneView(TemplateView):
     template_name = 'registration/logout_done.html'
 
 
+@method_decorator(cache_page(60*15), name='get')
 class MyFavoritesView(views.View):
 
     def get(self, request):
@@ -321,7 +326,7 @@ def delete_favorites(request):
     if request.session.get('favorites'):
         del request.session['favorites']
         request.session.modified = True
-    return redirect(request.POST.get('url_from'))
+    return redirect('/')
 
 
 def favorites_api(request):
