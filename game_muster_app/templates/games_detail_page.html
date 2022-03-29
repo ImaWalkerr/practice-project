@@ -10,6 +10,13 @@
         <div class="games-details__games-info">
             <div class="games-info">
                 <h2 class="games-info__title">{{ current_game.name }}</h2>
+                <div class="games-info__cover-secret">
+                    {% if current_game.cover %}
+                        <img src="{{ current_game.cover.url }}" alt="cover-secret">
+                     {% else %}
+                        <img src="{% static 'media/images/default_cover.png' %}" alt="default-cover-secret">
+                    {% endif %}
+                </div>
                 {% include "favorites/add_to_favorites_detail_page.html" with genres=genre.name url_root=current_game.cover.url type=current_game.name id=current_game.id %}
             </div>
             <div class="games-info__genre">
@@ -118,18 +125,14 @@
             </div>
         </div>
         <div class="games-details__tweets tweets">
-            <h2 class="tweets__title">{{ game_name }} #Pacman Tweets</h2>
-            {% for tweet in tweets %}
+            <h2 class="tweets__title">#{{ current_game.name }} Tweets</h2>
                 <div class="tweets__block">
-                    <div class="block__text">
-                        <p>{{ tweet.content }}</p>
-                    </div>
-                    <div class="block__info">
-                        <div class="block__date">{{ tweet.date|date:'M Y' }}</div>
-                        <div class="block__author">@{{ tweet.publisher }}</div>
+                    <div class="tweets__text">FDJLDS JFKLJLKFVJLGK JFLKgjFFDJLDS JFKLJLKFVJLGKJFLKgjFFDJLDS JFKLJLKFVJLGK JFLK gjFFDJLDSJFKLJLKFVJL GKJF LKg jFFDJLDSJFKL JLKFVJLG KJFLKgjFFD JLDSJ FKLJLKFVJLGKJF LKgjF FDJLDS JFKLJLKFVJLG KJFLKgjF FD JLDSJFKL JLKFVJLGKJFLKgj FFDJL DSJ FKLJLKF VJLGKJ FLKgjF</div>
+                    <div class="tweets__info">
+                        <div class="tweets__date">FDJLDSJFKLJLKFVJL</div>
+                        <div class="tweets__author">FDJLDSJFKLJLKFVJL</div>
                     </div>
                 </div>
-            {% endfor %}
         </div>
     </div>
 {% endblock %}

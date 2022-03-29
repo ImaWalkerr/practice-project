@@ -14,7 +14,6 @@ class IGDBWrapper:
     CLIENT_ID = config('CLIENT_ID', default='')
     CLIENT_SECRET = config('CLIENT_SECRET', default='')
     BEARER_TOKEN = config('BEARER_TOKEN', default='')
-    PAGE_GAMES_COUNT = config('PAGE_GAMES_COUNT', default='')
 
     def get_header(self):
         response = requests.post(
@@ -34,6 +33,8 @@ class IGDBWrapper:
         "Authorization": BEARER_TOKEN,
         "Client-ID": CLIENT_ID,
     }
+
+    PAGE_GAMES_COUNT = 6
 
     def get_games_count(self, search='', platforms='', genres='', ratings=''):
         data = ('fields id;'

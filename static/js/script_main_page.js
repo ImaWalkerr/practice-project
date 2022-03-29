@@ -24,6 +24,18 @@ const isMobile = {
 	}
 };
 
+//Menu burger//
+const iconMenu = document.querySelector('.menu__icon');
+if (iconMenu) {
+	const MenuHeader = document.querySelector('.header__registration');
+	iconMenu.addEventListener("click", function (e) {
+		document.body.classList.toggle('_lock');
+		iconMenu.classList.toggle('_active');
+		MenuHeader.classList.toggle('_active');
+	});
+}
+
+
 let body = document.querySelector('body');
 if (isMobile.any()) {
 	body.classList.add('touch');

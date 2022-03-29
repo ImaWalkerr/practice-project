@@ -20,6 +20,9 @@
     display: flex;
     flex-wrap: wrap;
     padding: 25px 100px;
+    @media (max-width: 810px) {
+      padding: 25px;
+    }
   }
   &__games {
     display: flex;

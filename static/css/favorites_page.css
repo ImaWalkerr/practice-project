@@ -32,6 +32,11 @@ input[type=number] {
   flex-wrap: wrap;
   padding: 25px 100px;
 }
+@media (max-width: 810px) {
+  .must__carts {
+    padding: 25px;
+  }
+}
 .must__games {
   display: flex;
   flex-direction: column;

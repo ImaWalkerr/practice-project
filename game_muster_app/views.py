@@ -64,6 +64,11 @@ class MainPageView(views.View):
         all_platforms_filter = IGDB_WRAPPER.get_platforms()
         all_genres_filter = IGDB_WRAPPER.get_genres()
 
+        # for item in games:
+            # if 'cover' in item.keys():
+                # item['url'] = item['cover']['url'].replace('t_thumb', 't_cover_big')
+            # return games
+
         context = {
             'games': games,
             'games_count': range(games_count),
@@ -96,7 +101,16 @@ class GamesDetailPageView(views.View):
         aggregated_rating = current_game.get('aggregated_rating')
         aggregated_rating_count = current_game.get('aggregated_rating_count')
         cover = current_game.get('cover')
+        if cover is not None:
+            cover['url'] = cover['url'].replace('t_thumb', 't_cover_big')
+        else:
+            cover = current_game.get('cover')
         screenshots = current_game.get('screenshots')
+
+        # for item in screenshots:
+            # if 'url' in item.keys():
+                # item['url'] = item['url'].replace('t_thumb', 't_screenshot_huge')
+            # return screenshots
 
         context = {
             'current_game': current_game,
@@ -232,7 +246,7 @@ class LogoutDoneView(TemplateView):
     template_name = 'registration/logout_done.html'
 
 
-@method_decorator(cache_page(60*15), name='get')
+@method_decorator(cache_page(60*60), name='get')
 class MyFavoritesView(views.View):
 
     def get(self, request):
