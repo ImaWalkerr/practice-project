@@ -1,0 +1,257 @@
+/* Variables+plugins */
+@import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.form__header {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 30px;
+  text-align: center;
+  color: black;
+  padding: 10px 0;
+}
+.form__container {
+  display: flex;
+  width: 100%;
+}
+.form__block-up {
+  width: 100%;
+  min-height: 20vh;
+}
+.form__block-left, .form__block-right {
+  width: 35%;
+}
+.form__block-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+.form__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+.form__button-style {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+.form__information {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+}
+.form__information-title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: black;
+  margin: 0 15px 0 0;
+}
+.form__information-link {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 55%;
+  color: white;
+  border-left: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 5px 0;
+}
+
+.control-label {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 0 10px 0 0;
+}
+
+.dateinput,
+.emailinput,
+.textInput {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  height: 30px;
+  background: white;
+}
+
+.help-block {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #e23232;
+}
+
+.alert {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: #e23232;
+  margin: 15px;
+}
+
+.select,
+.numberinput {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  height: 30px;
+}
+.select option,
+.numberinput option {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+}
+
+.verify__invalid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 90vh;
+}
+.verify__invalid-title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+}
+.verify__invalid-link {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+
+.confirm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 90vh;
+}
+.confirm__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+}
+
+.profile__header {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 28px;
+  color: black;
+  text-align: left;
+}
+.profile__block {
+  width: 100%;
+  padding: 25px;
+}
+.profile__user {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+.profile__user-info {
+  text-align: right;
+}
+.profile__user-info_load {
+  text-align: left;
+}
+.profile__name {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #808080;
+  margin: 0 0 3px 0;
+}
+.profile__name-load {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  margin: 0 0 3px 0;
+}
+
+.logout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 90vh;
+}
+.logout__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+}
+.logout__link {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  margin: 0 10px 0 0;
+}
+
+/*# sourceMappingURL=registration.css.map */

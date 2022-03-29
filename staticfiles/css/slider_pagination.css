@@ -1,0 +1,120 @@
+/* Variables+plugins */
+@import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.slider {
+  display: flex;
+}
+.slider__block-right, .slider__block-left {
+  width: 25%;
+}
+@media (max-width: 810px) {
+  .slider__block-right, .slider__block-left {
+    width: 10%;
+  }
+}
+.slider__container {
+  display: flex;
+  width: 50%;
+}
+@media (max-width: 810px) {
+  .slider__container {
+    width: 100%;
+  }
+}
+.slider__pagination {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #e23232;
+  margin: 0 5px;
+  padding: 10px 15px;
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
+  cursor: pointer;
+}
+
+.slider-favorites {
+  display: flex;
+}
+.slider-favorites__block-right, .slider-favorites__block-left {
+  width: 40%;
+}
+@media (max-width: 810px) {
+  .slider-favorites__block-right, .slider-favorites__block-left {
+    width: 10%;
+  }
+}
+.slider-favorites__container {
+  display: flex;
+  width: 20%;
+}
+@media (max-width: 810px) {
+  .slider-favorites__container {
+    width: 80%;
+  }
+}
+.slider-favorites__pagination {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #e23232;
+  margin: 0 5px;
+  padding: 10px 15px;
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
+  cursor: pointer;
+}
+
+.swiper-container {
+  width: 80%;
+  padding: 10px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev {
+  position: relative;
+  background-image: url("/static/media/images/back.svg");
+}
+
+.swiper-button-next {
+  position: relative;
+  background-image: url("/static/media/images/right.svg");
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: white;
+  border: 2px solid #e23232;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  left: auto;
+  right: auto;
+  z-index: 2;
+}
+
+/*# sourceMappingURL=slider_pagination.css.map */

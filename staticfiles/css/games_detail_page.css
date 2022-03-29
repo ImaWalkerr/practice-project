@@ -1,0 +1,396 @@
+/* Variables+plugins */
+@import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.body._lock {
+  overflow: hidden;
+}
+
+@media (max-width: 810px) {
+  .menu__icon {
+    display: none;
+  }
+}
+@media (max-width: 810px) and (max-width: 810px) {
+  .menu__icon {
+    z-index: 5;
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 18px;
+    cursor: pointer;
+  }
+}
+@media (max-width: 810px) {
+  .menu__icon span,
+.menu__icon::before,
+.menu__icon::after {
+    left: 0;
+    position: absolute;
+    height: 10%;
+    width: 100%;
+    transition: all 0.3s ease 0s;
+    background-color: white;
+  }
+}
+@media (max-width: 810px) {
+  .menu__icon::before,
+.menu__icon::after {
+    content: "";
+  }
+}
+@media (max-width: 810px) {
+  .menu__icon::before {
+    top: 0;
+  }
+}
+@media (max-width: 810px) {
+  .menu__icon::after {
+    bottom: 0;
+  }
+}
+@media (max-width: 810px) {
+  .menu__icon span {
+    top: 50%;
+    transform: scale(1) translate(0px, -50%);
+  }
+}
+@media (max-width: 810px) {
+  .menu__icon._active span {
+    transform: scale(0) translate(0px, -50%);
+  }
+}
+@media (max-width: 810px) {
+  .menu__icon._active::before {
+    top: 50%;
+    transform: rotate(-45deg) translate(0px, -50%);
+  }
+}
+@media (max-width: 810px) {
+  .menu__icon._active::after {
+    bottom: 50%;
+    transform: rotate(45deg) translate(0px, 50%);
+  }
+}
+@media (max-width: 810px) {
+  .header {
+    position: fixed;
+    z-index: 5;
+  }
+  .header__base {
+    z-index: 5;
+  }
+  .header__logo img {
+    z-index: 5;
+    background: none;
+  }
+  .header__registration {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+    top: 0;
+    left: -105%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 100px 30px 30px 30px;
+    transition: left 0.3s ease 0s;
+    overflow: auto;
+  }
+  .header__registration::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 75px;
+    background: #e23232;
+    z-index: 2;
+  }
+  .header__registration._active {
+    left: -10px;
+  }
+  .header__profile, .header__must {
+    font-size: 25px;
+  }
+}
+.games-details {
+  display: flex;
+}
+@media (max-width: 1050px) {
+  .games-details {
+    flex-wrap: wrap;
+  }
+}
+.games-details__games-info {
+  min-width: 50%;
+  padding: 30px;
+}
+.games-details__tweets {
+  min-width: 22%;
+  padding: 30px;
+}
+
+.games-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: left;
+}
+.games-info__description {
+  min-width: 28%;
+  padding: 125px 50px 0 0;
+}
+@media (max-width: 800px) {
+  .games-info__description {
+    width: 100%;
+    padding: 30px;
+  }
+}
+.games-info__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 35px;
+  color: black;
+  margin: 0 15px 0 0;
+}
+.games-info__cover-secret img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin: 0 15px 0 0;
+}
+@media (max-width: 810px) {
+  .games-info__cover-secret img {
+    margin: 10px 10px 10px 0;
+  }
+}
+.games-info__button {
+  font-family: "Volkhov", serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  background-color: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+.games-info__screenshots-title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 20px 0 5px 0;
+}
+.games-info__genre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: initial;
+  color: black;
+  padding: 15px 50px 15px 0;
+}
+.games-info__genre-block {
+  padding: 0 15px 0 0;
+}
+.games-info__screenshots-block {
+  display: flex;
+  flex-wrap: wrap;
+}
+.games-info__screenshots-image {
+  width: 280px;
+  height: 200px;
+  object-fit: cover;
+  padding: 10px 5px 5px 0;
+}
+
+.description-game__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 20px 0 5px 0;
+}
+.description-game__text {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: initial;
+  color: black;
+  padding: 15px 50px 15px 0;
+}
+
+.release-date__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 20px 0 5px 0;
+}
+.release-date__text-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+.release-date__text {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: initial;
+  color: black;
+  padding: 10px 0;
+}
+
+.ratings__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 20px 0 5px 0;
+}
+.ratings__users {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Volkhov", serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  background-color: limegreen;
+  padding: 15px;
+  margin: 15px 0 5px 0;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+.ratings__critics {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Volkhov", serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  background-color: orange;
+  padding: 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+.ratings__users-title, .ratings__users-marks, .ratings__critics-title, .ratings__critics-marks {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+}
+
+.genres__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 20px 0 5px 0;
+}
+.genres__block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+.genres__item {
+  font-family: "Volkhov", serif;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  background-color: #e23232;
+  padding: 10px 15px;
+  margin: 10px 10px 0 0;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+
+.platforms__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 20px 0 5px 0;
+}
+.platforms__block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+.platforms__item {
+  font-family: "Volkhov", serif;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  background-color: #e23232;
+  padding: 10px 15px;
+  margin: 10px 10px 0 0;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+
+.tweets__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 10px;
+}
+.tweets__block {
+  color: white;
+  background-color: #e23232;
+  padding: 5px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+.tweets__info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.tweets__text {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: initial;
+  color: white;
+  padding: 5px;
+}
+.tweets__date, .tweets__author {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: initial;
+  color: white;
+}
+.tweets__date {
+  padding: 5px;
+}
+.tweets__author {
+  padding: 5px;
+}
+
+/*# sourceMappingURL=games_detail_page.css.map */
