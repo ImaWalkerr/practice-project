@@ -11,25 +11,14 @@
         <div class="must__block">
             <div class="must__main">
                 <div class="must__title">My MUST</div>
-                <div class="must__clean-all">
-                    <form action="{% url 'delete_favorites' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="url_from" value="{{ request.path }}">
-                        <button class="games__button-reset" type="submit">Clean all</button>
-                    </form>
-                </div>
+                <div class="must__clean-all"></div>
             </div>
-            <!--<div class="test-sessions">
-                <div>{{ request.session.keys }}</div>
-                <div>{{ favorites_list }}</div>
-                <div id="favorites_statistics"></div>
-            </div>-->
             <div class="must__carts">
                 {% for game in page_obj %}
                     <div class="must__games games">
                         <div class="games__image">
-                            {% if game.url_root %}
-                                <img class="games__cover" src="{{ game.url_root }}" alt="game-cover">
+                            {% if game.cover.url %}
+                                <img class="games__cover" src="{{ game.cover.url }}" alt="game-cover">
                             {% else %}
                                 <img class="games__default" src="{% static 'media/images/default_cover.png' %}" alt="default-game-cover">
                             {% endif %}
@@ -37,14 +26,22 @@
                         <div class="games__block">
                             <div class="games__block-left">
                                 <div class="games__title">
-                                    <a href="/{{ game.id }}" target="_blank" class="games__title-a">{{ game.type }}</a>
+                                    <a href="/{{ game.id }}" target="_blank" class="games__title-a">{{ game.name }}</a>
                                 </div>
-                                <div class="games__genres">Action</div>
+                                <div class="games__genres">
+                                    {% for genre in game.genres %}
+                                            {{ genre.name }}
+                                        {% endfor %}
+                                </div>
                                 <div class="games__users-added">users added: 25</div>
                             </div>
                             <div class="games__block-right">
                                 <div class="games__buttons">
-                                    {% include "favorites/add_to_favorites_main.html" with genres=game.genres url_root=game.url_root type=game.type id=game.id %}
+                                    {% if game.id in favorite_game_list_ids %}
+                                        <a class="add-to-favorites added" href="{% url 'remove_from_favorites' game.id %}">UnMust</a>
+                                    {% else %}
+                                        <a class="add-to-favorites" href="{% url 'add_to_favorites' game.id %}">Must</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

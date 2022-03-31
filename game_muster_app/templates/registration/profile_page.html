@@ -17,7 +17,6 @@
                     <div class="profile__name">Last Name|</div>
                     <div class="profile__name">Birthday|</div>
                     <div class="profile__name">Gender|</div>
-                    <div class="profile__name">Age|</div>
                 </div>
                 <div class="profile__user-info_load">
                     <div class="profile__name-load">{{ user.username }}</div>
@@ -27,7 +26,6 @@
                     {% for el in users %}
                         <div class="profile__name-load">{{ el.birthday }}</div>
                         <div class="profile__name-load">{{ el.gender }}</div>
-                        <div class="profile__name-load">{{ el.age }}</div>
                     {% endfor %}
                 </div>
             </div>

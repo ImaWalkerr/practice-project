@@ -545,7 +545,7 @@ body.touch .sidebar__arrow {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 16px;
@@ -559,6 +559,9 @@ body.touch .sidebar__arrow {
   padding: 5px 10px;
   border-radius: 35px;
 }
+.block__links-open.disabled {
+  display: none;
+}
 .block__links-must {
   font-family: "Volkhov", serif;
   font-weight: 600;
@@ -570,6 +573,9 @@ body.touch .sidebar__arrow {
   font-weight: 600;
   font-size: 14px;
   color: black;
+}
+.block__links-a.disabled {
+  display: none;
 }
 
 /* Variables+plugins */
@@ -828,7 +834,7 @@ input[type=number] {
   font-size: 16px;
   line-height: initial;
   color: black;
-  padding: 10px 0;
+  padding: 10px 15px 10px 0;
 }
 
 .ratings__title {
@@ -1312,11 +1318,12 @@ input[type=number] {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  width: 230px;
+  min-height: 80px;
   background: white;
   border-bottom: 1px solid #808080;
   border-right: 1px solid #808080;
   border-left: 1px solid #808080;
-  width: 230px;
 }
 .games__block-left {
   width: 50%;
@@ -1352,7 +1359,7 @@ input[type=number] {
   margin: 5px;
 }
 .games__buttons {
-  padding: 5px;
+  padding: 0 15px;
 }
 .games__button-submit {
   font-family: "Volkhov", serif;
@@ -1388,20 +1395,12 @@ input[type=number] {
   cursor: pointer;
 }
 
-.add-to-favorites.added {
-  background: #e23232;
+.add-to-favorites.disabled {
+  display: none;
 }
 
-.test-sessions {
-  height: 300px;
-  width: fit-content;
-  padding: 25px;
-  background: grey;
-}
-.test-sessions div {
-  color: black;
-  background: white;
-  padding: 25px;
+.add-to-favorites.added {
+  background: #e23232;
 }
 
 /* Variables+plugins */

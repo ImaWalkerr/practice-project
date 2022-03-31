@@ -39,11 +39,12 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    width: 230px;
+    min-height: 80px;
     background: $font-color-light;
     border-bottom: 1px solid $font-color-border;
     border-right: 1px solid $font-color-border;
     border-left: 1px solid $font-color-border;
-    width: 230px;
   }
   &__block-left {
     width: 50%;
@@ -80,7 +81,7 @@
     margin: 5px;
   }
   &__buttons {
-    padding: 5px;
+    padding: 0 15px;
   }
   &__button-submit {
     font-family: $font-family;
@@ -117,20 +118,10 @@
   cursor: pointer;
 }
 
-.add-to-favorites.added {
-  background: $font-color-main;
+.add-to-favorites.disabled {
+  display: none;
 }
 
-//test_favorites//
-
-.test-sessions {
-  height: 300px;
-  width:fit-content;
-  padding: 25px;
-  background: grey;
-  div {
-    color: black;
-    background: white;
-    padding: 25px;
-  }
+.add-to-favorites.added {
+  background: $font-color-main;
 }

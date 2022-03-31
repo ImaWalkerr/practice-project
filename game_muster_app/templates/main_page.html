@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+<form action="{% url 'main_page' %}" method="GET">
     <div class="content">
         <div class="content__sidebar">
             <div class="content__sections-sidebar sidebar">
@@ -23,8 +24,7 @@
                                 <li>
                                     <div class="sidebar__sub-link search">
                                         <h4 class="search__header">Filters</h4>
-                                        <form class="search__form" action="{% url 'main_page' %}" method="GET">
-                                            {% csrf_token %}
+                                        <div class="search__form">
                                             <div class="search__block">
                                                 <div class="search__name">Platforms</div>
                                                 <label>
@@ -74,7 +74,7 @@
                                                 </div>
                                             </div>
                                             <button type="submit" class="search__button">Apply</button>
-                                        </form>
+                                        </div>
                                     </div>
                                 </li>
                             </ul>
@@ -85,15 +85,12 @@
         </div>
         <div class="content__sections">
             <div class="content__sections-search">
-                <form action="{% url 'main_page' %}" method="GET">
-                    {% csrf_token %}
-                    <label class="header__search-label">
-                        <input class="header__search-input" type="search" name="search_game" placeholder="Search..." id="search-games-cart">
-                        <button class="header__search-button" type="submit">
-                            <img class="header__search-icon" src="{% static 'media/images/icon_search.png' %}" alt="icon-search">
-                        </button>
-                    </label>
-                </form>
+                <label class="header__search-label">
+                    <input class="header__search-input" type="search" name="search_game" placeholder="Search..." id="search-games-cart">
+                    <button class="header__search-button" type="submit">
+                        <img class="header__search-icon" src="{% static 'media/images/icon_search.png' %}" alt="icon-search">
+                    </button>
+                </label>
             </div>
             <div class="content__carts">
                 {% for game in games %}
@@ -116,7 +113,21 @@
                                         <button type="button" class="block__links-open">
                                             <a class="block__links-a" href="/{{ game.id }}" target="_blank" rel="nofollow noopener">Open</a>
                                         </button>
-                                        {% include "favorites/add_to_favorites.html" with genres=genre.name url_root=game.cover.url type=game.name id=game.id %}
+                                        {% if user.is_authenticated %}
+                                            {% if game.id in favorite_game_list_ids %}
+                                                <button type="button" class="block__links-open">
+                                                    <a class="block__links-a" href="{% url 'remove_from_favorites' game.id %}">UnMust</a>
+                                                </button>
+                                            {% else %}
+                                                <button type="button" class="block__links-open">
+                                                    <a class="block__links-a" href="{% url 'add_to_favorites' game.id %}">Must</a>
+                                                </button>
+                                            {% endif %}
+                                        {% else %}
+                                            <button type="button" class="block__links-open disabled">
+                                                <a class="block__links-a disabled" href="{% url 'add_to_favorites' game.id %}">Must</a>
+                                            </button>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -148,4 +159,5 @@
         </div>
         <div class="content__pass"></div>
     </div>
+</form>
 {% endblock %}

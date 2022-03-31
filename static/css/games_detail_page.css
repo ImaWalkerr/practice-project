@@ -255,7 +255,7 @@ input[type=number] {
   font-size: 16px;
   line-height: initial;
   color: black;
-  padding: 10px 0;
+  padding: 10px 15px 10px 0;
 }
 
 .ratings__title {

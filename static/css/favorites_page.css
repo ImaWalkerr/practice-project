@@ -50,11 +50,12 @@ input[type=number] {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  width: 230px;
+  min-height: 80px;
   background: white;
   border-bottom: 1px solid #808080;
   border-right: 1px solid #808080;
   border-left: 1px solid #808080;
-  width: 230px;
 }
 .games__block-left {
   width: 50%;
@@ -90,7 +91,7 @@ input[type=number] {
   margin: 5px;
 }
 .games__buttons {
-  padding: 5px;
+  padding: 0 15px;
 }
 .games__button-submit {
   font-family: "Volkhov", serif;
@@ -126,20 +127,12 @@ input[type=number] {
   cursor: pointer;
 }
 
-.add-to-favorites.added {
-  background: #e23232;
+.add-to-favorites.disabled {
+  display: none;
 }
 
-.test-sessions {
-  height: 300px;
-  width: fit-content;
-  padding: 25px;
-  background: grey;
-}
-.test-sessions div {
-  color: black;
-  background: white;
-  padding: 25px;
+.add-to-favorites.added {
+  background: #e23232;
 }
 
 /*# sourceMappingURL=favorites_page.css.map */

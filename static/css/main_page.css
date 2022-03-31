@@ -479,7 +479,7 @@ body.touch .sidebar__arrow {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 16px;
@@ -493,6 +493,9 @@ body.touch .sidebar__arrow {
   padding: 5px 10px;
   border-radius: 35px;
 }
+.block__links-open.disabled {
+  display: none;
+}
 .block__links-must {
   font-family: "Volkhov", serif;
   font-weight: 600;
@@ -504,6 +507,9 @@ body.touch .sidebar__arrow {
   font-weight: 600;
   font-size: 14px;
   color: black;
+}
+.block__links-a.disabled {
+  display: none;
 }
 
 /*# sourceMappingURL=main_page.css.map */

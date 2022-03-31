@@ -17,7 +17,21 @@
                         <img src="{% static 'media/images/default_cover.png' %}" alt="default-cover-secret">
                     {% endif %}
                 </div>
-                {% include "favorites/add_to_favorites_detail_page.html" with genres=genre.name url_root=current_game.cover.url type=current_game.name id=current_game.id %}
+                {% if user.is_authenticated %}
+                    {% if current_game.id in favorite_game_list_ids %}
+                        <button type="button" class="block__links-open">
+                            <a class="add-to-favorites added" href="{% url 'remove_from_favorites' current_game.id %}">UnMust</a>
+                        </button>
+                    {% else %}
+                        <button type="button" class="block__links-open">
+                            <a class="add-to-favorites" href="{% url 'add_to_favorites' current_game.id %}">Must</a>
+                        </button>
+                    {% endif %}
+                {% else %}
+                    <button type="button" class="block__links-open disabled">
+                        <a class="add-to-favorites disabled" href="{% url 'add_to_favorites' current_game.id %}">Must</a>
+                    </button>
+                {% endif %}
             </div>
             <div class="games-info__genre">
                 {% for genre in genres  %}
@@ -127,10 +141,15 @@
         <div class="games-details__tweets tweets">
             <h2 class="tweets__title">#{{ current_game.name }} Tweets</h2>
                 <div class="tweets__block">
-                    <div class="tweets__text">FDJLDS JFKLJLKFVJLGK JFLKgjFFDJLDS JFKLJLKFVJLGKJFLKgjFFDJLDS JFKLJLKFVJLGK JFLK gjFFDJLDSJFKLJLKFVJL GKJF LKg jFFDJLDSJFKL JLKFVJLG KJFLKgjFFD JLDSJ FKLJLKFVJLGKJF LKgjF FDJLDS JFKLJLKFVJLG KJFLKgjF FD JLDSJFKL JLKFVJLGKJFLKgj FFDJL DSJ FKLJLKF VJLGKJ FLKgjF</div>
+                    <div class="tweets__text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero volutpat, commodo nunc
+                        eu, malesuada tortor. Phasellus ut felis quis sapien commodo volutpat. Nulla rhoncus, diam et
+                        hendrerit pharetra, eros leo facilisis odio, in congue enim purus non felis. Cras vestibulum
+                        ipsum elit, vitae maximus magna consectetur ac.
+                    </div>
                     <div class="tweets__info">
-                        <div class="tweets__date">FDJLDSJFKLJLKFVJL</div>
-                        <div class="tweets__author">FDJLDSJFKLJLKFVJL</div>
+                        <div class="tweets__date">Lorem ipsum dolor sit amet</div>
+                        <div class="tweets__author">Lorem ipsum dolor sit amet</div>
                     </div>
                 </div>
         </div>

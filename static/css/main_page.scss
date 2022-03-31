@@ -466,7 +466,7 @@ body.touch .sidebar__arrow {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     font-family: $font-family;
     font-weight: 600;
     font-size: 16px;
@@ -481,6 +481,9 @@ body.touch .sidebar__arrow {
     padding: 5px 10px;
     border-radius: 35px;
   }
+  &__links-open.disabled {
+    display: none;
+  }
   &__links-must {
     font-family: $font-family;
     font-weight: 600;
@@ -492,5 +495,8 @@ body.touch .sidebar__arrow {
     font-weight: 600;
     font-size: 14px;
     color: $font-color-dark;
+  }
+  &__links-a.disabled {
+    display: none;
   }
 }
