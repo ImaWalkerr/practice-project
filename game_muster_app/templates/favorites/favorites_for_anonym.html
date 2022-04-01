@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load page_url %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="anonym">
+        <div class="anonym__title">
+            <p>Oops? Something go wrong. Only registered users can see musts.</p>
+            <p>If you have an account,
+            you can try to <a class="anonym__link" href="{% url 'login_page' %}">Log in</a></p>
+            <p>If you don't have an account,
+            follow this link to complete <a class="anonym__link" href="{% url 'sign_up_page' %}">Registration</a></p>
+        </div>
+    </div>
+{% endblock %}

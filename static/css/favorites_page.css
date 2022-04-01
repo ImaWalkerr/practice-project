@@ -135,4 +135,37 @@ input[type=number] {
   background: #e23232;
 }
 
+.anonym {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+}
+.anonym__title {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  width: 40%;
+  padding: 10px;
+}
+.anonym__title p {
+  margin: 15px;
+}
+.anonym__link {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=favorites_page.css.map */

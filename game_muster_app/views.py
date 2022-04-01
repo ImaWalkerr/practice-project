@@ -234,10 +234,11 @@ class MyFavoritesView(views.View):
 
     def get(self, request):
 
-        favorites_list = [
-            favorite_games
-            for favorite_games in UserFavoriteGames.objects.filter(owner=request.user)
-        ]
+        favorites_list = (
+            [favorite_games for favorite_games in UserFavoriteGames.objects.filter(owner=request.user)]
+            if request.user.is_authenticated
+            else []
+        )
 
         favorite_game = IGDB_WRAPPER.get_games_for_favorites(games_id=favorite_game_list_ids(request))
 
@@ -254,7 +255,14 @@ class MyFavoritesView(views.View):
             'num_of_pages': num_of_pages,
             'title': 'My favorites',
         }
-        return render(request, 'favorites/favorites_page.html', context)
+        if request.user.is_authenticated:
+            return render(request, 'favorites/favorites_page.html', context)
+        else:
+            return render(request, 'favorites/favorites_for_anonym.html')
+
+
+class FavoritesAnonymView(TemplateView):
+    template_name = 'favorites/favorites_for_anonym.html'
 
 
 def favorite_game_list_ids(request):

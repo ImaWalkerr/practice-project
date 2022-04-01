@@ -125,3 +125,36 @@
 .add-to-favorites.added {
   background: $font-color-main;
 }
+
+.anonym {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  &__title {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+    width: 40%;
+    padding: 10px;
+    p {
+      margin: 15px;
+    }
+  }
+  &__link {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    color: $font-color-light;
+    background: $font-color-main;
+    padding: 10px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+    cursor: pointer;
+  }
+}
