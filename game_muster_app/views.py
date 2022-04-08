@@ -59,8 +59,15 @@ class MainPageView(views.View):
         all_platforms_filter = IGDB_WRAPPER.get_platforms()
         all_genres_filter = IGDB_WRAPPER.get_genres()
 
+        games_main = Games.objects.all()
+        genres_main = Genres.objects.all()
+        platforms_main = Platforms.objects.all()
+
         context = {
             'games': games,
+            'games_main': games_main,
+            'genres_main': genres_main,
+            'platforms_main': platforms_main,
             'games_count': range(games_count),
             'favorite_game_list_ids': favorite_game_list_ids(request),
             'all_platforms_filter': all_platforms_filter,
@@ -270,7 +277,7 @@ def favorite_game_list_ids(request):
     Return list of ids from favorites
     """
     return (
-        [game.game_id for game in UserFavoriteGames.objects.filter(owner=request.user)]
+        [game.game_id.game_id for game in UserFavoriteGames.objects.filter(owner=request.user)]
         if request.user.is_authenticated
         else []
     )

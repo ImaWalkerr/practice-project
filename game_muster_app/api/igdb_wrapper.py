@@ -84,6 +84,25 @@ class IGDBWrapper:
     def get_img_path(img_id):
         return "https://images.igdb.com/igdb/" f"image/upload/t_cover_big/{img_id}.jpg"
 
+    def get_games_for_manager(self):
+        return requests.post(
+            f"{self.GAME_URL}",
+            headers=self.headers,
+            data='fields id,'
+                 'name,'
+                 'summary,'
+                 'genres.name,'
+                 'platforms.name,'
+                 'release_dates.human,'
+                 'aggregated_rating,'
+                 'aggregated_rating_count,'
+                 'rating,'
+                 'rating_count,'
+                 'cover.url,'
+                 'screenshots.url;'
+                 'limit 10;'
+        ).json()
+
     def get_current_game(self, ids=None):
         where_condition = 'where id=(' + ','.join(map(str, ids)) + ');' if ids else ''
         return requests.post(

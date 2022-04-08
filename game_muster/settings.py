@@ -40,8 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'game_muster_app'
+    'game_muster_app',
+    # 'django_celery_beat',
 ]
+
+# CELERY
+
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
