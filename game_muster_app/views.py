@@ -8,6 +8,7 @@ from django.contrib.auth.tokens import default_token_generator as token_generato
 from django.utils.http import urlsafe_base64_decode
 from django.views.generic.base import TemplateView
 from math import ceil
+from django.db.models import Q
 
 from .models import *
 from .forms import LoginForm, RegistrationForm
@@ -28,50 +29,66 @@ class BasePageView(TemplateView):
         return context
 
 
+def get_list_of_filters(option, data_from_filter):
+    """
+    Return list of values from data_from_filter
+    """
+    return list(map(int, data_from_filter.getlist(option)))
+
+
 class MainPageView(views.View):
     """
     Functional for main page
     """
     def get(self, request):
 
+        data_from_filter = request.GET
+
         igdb_search = request.GET.get('search_game')
-        platforms = request.GET.getlist('platform_id')
-        genres = request.GET.getlist('genre_id')
         ratings_min = int(request.GET.get('min') or 0)
         ratings_max = int(request.GET.get('max') or 100)
-        ratings = ratings_min, ratings_max
-        page_number = request.GET.get('page') or 1
 
-        try:
-            games = IGDB_WRAPPER.get_games_by_filtering(
-                search=igdb_search, platforms=platforms, genres=genres, ratings=ratings, page=int(page_number)
-            )
-            if not games:
-                raise LookupError
-        except LookupError:
-            return render(request, 'search_error.html')
+        chosen_params = {'platform_id': None, 'genre_id': None, 'rating': (ratings_min, ratings_max)}
 
-        count = IGDB_WRAPPER.get_games_count(
-            search=igdb_search, platforms=platforms, genres=genres, ratings=ratings
-        )
-        games_count = ceil(count / 6)
+        if 'platform_id' in data_from_filter:
+            chosen_params['platform_id'] = get_list_of_filters('platform_id', data_from_filter)
 
-        all_platforms_filter = IGDB_WRAPPER.get_platforms()
-        all_genres_filter = IGDB_WRAPPER.get_genres()
+        if 'genre_id' in data_from_filter:
+            chosen_params['genre_id'] = get_list_of_filters('genre_id', data_from_filter)
 
-        games_main = Games.objects.all()
+        if 'rating' in data_from_filter:
+            chosen_params['rating'] = int(data_from_filter['rating'])
+
         genres_main = Genres.objects.all()
         platforms_main = Platforms.objects.all()
 
+        if igdb_search:
+            games_main = Games.objects.filter(game_name__icontains=igdb_search)
+        else:
+            games_main = Games.objects.all()
+
+        if chosen_params['platform_id']:
+            games_main = games_main.filter(game_platforms__pk__in=chosen_params['platform_id'])
+        if chosen_params['genre_id']:
+            games_main = games_main.filter(game_genres__pk__in=chosen_params['genre_id'])
+        if chosen_params['rating']:
+            games_main = games_main.filter(rating__gte=chosen_params['rating'][0], rating__lte=chosen_params['rating'][1])
+
+        paginator = Paginator(games_main, 12)
+        page = request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        num_of_pages = "a" * page_obj.paginator.num_pages
+
         context = {
-            'games': games,
             'games_main': games_main,
             'genres_main': genres_main,
             'platforms_main': platforms_main,
-            'games_count': range(games_count),
             'favorite_game_list_ids': favorite_game_list_ids(request),
-            'all_platforms_filter': all_platforms_filter,
-            'all_genres_filter': all_genres_filter,
+            'page_obj': page_obj,
+            'num_of_pages': num_of_pages,
+            'platforms_chosen': chosen_params['platform_id'],
+            'genres_chosen': chosen_params['genre_id'],
+            'rating': chosen_params['rating'],
             'title': 'GameMuster',
         }
 
@@ -87,34 +104,18 @@ class GamesDetailPageView(views.View):
     Functional for current game page
     """
     def get(self, request, game_id):
-        current_game = IGDB_WRAPPER.get_game_id(game_id)
-        current_game = current_game[0] if current_game else None
-        genres = current_game.get('genres')
-        platforms = current_game.get('platforms')
-        release_dates = current_game.get('release_dates')
-        rating = current_game.get('rating')
-        total_rating = current_game.get('total_rating')
-        aggregated_rating = current_game.get('aggregated_rating')
-        aggregated_rating_count = current_game.get('aggregated_rating_count')
-        cover = current_game.get('cover')
-        if cover is not None:
-            cover['url'] = cover['url'].replace('t_thumb', 't_cover_big')
-        else:
-            cover = current_game.get('cover')
-        screenshots = current_game.get('screenshots')
+
+        current_game = Games.objects.filter(pk=game_id)
+        screenshots = ScreenShots.objects.all()
+        genres_main = Genres.objects.all()
+        platforms_main = Platforms.objects.all()
 
         context = {
             'current_game': current_game,
-            'favorite_game_list_ids': favorite_game_list_ids(request),
-            'genres': genres,
-            'platforms': platforms,
-            'release_dates': release_dates,
-            'rating': rating,
-            'total_rating': total_rating,
-            'aggregated_rating': aggregated_rating,
-            'aggregated_rating_count': aggregated_rating_count,
-            'cover': cover,
             'screenshots': screenshots,
+            'genres_main': genres_main,
+            'platforms_main': platforms_main,
+            'favorite_game_list_ids': favorite_game_list_ids(request),
             'title': 'Game details',
         }
         return render(request, 'games_detail_page.html', context)
@@ -247,16 +248,19 @@ class MyFavoritesView(views.View):
             else []
         )
 
-        favorite_game = IGDB_WRAPPER.get_games_for_favorites(games_id=favorite_game_list_ids(request))
+        favorite_games = [
+            favorite_game.game_id
+            for favorite_game in UserFavoriteGames.objects.filter(owner=request.user)
+        ]
 
-        paginator = Paginator(favorite_game, 12)
+        paginator = Paginator(favorite_games, 12)
         page = request.GET.get('page')
         page_obj = paginator.get_page(page)
         num_of_pages = "a" * page_obj.paginator.num_pages
 
         context = {
             'favorites_list': favorites_list,
-            'favorite_game': favorite_game,
+            'favorite_games': favorite_games,
             'favorite_game_list_ids': favorite_game_list_ids(request),
             'page_obj': page_obj,
             'num_of_pages': num_of_pages,
@@ -287,9 +291,10 @@ def add_to_favorites(request, game_id):
     """
     Add games for favorites
     """
-    current_favorite_games = UserFavoriteGames.objects.filter(game_id=game_id, owner=request.user)
+    game = Games.objects.filter(game_id=game_id)[0]
+    current_favorite_games = UserFavoriteGames.objects.filter(game_id=game, owner=request.user)
     if not current_favorite_games:
-        UserFavoriteGames.objects.create(game_id=game_id, owner=request.user)
+        UserFavoriteGames.objects.create(game_id=game, owner=request.user)
     else:
         current_favorite_games.restore()
     return redirect(request.META.get('HTTP_REFERER'))
@@ -299,8 +304,8 @@ def remove_from_favorites(request, game_id):
     """
     Remove games from favorites
     """
-    favorite_games = UserFavoriteGames.objects.filter(game_id=game_id, owner=request.user)
+    game = Games.objects.filter(game_id=game_id)[0]
+    favorite_games = UserFavoriteGames.objects.filter(game_id=game, owner=request.user)
     if favorite_games:
         favorite_games.delete()
-
     return redirect(request.META.get('HTTP_REFERER'))

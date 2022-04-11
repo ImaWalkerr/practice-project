@@ -38,6 +38,8 @@ services:
     command: celery -A game_muster worker -l INFO
     volumes:
       - .:/usr/src/games/
+    env_file:
+      - ./.env_docker
     depends_on:
       - django
       - db

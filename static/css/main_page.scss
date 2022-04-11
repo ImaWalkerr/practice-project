@@ -406,6 +406,7 @@ body.mouse .sidebar__list > li:hover .sidebar__sub-list {
 
 body.touch .sidebar__sub-list.open {
   display: block;
+  z-index: 2;
 }
 
 body.touch .sidebar__arrow {

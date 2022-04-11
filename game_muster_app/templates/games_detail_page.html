@@ -7,29 +7,30 @@
 
 {% block content %}
     <div class="games-details">
+    {% for game in current_game %}
         <div class="games-details__games-info">
             <div class="games-info">
-                <h2 class="games-info__title">{{ current_game.name }}</h2>
+                <h2 class="games-info__title">{{ game.game_name }}</h2>
                 <div class="games-info__cover-secret">
-                    {% if current_game.cover %}
-                        <img src="{{ current_game.cover.url }}" alt="cover-secret">
+                    {% if cover_url %}
+                        <img src="{{ game.cover_url }}" alt="cover-secret">
                      {% else %}
                         <img src="{% static 'media/images/default_cover.png' %}" alt="default-cover-secret">
                     {% endif %}
                 </div>
                 {% if user.is_authenticated %}
-                    {% if current_game.id in favorite_game_list_ids %}
+                    {% if game.game_id in favorite_game_list_ids %}
                         <button type="button" class="block__links-open">
-                            <a class="add-to-favorites added" href="{% url 'remove_from_favorites' current_game.id %}">UnMust</a>
+                            <a class="add-to-favorites added" href="{% url 'remove_from_favorites' game.game_id %}">UnMust</a>
                         </button>
                     {% else %}
                         <button type="button" class="block__links-open">
-                            <a class="add-to-favorites" href="{% url 'add_to_favorites' current_game.id %}">Must</a>
+                            <a class="add-to-favorites" href="{% url 'add_to_favorites' game.game_id %}">Must</a>
                         </button>
                     {% endif %}
                 {% else %}
                     <button type="button" class="block__links-open disabled">
-                        <a class="add-to-favorites disabled" href="{% url 'add_to_favorites' current_game.id %}">Must</a>
+                        <a class="add-to-favorites disabled" href="{% url 'add_to_favorites' game.game_id %}">Must</a>
                     </button>
                 {% endif %}
             </div>
@@ -45,8 +46,8 @@
             <div class="games-info__description-game description-game">
                 <h3 class="description-game__title">Descriprion</h3>
                 <div class="description-game__text">
-                    {% if current_game.summary %}
-                        <p>{{ current_game.summary }}</p>
+                    {% if game.game_summary %}
+                        <p>{{ game.game_summary }}</p>
                     {% else %}
                         <p>-//-</p>
                     {% endif %}
@@ -55,13 +56,11 @@
             <div class="games-info__release-date release-date">
                 <h3 class="release-date__title">Platform release date</h3>
                 <div class="release-date__text-block">
-                    {% for release_date in release_dates %}
-                        {% if release_date.human %}
-                            <div class="release-date__text">{{ release_date.human }}</div>
-                        {% else %}
-                            <div class="release-date__text">-//-</div>
-                        {% endif %}
-                    {% endfor %}
+                    {% if game.release_dates %}
+                        <div class="release-date__text">{{ game.release_dates }}</div>
+                    {% else %}
+                        <div class="release-date__text">-//-</div>
+                    {% endif %}
                 </div>
             </div>
             <div class="games-info__screenshots">
@@ -69,7 +68,7 @@
                 <div class="games-info__screenshots-block">
                     {% for screenshot in screenshots %}
                         <div class="games-info__screenshots">
-                            <img class="games-info__screenshots-image" src="{{ screenshot.url }}" alt="game-screenshots">
+                            <img class="games-info__screenshots-image" src="{{ screenshot.screenshot_url }}" alt="game-screenshots">
                         </div>
                     {% endfor %}
                 </div>
@@ -81,15 +80,15 @@
                 <div class="ratings__users">
                     <div class="ratings__users-title">Users</div>
                     <div class="ratings__users-marks">
-                        {% if current_game.rating %}
-                            <p>{{ current_game.rating }}</p>
+                        {% if game.rating %}
+                            <p>{{ game.rating }}</p>
                         {% else %}
                             <p>-//-</p>
                         {% endif %}
                     </div>
                     <div class="ratings__users-marks">
-                        {% if current_game.rating_count %}
-                            <p>{{ current_game.rating_count }}</p>
+                        {% if game.rating_count %}
+                            <p>{{ game.rating_count }}</p>
                         {% else %}
                             <p>-//-</p>
                         {% endif %}
@@ -98,15 +97,15 @@
                 <div class="ratings__critics">
                     <div class="ratings__critics-title">Critics</div>
                     <div class="ratings__critics-marks">
-                        {% if current_game.aggregated_rating %}
-                            <p>{{ current_game.aggregated_rating }}</p>
+                        {% if game.aggregated_rating %}
+                            <p>{{ game.aggregated_rating }}</p>
                         {% else %}
                             <p>-//-</p>
                         {% endif %}
                     </div>
                     <div class="ratings__critics-marks">
-                        {% if current_game.aggregated_rating_count %}
-                            <p>{{ current_game.aggregated_rating_count }}</p>
+                        {% if game.aggregated_rating_count %}
+                            <p>{{ game.aggregated_rating_count }}</p>
                         {% else %}
                             <p>-//-</p>
                         {% endif %}
@@ -116,9 +115,9 @@
             <div class="description-second__genres genres">
                 <h2 class="genres__title">Genres</h2>
                 <div class="genres__block">
-                    {% for genre in genres  %}
-                        {% if genre.name %}
-                            <div class="genres__item">{{ genre.name }}</div>
+                    {% for genre in genres_main %}
+                        {% if genre.genre_name %}
+                            <div class="genres__item">{{ genre.genre_name }}</div>
                         {% else %}
                             <div class="genres__item">-//-</div>
                         {% endif %}
@@ -128,9 +127,9 @@
             <div class="description-second__platforms platforms">
                 <h2 class="platforms__title">Platforms</h2>
                 <div class="platforms__block">
-                    {% for platform in platforms %}
-                        {% if platform.name %}
-                            <div class="platforms__item">{{ platform.name }}</div>
+                    {% for platform in platforms_main %}
+                        {% if platform.platform_name %}
+                            <div class="platforms__item">{{ platform.platform_name }}</div>
                         {% else %}
                             <div class="platforms__item">-//-</div>
                         {% endif %}
@@ -139,19 +138,20 @@
             </div>
         </div>
         <div class="games-details__tweets tweets">
-            <h2 class="tweets__title">#{{ current_game.name }} Tweets</h2>
-                <div class="tweets__block">
-                    <div class="tweets__text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero volutpat, commodo nunc
-                        eu, malesuada tortor. Phasellus ut felis quis sapien commodo volutpat. Nulla rhoncus, diam et
-                        hendrerit pharetra, eros leo facilisis odio, in congue enim purus non felis. Cras vestibulum
-                        ipsum elit, vitae maximus magna consectetur ac.
-                    </div>
-                    <div class="tweets__info">
-                        <div class="tweets__date">Lorem ipsum dolor sit amet</div>
-                        <div class="tweets__author">Lorem ipsum dolor sit amet</div>
-                    </div>
+            <h2 class="tweets__title">#{{ game.game_name }} Tweets</h2>
+            <div class="tweets__block">
+                <div class="tweets__text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero volutpat, commodo nunc
+                    eu, malesuada tortor. Phasellus ut felis quis sapien commodo volutpat. Nulla rhoncus, diam et
+                    hendrerit pharetra, eros leo facilisis odio, in congue enim purus non felis. Cras vestibulum
+                    ipsum elit, vitae maximus magna consectetur ac.
                 </div>
+                <div class="tweets__info">
+                    <div class="tweets__date">Lorem ipsum dolor sit amet</div>
+                    <div class="tweets__author">Lorem ipsum dolor sit amet</div>
+                </div>
+            </div>
         </div>
+     {% endfor %}
     </div>
 {% endblock %}

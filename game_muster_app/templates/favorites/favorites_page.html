@@ -18,7 +18,7 @@
                     <div class="must__games games">
                         <div class="games__image">
                             {% if game.cover.url %}
-                                <img class="games__cover" src="{{ game.cover.url }}" alt="game-cover">
+                                <img class="games__cover" src="{{ game.cover_url }}" alt="game-cover">
                             {% else %}
                                 <img class="games__default" src="{% static 'media/images/default_cover.png' %}" alt="default-game-cover">
                             {% endif %}
@@ -26,20 +26,18 @@
                         <div class="games__block">
                             <div class="games__block-left">
                                 <div class="games__title">
-                                    <a href="/{{ game.id }}" target="_blank" class="games__title-a">{{ game.name }}</a>
+                                    <a href="/{{ game.id }}" target="_blank" class="games__title-a">{{ game.game_name }}</a>
                                 </div>
                                 <div class="games__genres">
-                                    {% for genre in game.genres %}
-                                        {{ genre.name }}
-                                    {% endfor %}
+
                                 </div>
                             </div>
                             <div class="games__block-right">
                                 <div class="games__buttons">
-                                    {% if game.id in favorite_game_list_ids %}
-                                        <a class="add-to-favorites added" href="{% url 'remove_from_favorites' game.id %}">UnMust</a>
+                                    {% if game.game_id in favorite_game_list_ids %}
+                                        <a class="add-to-favorites added" href="{% url 'remove_from_favorites' game.game_id %}">UnMust</a>
                                     {% else %}
-                                        <a class="add-to-favorites" href="{% url 'add_to_favorites' game.id %}">Must</a>
+                                        <a class="add-to-favorites" href="{% url 'add_to_favorites' game.game_id %}">Must</a>
                                     {% endif %}
                                 </div>
                             </div>

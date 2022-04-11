@@ -1,11 +1,10 @@
+from __future__ import absolute_import, unicode_literals
 """
 Celery config file
 
 https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html
 
 """
-from __future__ import absolute_import, unicode_literals
-
 import os
 from celery import Celery
 from celery.schedules import crontab
