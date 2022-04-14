@@ -1,46 +1,40 @@
 import datetime
-import requests
+import tweepy
 from decouple import config
 
 
 class TwitterWrapper:
-
     """
-    Twitter API wrapper
+    Tweepy authentication
     """
+    def get_tweets_for_game(self, game_name):
 
-    API_KEY = config('API_KEY', default='')
-    API_SECRET_KEY = config('API_SECRET_KEY', default='')
-    ACCESS_TOKEN = config('ACCESS_TOKEN', default='')
-    ACCESS_TOKEN_SECRET = config('ACCESS_TOKEN_SECRET', default='')
-    TWITTER_SEARCH_URL = config('TWITTER_SEARCH_URL', default='')
+        api_key = config('API_KEY', default='')
+        api_key_secret = config('API_KEY_SECRET', default='')
+        bearer_token = config('BEARER_TOKEN', default='')
+        access_token = config('ACCESS_TOKEN', default='')
+        access_token_secret = config('ACCESS_TOKEN_SECRET', default='')
 
-    def __init__(self):
-        self.TWITTER_SEARCH_URL = "https://api.twitter.com/1.1/search/tweets.json"
+        authentication = tweepy.OAuth1UserHandler(api_key, api_key_secret)
+        authentication.set_access_token(access_token, access_token_secret)
+        api = tweepy.API(authentication)
+        """
+        Getting tweets for current game
+        """
+        query_search = game_name
+        number_of_tweets = 50
+        tweets = []
+        authors = []
+        time = []
 
-    headers = {
-        "Authorization": ACCESS_TOKEN
-    }
+        for item in tweepy.Cursor(api.search_tweets, q=query_search, lang="en", tweet_mode="extended").items(
+                number_of_tweets):
+            tweets.append(item.full_text)
+            authors.append(item.user.screen_name)
+            time.append(item.created_at)
 
-    def _post(self, params=None):
-        return requests.get(self.TWITTER_SEARCH_URL, headers=self.headers, params=params).json()
+        all_data = list(zip(authors, tweets, time))
+        return all_data
 
-    def get_tweets_by_game_name(self, game_name, count_of_tweets=3):
 
-        params = {
-            "q": "%23{}".format(game_name.replace(" ", "")),
-            "tweet_mode": "extended",
-            "tweet.fields": "full_text, created_at, user.name",
-            "count": count_of_tweets,
-        }
-
-        response = self._post(params)
-        tweets = response["statuses"]
-        tweets = [tweets] if type(tweets) == dict else tweets
-
-        for tweet in tweets:
-            tweet["created_at"] = datetime.datetime.strptime(
-                tweet["created_at"], "%a %b %d %H:%M:%S %z %Y"
-            )
-
-        return tweets
+TWITTER_WRAPPER = TwitterWrapper()

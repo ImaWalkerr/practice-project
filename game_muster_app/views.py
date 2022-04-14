@@ -12,6 +12,7 @@ from math import ceil
 from .models import *
 from .forms import LoginForm, RegistrationForm
 from game_muster_app.api.igdb_wrapper import IGDB_WRAPPER
+from game_muster_app.api.twitter_wrapper import TWITTER_WRAPPER
 from .utils import send_email_for_verify
 
 
@@ -82,6 +83,8 @@ class GamesDetailPageView(views.View):
     def get(self, request, game_id):
         current_game = IGDB_WRAPPER.get_game_id(game_id)
         current_game = current_game[0] if current_game else None
+        game_name = current_game.get('name')
+        tweets_for_current_game = TWITTER_WRAPPER.get_tweets_for_game(game_name)
         genres = current_game.get('genres')
         platforms = current_game.get('platforms')
         release_dates = current_game.get('release_dates')
@@ -98,6 +101,7 @@ class GamesDetailPageView(views.View):
 
         context = {
             'current_game': current_game,
+            'tweets_for_current_game': tweets_for_current_game,
             'favorite_game_list_ids': favorite_game_list_ids(request),
             'genres': genres,
             'platforms': platforms,

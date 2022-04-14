@@ -139,19 +139,20 @@
             </div>
         </div>
         <div class="games-details__tweets tweets">
-            <h2 class="tweets__title">#{{ current_game.name }} Tweets</h2>
-                <div class="tweets__block">
-                    <div class="tweets__text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero volutpat, commodo nunc
-                        eu, malesuada tortor. Phasellus ut felis quis sapien commodo volutpat. Nulla rhoncus, diam et
-                        hendrerit pharetra, eros leo facilisis odio, in congue enim purus non felis. Cras vestibulum
-                        ipsum elit, vitae maximus magna consectetur ac.
-                    </div>
-                    <div class="tweets__info">
-                        <div class="tweets__date">Lorem ipsum dolor sit amet</div>
-                        <div class="tweets__author">Lorem ipsum dolor sit amet</div>
-                    </div>
+            <div class="games-details__tweets tweets">
+                <h2 class="tweets__title">#{{ game.game_name }} Tweets</h2>
+                <div class="tweets__main-block" data-simplebar>
+                    {% for tweet in tweets_for_current_game %}
+                        <div class="tweets__block">
+                            <div class="tweets__text">{{ tweet.1 }}</div>
+                            <div class="tweets__info">
+                                <div class="tweets__date">{{ tweet.2 }}</div>
+                                <div class="tweets__author">@{{ tweet.0 }}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
+            </div>
         </div>
     </div>
 {% endblock %}
