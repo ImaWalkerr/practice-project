@@ -13,6 +13,7 @@ from django.db.models import Q
 from .models import *
 from .forms import LoginForm, RegistrationForm
 from game_muster_app.api.igdb_wrapper import IGDB_WRAPPER
+from game_muster_app.api.twitter_wrapper import TWITTER_WRAPPER
 from .utils import send_email_for_verify
 
 
@@ -106,6 +107,9 @@ class GamesDetailPageView(views.View):
     def get(self, request, game_id):
 
         current_game = Games.objects.filter(pk=game_id)
+        current_game_for_tweets = Games.objects.get(pk=game_id)
+        game_name = current_game_for_tweets.game_name
+        tweets_for_current_game = TWITTER_WRAPPER.get_tweets_for_game(game_name)
         screenshots = ScreenShots.objects.all()
         genres_main = Genres.objects.all()
         platforms_main = Platforms.objects.all()
@@ -114,6 +118,7 @@ class GamesDetailPageView(views.View):
             'current_game': current_game,
             'screenshots': screenshots,
             'genres_main': genres_main,
+            'tweets_for_current_game': tweets_for_current_game,
             'platforms_main': platforms_main,
             'favorite_game_list_ids': favorite_game_list_ids(request),
             'title': 'Game details',

@@ -341,12 +341,17 @@
     color: $font-color-dark;
     padding: 10px;
   }
+  &__main-block {
+    height: 80vh;
+    overflow: auto;
+  }
   &__block {
     color: $font-color-light;
     background-color: $font-color-main;
     padding: 5px;
     border-right: 2px solid $font-color-border;
     border-bottom: 2px solid $font-color-border;
+    margin: 0 10px 5px;
   }
   &__info {
     display: flex;

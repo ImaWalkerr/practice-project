@@ -92,7 +92,7 @@ class Games(models.Model):
         Platforms, verbose_name='Game platforms', related_name='game_platforms'
     )
     cover_url = models.CharField(max_length=256, verbose_name='Game cover')
-    release_dates = models.DateTimeField(null=True, default=None, verbose_name='Game release dates')
+    release_dates = models.CharField(max_length=124, verbose_name='Game release dates')
     rating = models.DecimalField(
         max_digits=4, decimal_places=2, null=True, default=None, verbose_name='Game rating'
     )

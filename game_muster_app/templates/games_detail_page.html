@@ -35,9 +35,9 @@
                 {% endif %}
             </div>
             <div class="games-info__genre">
-                {% for genre in genres  %}
-                    {% if genre.name %}
-                        <div class="games-info__genre">{{ genre.name }}</div>
+                {% for genre in game.game_genres.all  %}
+                    {% if genre.genre_name %}
+                        <div class="games-info__genre">{{ genre.genre_name }}</div>
                     {% else %}
                         <div class="games-info__genre">-//-</div>
                     {% endif %}
@@ -66,7 +66,7 @@
             <div class="games-info__screenshots">
                 <h3 class="games-info__screenshots-title">Screenshots</h3>
                 <div class="games-info__screenshots-block">
-                    {% for screenshot in screenshots %}
+                    {% for screenshot in game.game_screenshots.all %}
                         <div class="games-info__screenshots">
                             <img class="games-info__screenshots-image" src="{{ screenshot.screenshot_url }}" alt="game-screenshots">
                         </div>
@@ -115,7 +115,7 @@
             <div class="description-second__genres genres">
                 <h2 class="genres__title">Genres</h2>
                 <div class="genres__block">
-                    {% for genre in genres_main %}
+                    {% for genre in game.game_genres.all  %}
                         {% if genre.genre_name %}
                             <div class="genres__item">{{ genre.genre_name }}</div>
                         {% else %}
@@ -127,7 +127,7 @@
             <div class="description-second__platforms platforms">
                 <h2 class="platforms__title">Platforms</h2>
                 <div class="platforms__block">
-                    {% for platform in platforms_main %}
+                    {% for platform in game.game_platforms.all %}
                         {% if platform.platform_name %}
                             <div class="platforms__item">{{ platform.platform_name }}</div>
                         {% else %}
@@ -139,17 +139,16 @@
         </div>
         <div class="games-details__tweets tweets">
             <h2 class="tweets__title">#{{ game.game_name }} Tweets</h2>
-            <div class="tweets__block">
-                <div class="tweets__text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero volutpat, commodo nunc
-                    eu, malesuada tortor. Phasellus ut felis quis sapien commodo volutpat. Nulla rhoncus, diam et
-                    hendrerit pharetra, eros leo facilisis odio, in congue enim purus non felis. Cras vestibulum
-                    ipsum elit, vitae maximus magna consectetur ac.
-                </div>
-                <div class="tweets__info">
-                    <div class="tweets__date">Lorem ipsum dolor sit amet</div>
-                    <div class="tweets__author">Lorem ipsum dolor sit amet</div>
-                </div>
+            <div class="tweets__main-block" data-simplebar>
+                {% for tweet in tweets_for_current_game %}
+                    <div class="tweets__block">
+                        <div class="tweets__text">{{ tweet.1 }}</div>
+                        <div class="tweets__info">
+                            <div class="tweets__date">{{ tweet.2 }}</div>
+                            <div class="tweets__author">@{{ tweet.0 }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
      {% endfor %}

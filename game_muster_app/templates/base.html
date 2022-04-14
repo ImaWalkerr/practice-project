@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="#"/>
     <link type="text/css" href="{% static 'css/swiper.min.css' %}" rel="stylesheet">
     <link type="text/css" href="{% static 'css/nouislider.min.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/simplebar.css' %}" rel="stylesheet">
     <link type="text/css" href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
 <body>
@@ -52,7 +53,7 @@
 <main class="wrapper">
     {% block content %}{% endblock %}
 </main>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/simplebar.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/swiper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/nouislider.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/slider_pagination.js' %}"></script>

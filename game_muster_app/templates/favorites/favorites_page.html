@@ -29,7 +29,11 @@
                                     <a href="/{{ game.id }}" target="_blank" class="games__title-a">{{ game.game_name }}</a>
                                 </div>
                                 <div class="games__genres">
-
+                                    {% for genre in game.game_genres.all  %}
+                                        {% if genre.genre_name %}
+                                            {{ genre.genre_name }}
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="games__block-right">
