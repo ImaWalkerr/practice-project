@@ -44,5 +44,17 @@ services:
       - django
       - db
       - redis
+
+  refresher:
+    build: .
+    command: celery -A game_muster beat -l INFO
+    volumes:
+      - .:/usr/src/games/
+    env_file:
+      - ./.env_docker
+    depends_on:
+      - celery
+      - db
+      - redis
 volumes:
   postgres_data:

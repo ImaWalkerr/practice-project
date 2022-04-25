@@ -373,6 +373,10 @@ input[type=number] {
   align-items: center;
   justify-content: space-between;
   margin: 5px;
+  width: 120%;
+}
+.search__slider-inputs input {
+  width: 70%;
 }
 .search__slider-input {
   font-family: "Volkhov", serif;
@@ -434,7 +438,7 @@ li mark {
   border-radius: 100px;
   box-shadow: none;
   height: 2px;
-  width: 90%;
+  width: 100%;
   margin: auto;
 }
 
@@ -721,6 +725,11 @@ input[type=number] {
 .games-details__tweets {
   min-width: 22%;
   padding: 30px;
+}
+@media (max-width: 1050px) {
+  .games-details__tweets {
+    width: 100%;
+  }
 }
 
 .games-info {

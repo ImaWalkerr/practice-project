@@ -18,9 +18,9 @@ cryptography==36.0.1
 Deprecated==1.2.13
 distro==1.7.0
 dj-database-url==0.5.0
-Django==4.0.2
+Django==3.2.13
 django-celery-beat==2.2.1
-django-crispy-forms==1.13.0
+django-crispy-forms==1.14.0
 django-timezone-field==4.2.3
 djangorestframework==3.12.4
 docker==5.0.3

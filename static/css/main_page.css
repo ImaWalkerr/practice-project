@@ -307,6 +307,10 @@ input[type=number] {
   align-items: center;
   justify-content: space-between;
   margin: 5px;
+  width: 120%;
+}
+.search__slider-inputs input {
+  width: 70%;
 }
 .search__slider-input {
   font-family: "Volkhov", serif;
@@ -368,7 +372,7 @@ li mark {
   border-radius: 100px;
   box-shadow: none;
   height: 2px;
-  width: 90%;
+  width: 100%;
   margin: auto;
 }
 

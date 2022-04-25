@@ -110,6 +110,9 @@
   }
   &__tweets {
     min-width: 22%;
+    @media (max-width: 1050px) {
+      width: 100%;
+    }
     padding: 30px;
   }
 }

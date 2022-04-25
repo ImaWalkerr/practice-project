@@ -5,10 +5,10 @@ from .models import *
 @admin.register(GameUser)
 class GameUserAdmin(admin.ModelAdmin):
     fields = (
-        ('user', 'birthday', 'gender'), 'email_verify'
+        ('birthday', 'gender', 'email_verify')
     )
-    list_display = ('user', 'email_verify')
-    list_display_links = ('user',)
+    list_display = ('email_verify',)
+    list_display_links = ('email_verify',)
 
 
 @admin.register(UserFavoriteGames)

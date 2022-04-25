@@ -6,14 +6,14 @@ class IGDBWrapper:
     """
     Authentication + wrapper
     """
-    LOG_URL = config('LOG_URL', default='')
-    BASE_URL = config('BASE_URL', default='')
-    GAME_URL = config('GAME_URL', default='')
-    GENRES_URL = config('GENRES_URL', default='')
-    PLATFORMS_URL = config('PLATFORMS_URL', default='')
-    CLIENT_ID = config('CLIENT_ID', default='')
-    CLIENT_SECRET = config('CLIENT_SECRET', default='')
-    BEARER_TOKEN = config('BEARER_TOKEN', default='')
+    LOG_URL = config('LOG_URL_IGDB', default='')
+    BASE_URL = config('BASE_URL_IGDB', default='')
+    GAME_URL = config('GAME_URL_IGDB', default='')
+    GENRES_URL = config('GENRES_URL_IGDB', default='')
+    PLATFORMS_URL = config('PLATFORMS_URL_IGDB', default='')
+    CLIENT_ID = config('CLIENT_ID_IGDB', default='')
+    CLIENT_SECRET = config('CLIENT_SECRET_IGDB', default='')
+    BEARER_TOKEN = config('BEARER_TOKEN_IGDB', default='')
 
     def get_header(self):
         response = requests.post(

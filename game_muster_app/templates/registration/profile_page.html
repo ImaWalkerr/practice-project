@@ -19,14 +19,12 @@
                     <div class="profile__name">Gender|</div>
                 </div>
                 <div class="profile__user-info_load">
-                    <div class="profile__name-load">{{ user.username }}</div>
-                    <div class="profile__name-load">{{ user.email }}</div>
-                    <div class="profile__name-load">{{ user.first_name }}</div>
-                    <div class="profile__name-load">{{ user.last_name }}</div>
-                    {% for el in users %}
-                        <div class="profile__name-load">{{ el.birthday }}</div>
-                        <div class="profile__name-load">{{ el.gender }}</div>
-                    {% endfor %}
+                    <div class="profile__name-load">{{ users.username }}</div>
+                    <div class="profile__name-load">{{ users.email }}</div>
+                    <div class="profile__name-load">{{ users.first_name }}</div>
+                    <div class="profile__name-load">{{ users.last_name }}</div>
+                    <div class="profile__name-load">{{ users.birthday }}</div>
+                    <div class="profile__name-load">{{ users.gender }}</div>
                 </div>
             </div>
         </div>

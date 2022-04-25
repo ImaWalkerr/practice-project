@@ -17,7 +17,7 @@
                 {% for game in page_obj %}
                     <div class="must__games games">
                         <div class="games__image">
-                            {% if game.cover.url %}
+                            {% if game.cover_url %}
                                 <img class="games__cover" src="{{ game.cover_url }}" alt="game-cover">
                             {% else %}
                                 <img class="games__default" src="{% static 'media/images/default_cover.png' %}" alt="default-game-cover">

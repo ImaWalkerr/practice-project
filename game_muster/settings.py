@@ -41,13 +41,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'game_muster_app',
-    # 'django_celery_beat',
+    'game_muster_api',
+    'django_celery_beat',
+    'rest_framework',
 ]
+
+AUTH_USER_MODEL = 'game_muster_app.GameUser'
 
 # CELERY
 
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
-CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+CELERY_BROKER_URL = config('BROKER_URL')
+CELERY_RESULT_BACKEND = config('RESULT_BACKEND')
+CELERY_TIMEZONE = 'Europe/Minsk'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -116,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Minsk'
 
 USE_I18N = True
 
@@ -146,9 +151,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SMTP Configuration
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+# REST_FRAMEWORK
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5,
+
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}

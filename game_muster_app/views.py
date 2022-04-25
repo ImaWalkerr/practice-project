@@ -7,13 +7,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.views.generic.base import TemplateView
-from math import ceil
-from django.db.models import Q
 
 from .models import *
 from .forms import LoginForm, RegistrationForm
-from game_muster_app.api.igdb_wrapper import IGDB_WRAPPER
 from game_muster_app.api.twitter_wrapper import TWITTER_WRAPPER
+from game_muster_app.tasks import refresh_games
 from .utils import send_email_for_verify
 
 
@@ -43,13 +41,16 @@ class MainPageView(views.View):
     """
     def get(self, request):
 
+        #celery_task = refresh_games.delay()
+
         data_from_filter = request.GET
-
         igdb_search = request.GET.get('search_game')
-        ratings_min = int(request.GET.get('min') or 0)
-        ratings_max = int(request.GET.get('max') or 100)
+        platform_id = request.GET.getlist('platform_id')
+        genre_id = request.GET.getlist('genre_id')
+        ratings_min = request.GET.get('min')
+        ratings_max = request.GET.get('max')
 
-        chosen_params = {'platform_id': None, 'genre_id': None, 'rating': (ratings_min, ratings_max)}
+        chosen_params = {'platform_id': platform_id, 'genre_id': genre_id, 'rating': (ratings_min, ratings_max)}
 
         if 'platform_id' in data_from_filter:
             chosen_params['platform_id'] = get_list_of_filters('platform_id', data_from_filter)
@@ -58,24 +59,34 @@ class MainPageView(views.View):
             chosen_params['genre_id'] = get_list_of_filters('genre_id', data_from_filter)
 
         if 'rating' in data_from_filter:
-            chosen_params['rating'] = int(data_from_filter['rating'])
+            chosen_params['rating'] = data_from_filter['rating']
 
-        genres_main = Genres.objects.all()
-        platforms_main = Platforms.objects.all()
+        genres_main = Genres.objects.all().distinct('genre_name')
+        platforms_main = Platforms.objects.all().distinct('platform_name')
 
-        if igdb_search:
-            games_main = Games.objects.filter(game_name__icontains=igdb_search)
-        else:
-            games_main = Games.objects.all()
+        try:
+            if igdb_search:
+                games_main = Games.objects.filter(game_name__icontains=igdb_search)
+            else:
+                games_main = Games.objects.all()
+
+            if not games_main:
+                raise LookupError
+        except LookupError:
+            return redirect('search_error')
 
         if chosen_params['platform_id']:
-            games_main = games_main.filter(game_platforms__pk__in=chosen_params['platform_id'])
-        if chosen_params['genre_id']:
-            games_main = games_main.filter(game_genres__pk__in=chosen_params['genre_id'])
-        if chosen_params['rating']:
-            games_main = games_main.filter(rating__gte=chosen_params['rating'][0], rating__lte=chosen_params['rating'][1])
+            games_main = games_main.filter(game_platforms__platform_id__in=chosen_params['platform_id'])
 
-        paginator = Paginator(games_main, 12)
+        if chosen_params['genre_id']:
+            games_main = games_main.filter(game_genres__genre_id__in=chosen_params['genre_id'])
+
+        if 'rating' in chosen_params['rating']:
+            games_main = games_main.filter(
+                rating__gte=chosen_params['rating'][0], rating__lte=chosen_params['rating'][1]
+            )
+
+        paginator = Paginator(games_main, 6)
         page = request.GET.get('page')
         page_obj = paginator.get_page(page)
         num_of_pages = "a" * page_obj.paginator.num_pages
@@ -106,8 +117,8 @@ class GamesDetailPageView(views.View):
     """
     def get(self, request, game_id):
 
-        current_game = Games.objects.filter(pk=game_id)
-        current_game_for_tweets = Games.objects.get(pk=game_id)
+        current_game = Games.objects.filter(game_id=game_id)
+        current_game_for_tweets = Games.objects.get(game_id=game_id)
         game_name = current_game_for_tweets.game_name
         tweets_for_current_game = TWITTER_WRAPPER.get_tweets_for_game(game_name)
         screenshots = ScreenShots.objects.all()
@@ -129,7 +140,7 @@ class GamesDetailPageView(views.View):
 class ProfileView(views.View):
 
     def get(self, request):
-        users = GameUser.objects.filter(user=request.user)
+        users = GameUser.objects.first()
         context = {
             'users': users,
             'title': 'Profile',
@@ -182,14 +193,12 @@ class RegistrationView(views.View):
             new_user.email = form.cleaned_data['email']
             new_user.first_name = form.cleaned_data['first_name']
             new_user.last_name = form.cleaned_data['last_name']
-            new_user.save()
             new_user.set_password(form.cleaned_data['password'])
-            new_user.save()
             GameUser.objects.create(
-                user=new_user,
                 birthday=form.cleaned_data['birthday'],
                 gender=form.cleaned_data['gender'],
             )
+            new_user.save()
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             send_email_for_verify(request, user)
             return redirect('confirm_email')
@@ -216,9 +225,9 @@ class EmailVerify(views.View):
     def get_user(uidb64):
         try:
             uid = urlsafe_base64_decode(uidb64).decode()
-            user = User.objects.get(pk=uid)
+            user = GameUser.objects.get(pk=uid)
         except (TypeError, ValueError, OverflowError,
-                User.DoesNotExist, ValidationError):
+                GameUser.DoesNotExist, ValidationError):
             user = None
         return user
 

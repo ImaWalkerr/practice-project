@@ -12,7 +12,7 @@
             <div class="games-info">
                 <h2 class="games-info__title">{{ game.game_name }}</h2>
                 <div class="games-info__cover-secret">
-                    {% if cover_url %}
+                    {% if game.cover_url %}
                         <img src="{{ game.cover_url }}" alt="cover-secret">
                      {% else %}
                         <img src="{% static 'media/images/default_cover.png' %}" alt="default-cover-secret">
