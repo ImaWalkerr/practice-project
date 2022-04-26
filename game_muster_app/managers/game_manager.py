@@ -19,11 +19,11 @@ class GameManager:
                     if value.get('release_dates') and len(value.get('release_dates')) else None,
                     cover_url=value.get('cover').get('url').replace('t_thumb', 't_cover_big')
                     if value.get('cover') else None,
-                    rating=value.get('rating') if value.get('rating') else None,
-                    rating_count=value.get('rating_count') if value.get('rating_count') else None,
-                    aggregated_rating=value.get('aggregated_rating') if value.get('aggregated_rating') else None,
+                    rating=value.get('rating') if value.get('rating') else 50,
+                    rating_count=value.get('rating_count') if value.get('rating_count') else 10,
+                    aggregated_rating=value.get('aggregated_rating') if value.get('aggregated_rating') else 50,
                     aggregated_rating_count=value.get('aggregated_rating_count')
-                    if value.get('aggregated_rating_count') else None,
+                    if value.get('aggregated_rating_count') else 10,
                 )
                 print(f"Successfully game '{stored_games}' updated")
 

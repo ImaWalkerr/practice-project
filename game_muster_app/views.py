@@ -48,8 +48,8 @@ class MainPageView(views.View):
         igdb_search = request.GET.get('search_game')
         platform_id = request.GET.getlist('platform_id')
         genre_id = request.GET.getlist('genre_id')
-        ratings_min = request.GET.get('min')
-        ratings_max = request.GET.get('max')
+        ratings_min = request.GET.get('min', 0)
+        ratings_max = request.GET.get('max', 100)
 
         chosen_params = {'platform_id': platform_id, 'genre_id': genre_id, 'rating': (ratings_min, ratings_max)}
 
@@ -82,12 +82,10 @@ class MainPageView(views.View):
         if chosen_params['genre_id']:
             games_main = games_main.filter(game_genres__genre_id__in=chosen_params['genre_id'])
 
-        if 'rating' in chosen_params['rating']:
+        if chosen_params['rating']:
             games_main = games_main.filter(
                 rating__gte=chosen_params['rating'][0], rating__lte=chosen_params['rating'][1]
             )
-        else:
-            games_main = Games.objects.all()
 
         paginator = Paginator(games_main, 6)
         page = request.GET.get('page')
