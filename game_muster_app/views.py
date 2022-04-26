@@ -8,6 +8,7 @@ from django.contrib.auth.tokens import default_token_generator as token_generato
 from django.utils.http import urlsafe_base64_decode
 from django.views.generic.base import TemplateView
 
+from game_muster_app.api.igdb_wrapper import IGDB_WRAPPER
 from .models import *
 from .forms import LoginForm, RegistrationForm
 from game_muster_app.api.twitter_wrapper import TWITTER_WRAPPER
@@ -41,7 +42,7 @@ class MainPageView(views.View):
     """
     def get(self, request):
 
-        #celery_task = refresh_games.delay()
+        # celery_task = refresh_games.delay()
 
         data_from_filter = request.GET
         igdb_search = request.GET.get('search_game')
@@ -85,6 +86,8 @@ class MainPageView(views.View):
             games_main = games_main.filter(
                 rating__gte=chosen_params['rating'][0], rating__lte=chosen_params['rating'][1]
             )
+        else:
+            games_main = Games.objects.all()
 
         paginator = Paginator(games_main, 6)
         page = request.GET.get('page')

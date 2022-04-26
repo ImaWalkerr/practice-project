@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'game_muster_api',
     'django_celery_beat',
     'rest_framework',
+    'drf_yasg',
 ]
 
 AUTH_USER_MODEL = 'game_muster_app.GameUser'
@@ -62,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'game_muster.urls'
@@ -83,6 +85,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'game_muster.wsgi.application'
+
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     'default': {

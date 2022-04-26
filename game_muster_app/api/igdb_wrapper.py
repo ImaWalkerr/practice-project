@@ -100,7 +100,7 @@ class IGDBWrapper:
                  'rating_count,'
                  'cover.url,'
                  'screenshots.url;'
-                 'limit 10;'
+                 'limit 500;'
         ).json()
 
     def get_current_game(self, ids=None):
