@@ -8,7 +8,6 @@ from django.contrib.auth.tokens import default_token_generator as token_generato
 from django.utils.http import urlsafe_base64_decode
 from django.views.generic.base import TemplateView
 
-from game_muster_app.api.igdb_wrapper import IGDB_WRAPPER
 from .models import *
 from .forms import LoginForm, RegistrationForm
 from game_muster_app.api.twitter_wrapper import TWITTER_WRAPPER
@@ -42,9 +41,8 @@ class MainPageView(views.View):
     """
     def get(self, request):
 
-        # celery_task = refresh_games.delay()
+        celery_task = refresh_games.delay()
 
-        data_from_filter = request.GET
         igdb_search = request.GET.get('search_game')
         platform_id = request.GET.getlist('platform_id')
         genre_id = request.GET.getlist('genre_id')
@@ -52,15 +50,6 @@ class MainPageView(views.View):
         ratings_max = request.GET.get('max', 100)
 
         chosen_params = {'platform_id': platform_id, 'genre_id': genre_id, 'rating': (ratings_min, ratings_max)}
-
-        if 'platform_id' in data_from_filter:
-            chosen_params['platform_id'] = get_list_of_filters('platform_id', data_from_filter)
-
-        if 'genre_id' in data_from_filter:
-            chosen_params['genre_id'] = get_list_of_filters('genre_id', data_from_filter)
-
-        if 'rating' in data_from_filter:
-            chosen_params['rating'] = data_from_filter['rating']
 
         genres_main = Genres.objects.all().distinct('genre_name')
         platforms_main = Platforms.objects.all().distinct('platform_name')
@@ -91,6 +80,7 @@ class MainPageView(views.View):
         page = request.GET.get('page')
         page_obj = paginator.get_page(page)
         num_of_pages = "a" * page_obj.paginator.num_pages
+        num_of_pages_for_layout = page_obj.paginator.num_pages
 
         context = {
             'games_main': games_main,
@@ -99,6 +89,7 @@ class MainPageView(views.View):
             'favorite_game_list_ids': favorite_game_list_ids(request),
             'page_obj': page_obj,
             'num_of_pages': num_of_pages,
+            'num_of_pages_for_layout': num_of_pages_for_layout,
             'platforms_chosen': chosen_params['platform_id'],
             'genres_chosen': chosen_params['genre_id'],
             'rating': chosen_params['rating'],
@@ -272,6 +263,7 @@ class MyFavoritesView(views.View):
         page = request.GET.get('page')
         page_obj = paginator.get_page(page)
         num_of_pages = "a" * page_obj.paginator.num_pages
+        num_of_pages_for_layout = page_obj.paginator.num_pages
 
         context = {
             'favorites_list': favorites_list,
@@ -279,6 +271,7 @@ class MyFavoritesView(views.View):
             'favorite_game_list_ids': favorite_game_list_ids(request),
             'page_obj': page_obj,
             'num_of_pages': num_of_pages,
+            'num_of_pages_for_layout': num_of_pages_for_layout,
             'title': 'My favorites',
         }
         if request.user.is_authenticated:

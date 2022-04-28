@@ -13,7 +13,6 @@ services:
 
   django:
     build: .
-    container_name: "django"
     command: gunicorn game_muster.wsgi:application 0.0.0.0:8000
     volumes:
       - .:/usr/src/games/
@@ -24,6 +23,16 @@ services:
     depends_on:
       - db
       - redis
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./static:/static
+      - ./nginx/nginx.conf
+    depends_on:
+      - django
+    ports:
+      - "80:8001"
 
   redis:
     image: redis

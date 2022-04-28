@@ -138,25 +138,35 @@
                 {% endfor %}
             </div>
             <div class="content__pagination slider">
-                <div class="slider__block-left"></div>
-                <div class="slider__container">
-                    <div class="slider__navigation-prev">
-                        <div class="swiper-button-prev"></div>
-                    </div>
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            {% for page in num_of_pages %}
-                                <div class="swiper-slide">
-                                    <a class="slider__pagination" href="{{ request.get_full_path|get_page_url:forloop.counter }}">{{ forloop.counter }}</a>
-                                </div>
-                            {% endfor %}
+                {% if num_of_pages_for_layout == 1 %}
+                    <div class="slider__block-left_one-page"></div>
+                    <div class="slider__container_one-page">
+                {% elif num_of_pages_for_layout > 1 %}
+                    <div class="slider__block-left"></div>
+                    <div class="slider__container">
+                {% endif %}
+                        <div class="slider__navigation-prev">
+                            <div class="swiper-button-prev"></div>
                         </div>
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for page in num_of_pages %}
+                                    <div class="swiper-slide">
+                                        <a class="slider__pagination" href="{{ request.get_full_path|get_page_url:forloop.counter }}">{{ forloop.counter }}</a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="slider__navigation-next">
+                            <div class="swiper-button-next"></div>
+                        </div>
+                {% if num_of_pages_for_layout == 1 %}
                     </div>
-                    <div class="slider__navigation-next">
-                        <div class="swiper-button-next"></div>
+                    <div class="slider__block-right_one-page"></div>
+                {% elif num_of_pages_for_layout > 1 %}
                     </div>
-                </div>
-                <div class="slider__block-right"></div>
+                    <div class="slider__block-right"></div>
+                {% endif %}
             </div>
         </div>
         <div class="content__pass"></div>

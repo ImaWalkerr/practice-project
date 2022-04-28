@@ -112,6 +112,7 @@ class Games(models.Model):
         db_table = 'games'
         verbose_name = 'Games catalog'
         verbose_name_plural = 'Games catalogs'
+        ordering = ['id']
 
 
 class ScreenShots(models.Model):

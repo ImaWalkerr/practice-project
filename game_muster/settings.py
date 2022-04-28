@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'game_muster_api',
     'django_celery_beat',
     'rest_framework',
+    'django_filters',
     'drf_yasg',
 ]
 

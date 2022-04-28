@@ -172,8 +172,8 @@ input[type=number] {
   margin: 0 15px 0 0;
 }
 .games-info__cover-secret img {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   margin: 0 15px 0 0;
 }

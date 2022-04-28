@@ -50,25 +50,35 @@
                 {% endfor %}
             </div>
             <div class="content__pagination slider-favorites">
-                <div class="slider-favorites__block-left"></div>
-                <div class="slider-favorites__container">
-                    <div class="slider-favorites__navigation-prev">
-                        <div class="swiper-button-prev"></div>
-                    </div>
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            {% for page in num_of_pages %}
-                                <div class="swiper-slide">
-                                    <a class="slider-favorites__pagination" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
-                                </div>
-                            {% endfor %}
+                {% if num_of_pages_for_layout == 1 %}
+                    <div class="slider-favorites__block-left_one-page"></div>
+                    <div class="slider-favorites__container_one-page">
+                {% elif num_of_pages_for_layout > 1 %}
+                    <div class="slider-favorites__block-left"></div>
+                    <div class="slider-favorites__container">
+                {% endif %}
+                        <div class="slider-favorites__navigation-prev">
+                            <div class="swiper-button-prev"></div>
                         </div>
-                    </div>
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for page in num_of_pages %}
+                                    <div class="swiper-slide">
+                                        <a class="slider-favorites__pagination" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
                     <div class="slider-favorites__navigation-next">
                         <div class="swiper-button-next"></div>
                     </div>
-                </div>
-                <div class="slider__block-right"></div>
+                {% if num_of_pages_for_layout == 1 %}
+                    </div>
+                    <div class="slider-favorites__block-right_one-page"></div>
+                {% elif num_of_pages_for_layout > 1 %}
+                    </div>
+                    <div class="slider-favorites__block-right"></div>
+                {% endif %}
             </div>
         </div>
     </div>

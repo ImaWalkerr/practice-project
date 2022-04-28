@@ -10,7 +10,6 @@
     {% for game in current_game %}
         <div class="games-details__games-info">
             <div class="games-info">
-                <h2 class="games-info__title">{{ game.game_name }}</h2>
                 <div class="games-info__cover-secret">
                     {% if game.cover_url %}
                         <img src="{{ game.cover_url }}" alt="cover-secret">
@@ -18,6 +17,7 @@
                         <img src="{% static 'media/images/default_cover.png' %}" alt="default-cover-secret">
                     {% endif %}
                 </div>
+                <h2 class="games-info__title">{{ game.game_name }}</h2>
                 {% if user.is_authenticated %}
                     {% if game.game_id in favorite_game_list_ids %}
                         <button type="button" class="block__links-open">
