@@ -1,4 +1,4 @@
-                                           **GameMuster**
+                                           GameMuster
                                            
 What is it?
 -----------
@@ -49,6 +49,54 @@ Games were taken from:
 Also:
 
 - [x] [Heroku](https://www.heroku.com/) deployment
+
+How to run website with Docker:
+-------------
+
+### For Windows
+
+##### Check Requirements for Hyper-V
+Windows 10 Enterprise, Pro, or Education
+64-bit Processor with Second Level Address Translation (SLAT).
+CPU support for VM Monitor Mode Extension (VT-c on Intel CPUs).
+Minimum of 4 GB memory.
+The Hyper-V role cannot be installed on Windows 10 Home.
+
+##### Check Requirements for WSL-2
+Windows 10 version 2004 or higher (build 19041 or higher) or Windows 11.
+
+- You need to activate [Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) 
+and then install and activate [WSL-2](https://docs.microsoft.com/ru-ru/windows/wsl/install)
+- You need to install [Docker](https://www.docker.com/products/docker-desktop/) (put mark use `WSL-2 configuration`)
+or you can use plugin in your [IDE](https://blog.jetbrains.com/pycharm/2017/08/using-docker-compose-on-windows-in-pycharm/) (PyCharm for example)
+- where you need to choose .exe file.
+
+For Windows in Dockerfile:
+change line - `RUN pip install -r requirements.txt`
+to line - `RUN pip install -r requirements_windows.txt`
+
+- In the `Terminal` use command to create and start containers:
+```sh
+docker-compose build
+```
+if you want to make changes in docker-compose and accept them use command:
+```sh
+docker-compose up
+```
+
+### For Linux OS
+
+- You need to install [Docker](https://www.docker.com/products/docker-desktop/)
+or you can use plugin in your IDE - where you need to choose docker file.
+
+- In the `Terminal` use command to create and start containers:
+```sh
+sudo docker-compose build
+```
+if you want to make changes in docker-compose and accept them use command:
+```sh
+sudo docker–compose up
+```
 
 How to run website local:
 -------------
