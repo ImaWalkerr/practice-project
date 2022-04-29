@@ -1076,6 +1076,21 @@ input[type=number] {
   border-right: 2px solid #808080;
   border-bottom: 2px solid #808080;
 }
+.form__download {
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 10%;
+}
+.form__download-style {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+}
+.form__download-avatar {
+  width: 250px;
+  height: 85px;
+}
 
 .controls {
   display: flex;
@@ -1087,28 +1102,11 @@ input[type=number] {
   border-bottom: 2px solid #808080;
 }
 .controls input[type=file i]::-webkit-file-upload-button {
-  font-family: "Volkhov", serif;
-  font-weight: 600;
-  font-size: 20px;
-  text-align: center;
-  color: white;
-  background-color: #e23232;
-  width: 100%;
-  appearance: none;
-  cursor: pointer;
-  align-items: baseline;
-  text-overflow: ellipsis;
-  white-space: pre;
-  padding: 3px 0;
-  border: none;
-  overflow: hidden;
-  border-right: 2px solid #808080;
-  border-bottom: 1px solid #808080;
-  content: "Download image";
+  display: none;
 }
-.controls input[type=file i]::-webkit-file-upload-button:focus {
-  outline: none;
-  border: none;
+
+div#div_id_avatar_image {
+  display: none;
 }
 
 .control-group {
