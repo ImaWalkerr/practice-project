@@ -49,6 +49,14 @@
   border-bottom: 2px solid $font-color-border;
   align-items: center;
   justify-content: space-between;
+  &__avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid $font-color-light;
+    border-left: $font-color-light;
+    border-bottom: $font-color-light;
+  }
   &__registration {
     display: flex;
     flex-wrap: wrap;

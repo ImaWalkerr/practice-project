@@ -64,6 +64,14 @@ input[type=number] {
   align-items: center;
   justify-content: space-between;
 }
+.header__avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid white;
+  border-left: white;
+  border-bottom: white;
+}
 .header__registration {
   display: flex;
   flex-wrap: wrap;

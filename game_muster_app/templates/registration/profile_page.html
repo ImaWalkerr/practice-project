@@ -16,17 +16,20 @@
                     <div class="profile__name">First Name|</div>
                     <div class="profile__name">Last Name|</div>
                     <div class="profile__name">Birthday|</div>
-                    <div class="profile__name">Gender|</div>
                 </div>
-                <div class="profile__user-info_load">
-                    <div class="profile__name-load">{{ users.username }}</div>
-                    <div class="profile__name-load">{{ users.email }}</div>
-                    <div class="profile__name-load">{{ users.first_name }}</div>
-                    <div class="profile__name-load">{{ users.last_name }}</div>
-                    <div class="profile__name-load">{{ users.birthday }}</div>
-                    <div class="profile__name-load">{{ users.gender }}</div>
+                {% if request.user.is_authenticated %}
+                    <div class="profile__user-info_load">
+                        <div class="profile__name-load">{{ user.username }}</div>
+                        <div class="profile__name-load">{{ user.email }}</div>
+                        <div class="profile__name-load">{{ user.first_name }}</div>
+                        <div class="profile__name-load">{{ user.last_name }}</div>
+                        <div class="profile__name-load">{{ user.birthday }}</div>
+                    </div>
                 </div>
-            </div>
+                <div class="profile__avatar">
+                    <img class="profile__avatar-img" src="{{ user.avatar_image.url }}" alt="profile__avatar">
+                </div>
+                {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -5,7 +5,7 @@ from .models import *
 @admin.register(GameUser)
 class GameUserAdmin(admin.ModelAdmin):
     fields = (
-        ('birthday', 'gender', 'email_verify')
+        ('birthday', 'gender', 'email_verify', 'avatar_image')
     )
     list_display = ('email_verify',)
     list_display_links = ('email_verify',)

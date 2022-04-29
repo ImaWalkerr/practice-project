@@ -15,7 +15,7 @@
             <div class="form__block-center">
                 <div class="form__block">
                     <h3 class="form__header">Sign Up</h3>
-                    <form action="{% url 'sign_up_page' %}" method="POST">
+                    <form action="{% url 'sign_up_page' %}" enctype="multipart/form-data" method="POST">
                         {% csrf_token %}
                         {{ form|crispy }}
                         <div class="form__button">

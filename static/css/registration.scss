@@ -82,6 +82,30 @@
   color: $font-color-light;
   border-left: 2px solid $font-color-border;
   border-bottom: 2px solid $font-color-border;
+  input[type="file" i]::-webkit-file-upload-button {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-light;
+    background-color: $font-color-main;
+    width: 100%;
+    appearance: none;
+    cursor: pointer;
+    align-items: baseline;
+    text-overflow: ellipsis;
+    white-space: pre;
+    padding: 3px 0;
+    border: none;
+    overflow: hidden;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 1px solid $font-color-border;
+    content: "Download image";
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
 }
 
 .control-group {
@@ -194,6 +218,11 @@
     font-size: 28px;
     color: $font-color-dark;
     text-align: left;
+  }
+  &__avatar-img {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
   }
   &__block {
     width: 100%;

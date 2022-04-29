@@ -130,6 +130,14 @@ input[type=number] {
   align-items: center;
   justify-content: space-between;
 }
+.header__avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid white;
+  border-left: white;
+  border-bottom: white;
+}
 .header__registration {
   display: flex;
   flex-wrap: wrap;
@@ -1078,6 +1086,30 @@ input[type=number] {
   border-left: 2px solid #808080;
   border-bottom: 2px solid #808080;
 }
+.controls input[type=file i]::-webkit-file-upload-button {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background-color: #e23232;
+  width: 100%;
+  appearance: none;
+  cursor: pointer;
+  align-items: baseline;
+  text-overflow: ellipsis;
+  white-space: pre;
+  padding: 3px 0;
+  border: none;
+  overflow: hidden;
+  border-right: 2px solid #808080;
+  border-bottom: 1px solid #808080;
+  content: "Download image";
+}
+.controls input[type=file i]::-webkit-file-upload-button:focus {
+  outline: none;
+  border: none;
+}
 
 .control-group {
   display: flex;
@@ -1184,6 +1216,11 @@ input[type=number] {
   font-size: 28px;
   color: black;
   text-align: left;
+}
+.profile__avatar-img {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
 }
 .profile__block {
   width: 100%;

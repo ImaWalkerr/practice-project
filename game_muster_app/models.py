@@ -14,8 +14,11 @@ class GameUser(AbstractUser):
     ]
 
     birthday = models.DateField(default=0, verbose_name='Birthday')
-    gender = models.CharField(choices=GENRES_CHOICES, max_length=6, default=MALE, verbose_name='Gender')
+    gender = models.CharField(choices=GENRES_CHOICES, max_length=124, default=MALE, verbose_name='Gender')
     email_verify = models.BooleanField(default=False, verbose_name='Email verification status')
+    avatar_image = models.ImageField(
+        upload_to='avatars', null=True, blank=True, verbose_name='user_avatar_image'
+    )
 
     def __str__(self):
         return f"{self.first_name, self.last_name}"

@@ -35,6 +35,9 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
+                                <div class="games__users-added">
+                                    Users added: {{ game.favorite_games.all.count }}
+                                </div>
                             </div>
                             <div class="games__block-right">
                                 <div class="games__buttons">

@@ -21,6 +21,7 @@ class RegistrationForm(forms.ModelForm):
     last_name = forms.CharField(widget=forms.TextInput, required=True)
     birthday = forms.DateField(widget=forms.DateInput, required=True)
     gender = forms.ChoiceField(choices=GENRES_CHOICES, required=True)
+    avatar_image: forms.ImageField(required=True)
     password = forms.CharField(widget=forms.PasswordInput)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
 
@@ -32,6 +33,7 @@ class RegistrationForm(forms.ModelForm):
         self.fields['last_name'].widget.attrs['placeholder'] = self.fields['last_name'].label or 'Enter last name here...'
         self.fields['birthday'].widget.attrs['placeholder'] = self.fields['birthday'].label or 'Year-month-day...'
         self.fields['gender'].label = 'Gender'
+        self.fields['avatar_image'].label = 'User Avatar'
         self.fields['password'].widget.attrs['placeholder'] = self.fields['password'].label or 'Enter password here...'
         self.fields['confirm_password'].widget.attrs['placeholder'] = self.fields['confirm_password'].label or 'Confirm password...'
 
@@ -59,7 +61,17 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'birthday', 'gender', 'password', 'confirm_password']
+        fields = [
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+            'birthday',
+            'avatar_image',
+            'gender',
+            'password',
+            'confirm_password'
+        ]
 
 
 class LoginForm(forms.ModelForm):
