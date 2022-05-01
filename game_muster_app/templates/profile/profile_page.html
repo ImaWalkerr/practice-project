@@ -8,7 +8,11 @@
 {% block content %}
     <div class="profile">
         <div class="profile__block">
+        <div class="profile__buttons">
             <h3 class="profile__header">My Profile</h3>
+            <a class="profile__button-change_password" href="{% url 'change_password' %}">Change password</a>
+            <a class="profile__button-change_profile" href="{% url 'edit_profile' %}">Edit profile</a>
+        </div>
             <div class="profile__user">
                 <div class="profile__user-info">
                     <div class="profile__name">Username|</div>
@@ -25,9 +29,13 @@
                         <div class="profile__name-load">{{ user.last_name }}</div>
                         <div class="profile__name-load">{{ user.birthday }}</div>
                     </div>
-                </div>
-                <div class="profile__avatar">
-                    <img class="profile__avatar-img" src="{{ user.avatar_image.url }}" alt="profile__avatar">
+                     <div class="profile__avatar">
+                     {% if user.avatar_image %}
+                        <img class="profile__avatar-img" src="{{ user.avatar_image.url }}" alt="profile_avatar">
+                     {% else %}
+                        <img class="profile__avatar-img" src="{% static 'media/avatars/default_avatar.png' %}" alt="default_profile_avatar">
+                    {% endif %}
+                    </div>
                 </div>
                 {% endif %}
         </div>

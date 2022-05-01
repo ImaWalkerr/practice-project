@@ -28,7 +28,11 @@
     </div>
     <div class="header__registration">
         {% if user.is_authenticated %}
-            <img class="header__avatar" src="{{ user.avatar_image.url }}" alt="avatar_image">
+            {% if user.avatar_image %}
+                <img class="header__avatar" src="{{ user.avatar_image.url }}" alt="avatar_image">
+            {% else %}
+                <img class="header__avatar" src="{% static 'media/avatars/default_avatar.png' %}" alt="default_avatar_image">
+            {% endif %}
             <div class="header__profile">
                 <a href="{% url 'profile' %}">{{ user.username }}</a>
             </div>

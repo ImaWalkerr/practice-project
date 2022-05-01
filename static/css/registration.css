@@ -37,6 +37,22 @@ input[type=number] {
   justify-content: center;
   width: 30%;
 }
+.form__warning {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: left;
+  color: #e23232;
+  padding: 10px;
+}
+.form__text {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: left;
+  color: black;
+  padding: 15px;
+}
 .form__button {
   display: flex;
   align-items: center;
@@ -56,8 +72,10 @@ input[type=number] {
 }
 .form__information {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   height: 100px;
   width: 100%;
 }
@@ -95,6 +113,23 @@ input[type=number] {
   width: 250px;
   height: 85px;
 }
+.form__password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+.form__reset-password {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
 
 .controls {
   display: flex;
@@ -108,6 +143,9 @@ input[type=number] {
 .controls input[type=file i]::-webkit-file-upload-button {
   display: none;
 }
+.controls ul {
+  display: none;
+}
 
 div#div_id_avatar_image {
   display: none;
@@ -118,6 +156,21 @@ div#div_id_avatar_image {
   align-items: center;
   justify-content: end;
   padding: 5px 0;
+}
+
+#div_id_old_password .control-label,
+#div_id_new_password1 .control-label,
+#div_id_new_password2 .control-label {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  padding: 0 5px 0 0;
+}
+
+#div_id_new_password2 {
+  text-align: right;
+  padding: 10px 10px 10px 0;
 }
 
 .control-label {
@@ -219,10 +272,43 @@ div#div_id_avatar_image {
   color: black;
   text-align: left;
 }
+.profile__avatar {
+  height: 110px;
+  padding: 0 10px;
+}
+@media (max-width: 515px) {
+  .profile__avatar {
+    padding: 25px;
+  }
+}
 .profile__avatar-img {
-  width: 400px;
-  height: 400px;
+  width: 150px;
+  height: 110px;
   object-fit: contain;
+}
+@media (max-width: 515px) {
+  .profile__avatar-img {
+    width: 200px;
+    height: 200px;
+  }
+}
+.profile__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: left;
+}
+.profile__button-change_password, .profile__button-change_profile {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  margin: 0 5px;
 }
 .profile__block {
   width: 100%;

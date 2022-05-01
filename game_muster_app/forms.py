@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import PasswordChangeForm
+
 from .models import *
 from django.contrib.auth import get_user_model
 
@@ -97,3 +99,44 @@ class LoginForm(forms.ModelForm):
         if not user.check_password(password):
             raise forms.ValidationError('Invalid password')
         return self.cleaned_data
+
+
+class CustomChangeForm(PasswordChangeForm):
+
+    old_password = forms.CharField(widget=forms.PasswordInput, required=True)
+    new_password1 = forms.CharField(label='Enter new password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter new password here...'}), required=True)
+    new_password2 = forms.CharField(label='Repeat new password', widget=forms.PasswordInput(attrs={'placeholder': 'Repeat new password here...'}), required=True)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs['placeholder'] = self.fields['old_password'].label or 'Enter old password here...'
+
+    class Meta:
+        model = User
+        fields = ['old_password', 'new_password1', 'new_password2']
+
+
+class UpdateProfileForm(forms.ModelForm):
+
+    MALE = 'MALE'
+    FEMALE = 'FEMALE'
+    GENRES_CHOICES = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female')
+    ]
+
+    username = forms.CharField(widget=forms.TextInput, required=True)
+    first_name = forms.CharField(widget=forms.TextInput, required=True)
+    last_name = forms.CharField(widget=forms.TextInput, required=True)
+    birthday = forms.DateField(widget=forms.DateInput, required=True)
+    gender = forms.ChoiceField(choices=GENRES_CHOICES, required=True)
+
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'birthday',
+            'gender',
+        ]

@@ -14,25 +14,17 @@
             <div class="form__block-left"></div>
             <div class="form__block-center">
                 <div class="form__block">
-                    <h3 class="form__header">Login</h3>
-                    <form action="{% url 'login_page' %}" method="POST">
+                    <h3 class="form__header">Change profile</h3>
+                    <form action="{% url 'edit_profile' %}" enctype="multipart/form-data" method="POST">
                         {% csrf_token %}
                         {{ form|crispy }}
                         <div class="form__button">
-                            <button type="submit" class="form__button-style" value="login">Log in</button>
+                            <button type="submit" class="form__button-style">Change profile information</button>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="form__block-right"></div>
-        </div>
-        <div class="form__information">
-            <div class="form__information-title">Forgot your password?
-                <a class="form__reset-password" href="{% url 'reset_password' %}">Reset password</a>
-            </div>
-            <div class="form__information-title">Don't have an account?
-                <a class="form__information-link" href="{% url 'sign_up_page' %}">Sign up</a>
-            </div>
         </div>
     </div>
 {% endblock %}

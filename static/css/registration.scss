@@ -29,6 +29,22 @@
     width: 30%;
   }
   &__block {}
+  &__warning {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: left;
+    color: $font-color-main;
+    padding: 10px;
+  }
+  &__text {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: left;
+    color: $font-color-dark;
+    padding: 15px;
+  }
   &__button {
     display: flex;
     align-items: center;
@@ -48,8 +64,10 @@
   }
   &__information {
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     height: 100px;
     width: 100%;
   }
@@ -87,6 +105,23 @@
     width: 250px;
     height: 85px;
   }
+  &__password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+  }
+  &__reset-password {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-light;
+    background: $font-color-main;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
 }
 
 .controls {
@@ -98,6 +133,9 @@
   border-left: 2px solid $font-color-border;
   border-bottom: 2px solid $font-color-border;
   input[type="file" i]::-webkit-file-upload-button {
+    display: none;
+  }
+  ul {
     display: none;
   }
 }
@@ -112,6 +150,25 @@ div#div_id_avatar_image {
   justify-content: end;
   padding: 5px 0;
 }
+
+
+#div_id_old_password,
+#div_id_new_password1,
+#div_id_new_password2 {
+  .control-label {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+    padding: 0 5px 0 0;
+  }
+}
+
+#div_id_new_password2 {
+  text-align: right;
+  padding: 10px 10px 10px 0;
+}
+
 
 .control-label {
   font-family: $font-family;
@@ -217,10 +274,40 @@ div#div_id_avatar_image {
     color: $font-color-dark;
     text-align: left;
   }
+  &__avatar {
+    height: 110px;
+    padding: 0 10px;
+    @media (max-width: 515px) {
+      padding: 25px;
+    }
+  }
   &__avatar-img {
-    width: 400px;
-    height: 400px;
+    width: 150px;
+    height: 110px;
     object-fit: contain;
+    @media (max-width: 515px) {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: left;
+  }
+  &__button-change_password,
+  &__button-change_profile {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-light;
+    background: $font-color-main;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+    margin: 0 5px;
   }
   &__block {
     width: 100%;

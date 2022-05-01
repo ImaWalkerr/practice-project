@@ -1,16 +1,18 @@
 from django import views
+from django.contrib import messages
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, \
+    PasswordResetConfirmView
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
-from django.db.models import Count, Sum
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.views.generic.base import TemplateView
 
 from .models import *
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, CustomChangeForm, UpdateProfileForm
 from game_muster_app.api.twitter_wrapper import TWITTER_WRAPPER
 from game_muster_app.tasks import refresh_games
 from .utils import send_email_for_verify
@@ -124,13 +126,82 @@ class GamesDetailPageView(views.View):
 class ProfileView(views.View):
 
     def get(self, request):
-        users = GameUser.objects.all()
         context = {
-            'users': users,
             'title': 'Profile',
         }
 
-        return render(request, 'registration/profile_page.html', context)
+        return render(request, 'profile/profile_page.html', context)
+
+
+class UpdateProfileView(views.View):
+
+    def get(self, request):
+        form = UpdateProfileForm(request.POST, instance=request.user)
+        context = {
+            'form': form,
+            'title': 'Edit profile',
+        }
+
+        return render(request, 'profile/edit_profile.html', context)
+
+    def post(self, request):
+        form = UpdateProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect('profile')
+        else:
+            form = UpdateProfileForm(instance=request.user)
+
+        context = {
+            'form': form,
+            'title': 'Edit profile',
+        }
+
+        return render(request, 'profile/edit_profile.html', context)
+
+
+class CustomResetPasswordView(PasswordResetView):
+    template_name = 'profile/reset_password.html'
+
+
+class CustomResetPasswordDoneView(PasswordResetDoneView):
+    template_name = 'profile/reset_password_sent.html'
+
+
+class CustomResetPasswordFormView(PasswordResetConfirmView):
+    template_name = 'profile/reset_password_form.html'
+
+
+class CustomResetPasswordCompleteView(PasswordResetCompleteView):
+    template_name = 'profile/reset_password_done.html'
+
+
+class PasswordChangeView(views.View):
+
+    def get(self, request):
+        form = CustomChangeForm(request.user, request.POST or None)
+        context = {
+            'form': form,
+            'title': 'Change password',
+        }
+        return render(request, 'profile/change_password.html', context)
+
+    def post(self, request):
+        form = CustomChangeForm(request.user, request.POST or None)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Please correct the error below.')
+
+        context = {
+            'form': form,
+            'title': 'Change password',
+        }
+
+        return render(request, 'profile/change_password.html', context)
 
 
 class LoginView(views.View):
@@ -178,7 +249,7 @@ class RegistrationView(views.View):
             new_user.first_name = form.cleaned_data['first_name']
             new_user.last_name = form.cleaned_data['last_name']
             new_user.birthday = form.cleaned_data['birthday']
-            new_user.gender = form.cleaned_data['gender'].replace('',),
+            new_user.gender = form.cleaned_data['gender']
             new_user.avatar_image = request.FILES['avatar_image']
             new_user.set_password(form.cleaned_data['password'])
             new_user.save()
