@@ -19,6 +19,7 @@
                     <div class="profile__name">Email|</div>
                     <div class="profile__name">First Name|</div>
                     <div class="profile__name">Last Name|</div>
+                    <div class="profile__name">Gender|</div>
                     <div class="profile__name">Birthday|</div>
                 </div>
                 {% if request.user.is_authenticated %}
@@ -27,6 +28,7 @@
                         <div class="profile__name-load">{{ user.email }}</div>
                         <div class="profile__name-load">{{ user.first_name }}</div>
                         <div class="profile__name-load">{{ user.last_name }}</div>
+                        <div class="profile__name-load">{{ user.gender }}</div>
                         <div class="profile__name-load">{{ user.birthday }}</div>
                     </div>
                      <div class="profile__avatar">

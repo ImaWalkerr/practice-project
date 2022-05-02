@@ -122,6 +122,19 @@
     border-right: 2px solid $font-color-border;
     border-bottom: 2px solid $font-color-border;
   }
+  &__sign_up{
+    div#div_id_avatar_image {
+      display: none;
+    }
+  }
+  &__update {
+    div#div_id_avatar_image {
+      display: none;
+    }
+    div#div_id_password {
+      display: none;
+    }
+  }
 }
 
 .controls {
@@ -140,17 +153,12 @@
   }
 }
 
-div#div_id_avatar_image {
-  display: none;
-}
-
 .control-group {
   display: flex;
   align-items: center;
   justify-content: end;
   padding: 5px 0;
 }
-
 
 #div_id_old_password,
 #div_id_new_password1,

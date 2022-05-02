@@ -1,12 +1,13 @@
 from django import views
 from django.contrib import messages
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, \
     PasswordResetConfirmView
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash, get_user_model
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.views.generic.base import TemplateView
@@ -16,6 +17,9 @@ from .forms import LoginForm, RegistrationForm, CustomChangeForm, UpdateProfileF
 from game_muster_app.api.twitter_wrapper import TWITTER_WRAPPER
 from game_muster_app.tasks import refresh_games
 from .utils import send_email_for_verify
+
+
+User = get_user_model()
 
 
 class BasePageView(TemplateView):
@@ -136,7 +140,7 @@ class ProfileView(views.View):
 class UpdateProfileView(views.View):
 
     def get(self, request):
-        form = UpdateProfileForm(request.POST, instance=request.user)
+        form = UpdateProfileForm(request.POST, request.FILES, instance=request.user)
         context = {
             'form': form,
             'title': 'Edit profile',
@@ -145,12 +149,13 @@ class UpdateProfileView(views.View):
         return render(request, 'profile/edit_profile.html', context)
 
     def post(self, request):
-        form = UpdateProfileForm(request.POST, instance=request.user)
+        form = UpdateProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
-            messages.success(request, 'Your profile is updated successfully')
+            form.save()
+            messages.success(request, 'Your profile was successfully updated!')
             return redirect('profile')
         else:
-            form = UpdateProfileForm(instance=request.user)
+            messages.error(request, 'Please correct the error below.')
 
         context = {
             'form': form,

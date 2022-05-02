@@ -15,9 +15,14 @@
             <div class="form__block-center">
                 <div class="form__block">
                     <h3 class="form__header">Change profile</h3>
-                    <form action="{% url 'edit_profile' %}" enctype="multipart/form-data" method="POST">
+                    <form class="form__update" action="{% url 'edit_profile' %}" enctype="multipart/form-data" method="POST">
                         {% csrf_token %}
                         {{ form|crispy }}
+                        <div class="form__download" onclick="document.getElementById('id_avatar_image').click()">
+                            <b class="form__download-style">Update avatar*</b>
+                            <img class="form__download-avatar" id="download-avatar"
+                                 src="{% static "/media/images/download-black.png" %}" alt="update_user_avatar">
+                        </div>
                         <div class="form__button">
                             <button type="submit" class="form__button-style">Change profile information</button>
                         </div>

@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm
 
 from .models import *
 from django.contrib.auth import get_user_model
@@ -116,7 +116,7 @@ class CustomChangeForm(PasswordChangeForm):
         fields = ['old_password', 'new_password1', 'new_password2']
 
 
-class UpdateProfileForm(forms.ModelForm):
+class UpdateProfileForm(UserChangeForm):
 
     MALE = 'MALE'
     FEMALE = 'FEMALE'
@@ -130,6 +130,7 @@ class UpdateProfileForm(forms.ModelForm):
     last_name = forms.CharField(widget=forms.TextInput, required=True)
     birthday = forms.DateField(widget=forms.DateInput, required=True)
     gender = forms.ChoiceField(choices=GENRES_CHOICES, required=True)
+    avatar_image: forms.ImageField(required=True)
 
     class Meta:
         model = User
@@ -139,4 +140,5 @@ class UpdateProfileForm(forms.ModelForm):
             'last_name',
             'birthday',
             'gender',
+            'avatar_image'
         ]

@@ -1126,6 +1126,15 @@ input[type=number] {
   border-right: 2px solid #808080;
   border-bottom: 2px solid #808080;
 }
+.form__sign_up div#div_id_avatar_image {
+  display: none;
+}
+.form__update div#div_id_avatar_image {
+  display: none;
+}
+.form__update div#div_id_password {
+  display: none;
+}
 
 .controls {
   display: flex;
@@ -1140,10 +1149,6 @@ input[type=number] {
   display: none;
 }
 .controls ul {
-  display: none;
-}
-
-div#div_id_avatar_image {
   display: none;
 }
 
