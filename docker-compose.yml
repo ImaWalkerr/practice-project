@@ -4,20 +4,18 @@ services:
     image: postgres:11
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: 12345
-      POSTGRES_DB: "postgres_db"
+    env_file:
+      - ./.env_docker
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   django:
     build: .
-    command: gunicorn game_muster.wsgi:application 0.0.0.0:8000
+    command: gunicorn game_muster.wsgi:application -b :8080
     volumes:
       - .:/usr/src/games/
     ports:
-      - "8000:8000"
+      - "8000:8080"
     env_file:
       - ./.env_docker
     depends_on:
@@ -28,16 +26,14 @@ services:
     image: nginx
     volumes:
       - ./static:/static
-      - ./nginx/nginx.conf
+      - ./nginx/:/etc/nginx/
     depends_on:
       - django
     ports:
-      - "80:8001"
+      - "8001:80"
 
   redis:
     image: redis
-    restart: always
-    container_name: "redis"
     command: redis-server
     ports:
       - "6379:6379"

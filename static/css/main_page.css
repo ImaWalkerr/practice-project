@@ -208,7 +208,7 @@ input[type=number] {
   height: 80px;
   border-radius: 100%;
   background-color: #e23232;
-  z-index: 3;
+  z-index: 4;
 }
 @media (max-width: 810px) {
   .sidebar__arrow {
@@ -382,6 +382,7 @@ li mark {
   height: 2px;
   width: 100%;
   margin: auto;
+  cursor: pointer;
 }
 
 .noUi-connect {

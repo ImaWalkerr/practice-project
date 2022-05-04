@@ -66,11 +66,17 @@
             <div class="games-info__screenshots">
                 <h3 class="games-info__screenshots-title">Screenshots</h3>
                 <div class="games-info__screenshots-block">
-                    {% for screenshot in game.game_screenshots.all %}
+                    {% if game.game_screenshots.all %}
+                        {% for screenshot in game.game_screenshots.all %}
+                            <div class="games-info__screenshots">
+                                <img class="games-info__screenshots-image" src="{{ screenshot.screenshot_url }}" alt="game-screenshots">
+                            </div>
+                        {% endfor %}
+                    {% else %}
                         <div class="games-info__screenshots">
-                            <img class="games-info__screenshots-image" src="{{ screenshot.screenshot_url }}" alt="game-screenshots">
+                            <img class="games-info__screenshots-image" src="{% static 'media/images/no_screenshots.png' %}" alt="no-game-screenshots">
                         </div>
-                    {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

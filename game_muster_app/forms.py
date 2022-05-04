@@ -23,9 +23,9 @@ class RegistrationForm(forms.ModelForm):
     last_name = forms.CharField(widget=forms.TextInput, required=True)
     birthday = forms.DateField(widget=forms.DateInput, required=True)
     gender = forms.ChoiceField(choices=GENRES_CHOICES, required=True)
-    avatar_image: forms.ImageField(required=True)
-    password = forms.CharField(widget=forms.PasswordInput)
-    confirm_password = forms.CharField(widget=forms.PasswordInput)
+    avatar_image: forms.ImageField(required=False)
+    password = forms.CharField(widget=forms.PasswordInput, min_length=8, max_length=24, strip=True)
+    confirm_password = forms.CharField(widget=forms.PasswordInput, min_length=8, max_length=24, strip=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -131,6 +131,15 @@ class UpdateProfileForm(UserChangeForm):
     birthday = forms.DateField(widget=forms.DateInput, required=True)
     gender = forms.ChoiceField(choices=GENRES_CHOICES, required=True)
     avatar_image: forms.ImageField(required=True)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['placeholder'] = self.fields['username'].label or 'Enter username here...'
+        self.fields['first_name'].widget.attrs['placeholder'] = self.fields['first_name'].label or 'Enter first name here...'
+        self.fields['last_name'].widget.attrs['placeholder'] = self.fields['last_name'].label or 'Enter last name here...'
+        self.fields['birthday'].widget.attrs['placeholder'] = self.fields['birthday'].label or 'Year-month-day...'
+        self.fields['gender'].label = 'Gender'
+        self.fields['avatar_image'].label = 'User Avatar'
 
     class Meta:
         model = User

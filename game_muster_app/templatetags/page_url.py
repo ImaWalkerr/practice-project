@@ -19,3 +19,8 @@ def get_page_url(full_path, num_of_page):
         new_path = full_path + "?page=" + num_of_page
 
     return new_path
+
+
+@register.filter(name="includes")
+def includes(arr, elem):
+    return "checked" if str(elem) in arr else ''

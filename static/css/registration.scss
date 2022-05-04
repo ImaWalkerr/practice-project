@@ -90,20 +90,20 @@
     border-right: 2px solid $font-color-border;
     border-bottom: 2px solid $font-color-border;
   }
-  &__download {
+  &__upload {
     display: flex;
     align-items: center;
-    padding: 0 0 0 10%;
   }
-  &__download-style {
+  &__upload-style {
     font-family: $font-family;
     font-weight: 600;
     font-size: 20px;
     color: $font-color-dark;
+    padding: 0 25px;
   }
-  &__download-avatar {
+  &__upload-avatar {
     width: 250px;
-    height: 85px;
+    height: 70px;
   }
   &__password {
     display: flex;

@@ -274,7 +274,7 @@ input[type=number] {
   height: 80px;
   border-radius: 100%;
   background-color: #e23232;
-  z-index: 3;
+  z-index: 4;
 }
 @media (max-width: 810px) {
   .sidebar__arrow {
@@ -448,6 +448,7 @@ li mark {
   height: 2px;
   width: 100%;
   margin: auto;
+  cursor: pointer;
 }
 
 .noUi-connect {
@@ -1094,20 +1095,20 @@ input[type=number] {
   border-right: 2px solid #808080;
   border-bottom: 2px solid #808080;
 }
-.form__download {
+.form__upload {
   display: flex;
   align-items: center;
-  padding: 0 0 0 10%;
 }
-.form__download-style {
+.form__upload-style {
   font-family: "Volkhov", serif;
   font-weight: 600;
   font-size: 20px;
   color: black;
+  padding: 0 25px;
 }
-.form__download-avatar {
+.form__upload-avatar {
   width: 250px;
-  height: 85px;
+  height: 70px;
 }
 .form__password {
   display: flex;

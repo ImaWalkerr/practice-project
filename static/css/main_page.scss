@@ -192,7 +192,7 @@
     height: 80px;
     border-radius: 100%;
     background-color: $font-color-main;
-    z-index: 3;
+    z-index: 4;
     @media (max-width: 810px) {
       width: 60px;
       height: 60px;
@@ -368,6 +368,7 @@ li {
   height: 2px;
   width: 100%;
   margin: auto;
+  cursor: pointer;
 }
 
 .noUi-connect {

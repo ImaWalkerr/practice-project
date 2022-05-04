@@ -9,6 +9,7 @@ urlpatterns = [
     path('edit_profile/', UpdateProfileView.as_view(), name='edit_profile'),
     path('my_must/', MyFavoritesView.as_view(), name='my_favorites'),
     path('anonym_must/', FavoritesAnonymView.as_view(), name='anonym_favorites'),
+    path('no_games_musts/', EmptyFavoritesView.as_view(), name='no_games_musts'),
     path('search_error/', ErrorSearchView.as_view(), name='search_error'),
     path('sign_up_page/', RegistrationView.as_view(), name='sign_up_page'),
     path('login_page/', LoginView.as_view(), name='login_page'),

@@ -48,8 +48,8 @@ class MainPageView(views.View):
 
         chosen_params = {'platform_id': platform_id, 'genre_id': genre_id, 'rating': (ratings_min, ratings_max)}
 
-        genres_main = Genres.objects.all().distinct('genre_name')
-        platforms_main = Platforms.objects.all().distinct('platform_name')
+        genres_main = Genres.objects.all()
+        platforms_main = Platforms.objects.all()
 
         try:
             if igdb_search:
@@ -68,16 +68,22 @@ class MainPageView(views.View):
                     rating__gte=chosen_params['rating'][0], rating__lte=chosen_params['rating'][1]
                 )
 
+            games_main = games_main.distinct().all()
+
             if not games_main:
                 raise LookupError
         except LookupError:
             return redirect('search_error')
 
-        paginator = Paginator(games_main, 6)
-        page = request.GET.get('page')
-        page_obj = paginator.get_page(page)
-        num_of_pages = "a" * page_obj.paginator.num_pages
-        num_of_pages_for_layout = page_obj.paginator.num_pages
+        num_of_pages_for_layout = games_main.count() // 6
+        num_of_pages = "a" * num_of_pages_for_layout
+
+        try:
+            page = int(request.GET.get('page'))
+        except (ValueError, TypeError):
+            page = 1
+
+        page_obj = games_main[((page - 1) * 6):(page * 6)]
 
         context = {
             'games_main': games_main,
@@ -110,16 +116,10 @@ class GamesDetailPageView(views.View):
         current_game_for_tweets = Games.objects.get(game_id=game_id)
         game_name = current_game_for_tweets.game_name
         tweets_for_current_game = TWITTER_WRAPPER.get_tweets_for_game(game_name)
-        screenshots = ScreenShots.objects.all()
-        genres_main = Genres.objects.all()
-        platforms_main = Platforms.objects.all()
 
         context = {
             'current_game': current_game,
-            'screenshots': screenshots,
-            'genres_main': genres_main,
             'tweets_for_current_game': tweets_for_current_game,
-            'platforms_main': platforms_main,
             'favorite_game_list_ids': favorite_game_list_ids(request),
             'title': 'Game details',
         }
@@ -254,7 +254,8 @@ class RegistrationView(views.View):
             new_user.last_name = form.cleaned_data['last_name']
             new_user.birthday = form.cleaned_data['birthday']
             new_user.gender = form.cleaned_data['gender']
-            new_user.avatar_image = request.FILES['avatar_image']
+            if 'avatar_image' in request.POST:
+                new_user.avatar_image = request.FILES.get('avatar_image', 'avatars/default_avatar.png')
             new_user.set_password(form.cleaned_data['password'])
             new_user.save()
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
@@ -310,6 +311,10 @@ class LogoutDoneView(TemplateView):
     template_name = 'registration/logout_done.html'
 
 
+class EmptyFavoritesView(TemplateView):
+    template_name = 'favorites/no_games_musts.html'
+
+
 class MyFavoritesView(views.View):
 
     def get(self, request):
@@ -320,10 +325,16 @@ class MyFavoritesView(views.View):
             else []
         )
 
-        favorite_games = [
-            favorite_game.game_id
-            for favorite_game in UserFavoriteGames.objects.filter(owner=request.user)
-        ]
+        try:
+            favorite_games = [
+                favorite_game.game_id
+                for favorite_game in UserFavoriteGames.objects.filter(owner=request.user)
+            ]
+
+            if not favorite_games:
+                raise LookupError
+        except LookupError:
+            return redirect('no_games_musts')
 
         paginator = Paginator(favorite_games, 12)
         page = request.GET.get('page')

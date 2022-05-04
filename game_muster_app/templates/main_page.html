@@ -20,7 +20,7 @@
                                 <span></span>
                                 <span></span>
                             </div>
-                            <ul class="sidebar__sub-list">
+                            <ul id="sidebar__sub-list" class="sidebar__sub-list">
                                 <li>
                                     <div class="sidebar__sub-link search">
                                         <h4 class="search__header">Filters</h4>
@@ -36,7 +36,7 @@
                                                     {% for el in platforms_main %}
                                                         <li class="checkout__input">
                                                             <label>
-                                                                <input class="checkout__search" type="checkbox" name="platform_id" value="{{ el.platform_id }}">
+                                                                <input class="checkout__search" type="checkbox" name="platform_id" value="{{ el.platform_id }}" {{ platforms_chosen|includes:el.platform_id }}>
                                                                 <b>{{ el.platform_name }}</b>
                                                             </label>
                                                         </li>
@@ -54,7 +54,7 @@
                                                     {% for el in genres_main %}
                                                         <li class="checkout__input">
                                                             <label>
-                                                                <input class="checkout__search" type="checkbox" name="genre_id" value="{{ el.genre_id }}">
+                                                                <input class="checkout__search" type="checkbox" name="genre_id" value="{{ el.genre_id }}" {{ genres_chosen|includes:el.genre_id }}>
                                                                 <b>{{ el.genre_name }}</b>
                                                             </label>
                                                         </li>
@@ -66,10 +66,10 @@
                                                 <div class="search__slider" id="range-slider"></div>
                                                 <div class="search__slider-inputs">
                                                     <label class="search__slider-label">
-                                                        <input type="number" placeholder="0" class="search__slider-input" name="min" id="input-0">
+                                                        <input type="number" placeholder="0" value="{{ rating.0 }}" class="search__slider-input" name="min" id="input-0">
                                                     </label>
                                                     <label class="search__slider-label">
-                                                        <input type="number" placeholder="100" class="search__slider-input" name="max" id="input-1">
+                                                        <input type="number" placeholder="100" value="{{ rating.1 }}" class="search__slider-input" name="max" id="input-1">
                                                     </label>
                                                 </div>
                                             </div>

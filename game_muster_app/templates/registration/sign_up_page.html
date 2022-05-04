@@ -18,11 +18,19 @@
                     <form class="form__sign_up" action="{% url 'sign_up_page' %}" enctype="multipart/form-data" method="POST">
                         {% csrf_token %}
                         {{ form|crispy }}
-                        <button class="form__download" onclick="document.getElementById('id_avatar_image').click()">
-                            <b class="form__download-style">Download avatar*</b>
-                            <img class="form__download-avatar" id="download-avatar"
-                                 src="{% static "/media/images/download-black.png" %}" alt="download_user_avatar">
+                        <button class="form__upload" onclick="document.getElementById('id_avatar_image').click()">
+                            <b class="form__upload-style">Upload avatar*</b>
+                            <img class="form__upload-avatar" id="upload-avatar"
+                                 src="{% static "/media/images/upload.png" %}" alt="upload_user_avatar">
                         </button>
+                        <ul>
+                            <li class="form__warning">
+                                Your password can't be too similar to your other personal information.
+                            </li>
+                            <li class="form__warning">
+                                Your password must contain at least 8 characters.
+                            </li>
+                        </ul>
                         <div class="form__button">
                             <button type="submit" class="form__button-style" value="registration">Sign me up!</button>
                         </div>
