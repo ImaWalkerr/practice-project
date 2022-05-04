@@ -1,6 +1,5 @@
 from django import views
 from django.contrib import messages
-from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, \
     PasswordResetConfirmView
 from django.core.exceptions import ValidationError
@@ -39,7 +38,7 @@ class MainPageView(views.View):
     """
     def get(self, request):
 
-        celery_task = refresh_games.delay()
+        #celery_task = refresh_games.delay()
 
         igdb_search = request.GET.get('search_game')
         platform_id = request.GET.getlist('platform_id')
@@ -58,21 +57,21 @@ class MainPageView(views.View):
             else:
                 games_main = Games.objects.all()
 
+            if chosen_params['platform_id']:
+                games_main = games_main.filter(game_platforms__platform_id__in=chosen_params['platform_id'])
+
+            if chosen_params['genre_id']:
+                games_main = games_main.filter(game_genres__genre_id__in=chosen_params['genre_id'])
+
+            if chosen_params['rating']:
+                games_main = games_main.filter(
+                    rating__gte=chosen_params['rating'][0], rating__lte=chosen_params['rating'][1]
+                )
+
             if not games_main:
                 raise LookupError
         except LookupError:
             return redirect('search_error')
-
-        if chosen_params['platform_id']:
-            games_main = games_main.filter(game_platforms__platform_id__in=chosen_params['platform_id'])
-
-        if chosen_params['genre_id']:
-            games_main = games_main.filter(game_genres__genre_id__in=chosen_params['genre_id'])
-
-        if chosen_params['rating']:
-            games_main = games_main.filter(
-                rating__gte=chosen_params['rating'][0], rating__lte=chosen_params['rating'][1]
-            )
 
         paginator = Paginator(games_main, 6)
         page = request.GET.get('page')

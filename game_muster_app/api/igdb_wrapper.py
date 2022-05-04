@@ -84,7 +84,7 @@ class IGDBWrapper:
     def get_img_path(img_id):
         return "https://images.igdb.com/igdb/" f"image/upload/t_cover_big/{img_id}.jpg"
 
-    def get_games_for_manager(self):
+    def get_games_for_manager(self, offset=''):
         return requests.post(
             f"{self.GAME_URL}",
             headers=self.headers,
@@ -101,6 +101,7 @@ class IGDBWrapper:
                  'cover.url,'
                  'screenshots.url;'
                  'limit 500;'
+                 f'offset {offset};'
         ).json()
 
     def get_current_game(self, ids=None):

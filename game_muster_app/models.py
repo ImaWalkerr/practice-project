@@ -50,8 +50,8 @@ class Platforms(models.Model):
     """
     Platforms model
     """
-    platform_id = models.IntegerField(default=0, verbose_name='Platform id')
-    platform_name = models.CharField(max_length=124, verbose_name='Platform name')
+    platform_id = models.IntegerField(unique=True, verbose_name='Platform id')
+    platform_name = models.CharField(max_length=256, verbose_name='Platform name')
 
     def __str__(self):
         return f"{self.platform_name}"
@@ -66,8 +66,8 @@ class Genres(models.Model):
     """
     Genres model
     """
-    genre_id = models.IntegerField(default=0, verbose_name='Genre id')
-    genre_name = models.CharField(max_length=124, verbose_name='Genre name')
+    genre_id = models.IntegerField(unique=True, verbose_name='Genre id')
+    genre_name = models.CharField(max_length=256, verbose_name='Genre name')
 
     def __str__(self):
         return f"{self.genre_name}"
@@ -83,7 +83,7 @@ class Games(models.Model):
     Games model
     """
     game_id = models.IntegerField(unique=True, default=0, verbose_name='Game Id from Igdb.com')
-    game_name = models.CharField(max_length=124, verbose_name='Game name')
+    game_name = models.CharField(max_length=256, verbose_name='Game name')
     game_summary = models.TextField(null=True, max_length=1024, verbose_name='Game summary')
     game_genres = models.ManyToManyField(
         Genres, verbose_name='Game genres', related_name='game_genres'
@@ -92,13 +92,13 @@ class Games(models.Model):
         Platforms, verbose_name='Game platforms', related_name='game_platforms'
     )
     cover_url = models.CharField(null=True, max_length=256, verbose_name='Game cover')
-    release_dates = models.CharField(null=True, max_length=124, verbose_name='Game release dates')
+    release_dates = models.CharField(null=True, max_length=256, verbose_name='Game release dates')
     rating = models.DecimalField(
-        max_digits=4, decimal_places=2, null=True, default=None, verbose_name='Game rating'
+        max_digits=5, decimal_places=2, null=True, default=None, verbose_name='Game rating'
     )
     rating_count = models.IntegerField(null=True, default=None, verbose_name='Game rating count')
     aggregated_rating = models.DecimalField(
-        max_digits=4, decimal_places=2, null=True, default=None, verbose_name='Game aggregated rating'
+        max_digits=5, decimal_places=2, null=True, default=None, verbose_name='Game aggregated rating'
     )
     aggregated_rating_count = models.IntegerField(
         null=True, default=None, verbose_name='Game aggregated rating count'
