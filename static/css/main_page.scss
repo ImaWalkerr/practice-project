@@ -188,11 +188,13 @@
   &__arrow {
     position: absolute;
     border: 2px solid $font-color-light;
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
     border-radius: 100%;
     background-color: $font-color-main;
     z-index: 4;
+    margin: 5px;
+    cursor: pointer;
     @media (max-width: 810px) {
       width: 60px;
       height: 60px;
@@ -202,7 +204,7 @@
       z-index: 999;
       height: 3px;
       margin: 1px;
-      width: 20px;
+      width: 18px;
       background: $font-color-light;
       transition: 0.4s ease;
       @media (max-width: 810px) {
@@ -412,14 +414,18 @@ li {
   display: block;
 }
 
-body.mouse .sidebar__list > li:hover .sidebar__sub-list {
+body.mouse .sidebar__sub-list.open {
   display: block;
   z-index: 3;
 }
 
+body.mouse .sidebar__arrow {
+  display: block;
+}
+
 body.touch .sidebar__sub-list.open {
   display: block;
-  z-index: 2;
+  z-index: 3;
 }
 
 body.touch .sidebar__arrow {
