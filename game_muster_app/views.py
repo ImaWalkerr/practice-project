@@ -1,26 +1,25 @@
 from django import views
 from django.core.exceptions import ValidationError
-from django.http import HttpResponseRedirect, HttpResponse
+from django.core.paginator import Paginator
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.utils.http import urlsafe_base64_decode
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 from math import ceil
 
 from .models import *
 from .forms import LoginForm, RegistrationForm
 from game_muster_app.api.igdb_wrapper import IGDB_WRAPPER
+from game_muster_app.api.twitter_wrapper import TWITTER_WRAPPER
 from .utils import send_email_for_verify
 
 
 class BasePageView(TemplateView):
-
     template_name = 'base.html'
 
     def get(self, *args, **kwargs):
-
         users = GameUser.objects.all()
 
         context = {
@@ -64,15 +63,17 @@ class MainPageView(views.View):
         context = {
             'games': games,
             'games_count': range(games_count),
+            'favorite_game_list_ids': favorite_game_list_ids(request),
             'all_platforms_filter': all_platforms_filter,
             'all_genres_filter': all_genres_filter,
+            'title': 'GameMuster',
         }
 
         return render(request, 'main_page.html', context)
 
 
 class ErrorSearchView(TemplateView):
-    template_name = 'error_search.html'
+    template_name = 'search_error.html'
 
 
 class GamesDetailPageView(views.View):
@@ -82,6 +83,8 @@ class GamesDetailPageView(views.View):
     def get(self, request, game_id):
         current_game = IGDB_WRAPPER.get_game_id(game_id)
         current_game = current_game[0] if current_game else None
+        game_name = current_game.get('name')
+        tweets_for_current_game = TWITTER_WRAPPER.get_tweets_for_game(game_name)
         genres = current_game.get('genres')
         platforms = current_game.get('platforms')
         release_dates = current_game.get('release_dates')
@@ -90,10 +93,16 @@ class GamesDetailPageView(views.View):
         aggregated_rating = current_game.get('aggregated_rating')
         aggregated_rating_count = current_game.get('aggregated_rating_count')
         cover = current_game.get('cover')
+        if cover is not None:
+            cover['url'] = cover['url'].replace('t_thumb', 't_cover_big')
+        else:
+            cover = current_game.get('cover')
         screenshots = current_game.get('screenshots')
 
         context = {
             'current_game': current_game,
+            'tweets_for_current_game': tweets_for_current_game,
+            'favorite_game_list_ids': favorite_game_list_ids(request),
             'genres': genres,
             'platforms': platforms,
             'release_dates': release_dates,
@@ -103,6 +112,7 @@ class GamesDetailPageView(views.View):
             'aggregated_rating_count': aggregated_rating_count,
             'cover': cover,
             'screenshots': screenshots,
+            'title': 'Game details',
         }
         return render(request, 'games_detail_page.html', context)
 
@@ -112,7 +122,8 @@ class ProfileView(views.View):
     def get(self, request):
         users = GameUser.objects.filter(user=request.user)
         context = {
-            'users': users
+            'users': users,
+            'title': 'Profile',
         }
 
         return render(request, 'registration/profile_page.html', context)
@@ -123,7 +134,8 @@ class LoginView(views.View):
     def get(self, request):
         form = LoginForm(request.POST or None)
         context = {
-            'form': form
+            'form': form,
+            'title': 'Login',
         }
         return render(request, 'registration/login_page.html', context)
 
@@ -137,7 +149,8 @@ class LoginView(views.View):
                 login(request, user)
                 return redirect('/')
         context = {
-            'form': form
+            'form': form,
+            'title': 'Login',
         }
         return render(request, 'registration/login_page.html', context)
 
@@ -147,7 +160,8 @@ class RegistrationView(views.View):
     def get(self, request):
         form = RegistrationForm(request.POST or None)
         context = {
-            'form': form
+            'form': form,
+            'title': 'Registration',
         }
         return render(request, 'registration/sign_up_page.html', context)
 
@@ -166,13 +180,13 @@ class RegistrationView(views.View):
                 user=new_user,
                 birthday=form.cleaned_data['birthday'],
                 gender=form.cleaned_data['gender'],
-                age=form.cleaned_data['age']
             )
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             send_email_for_verify(request, user)
             return redirect('confirm_email')
         context = {
-            'form': form
+            'form': form,
+            'title': 'Registration',
         }
         return render(request, 'registration/sign_up_page.html', context)
 
@@ -218,3 +232,72 @@ def do_logout(request):
 
 class LogoutDoneView(TemplateView):
     template_name = 'registration/logout_done.html'
+
+
+class MyFavoritesView(views.View):
+
+    def get(self, request):
+
+        favorites_list = (
+            [favorite_games for favorite_games in UserFavoriteGames.objects.filter(owner=request.user)]
+            if request.user.is_authenticated
+            else []
+        )
+
+        favorite_game = IGDB_WRAPPER.get_games_for_favorites(games_id=favorite_game_list_ids(request))
+
+        paginator = Paginator(favorite_game, 12)
+        page = request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        num_of_pages = "a" * page_obj.paginator.num_pages
+
+        context = {
+            'favorites_list': favorites_list,
+            'favorite_game': favorite_game,
+            'favorite_game_list_ids': favorite_game_list_ids(request),
+            'page_obj': page_obj,
+            'num_of_pages': num_of_pages,
+            'title': 'My favorites',
+        }
+        if request.user.is_authenticated:
+            return render(request, 'favorites/favorites_page.html', context)
+        else:
+            return render(request, 'favorites/favorites_for_anonym.html')
+
+
+class FavoritesAnonymView(TemplateView):
+    template_name = 'favorites/favorites_for_anonym.html'
+
+
+def favorite_game_list_ids(request):
+    """
+    Return list of ids from favorites
+    """
+    return (
+        [game.game_id for game in UserFavoriteGames.objects.filter(owner=request.user)]
+        if request.user.is_authenticated
+        else []
+    )
+
+
+def add_to_favorites(request, game_id):
+    """
+    Add games for favorites
+    """
+    current_favorite_games = UserFavoriteGames.objects.filter(game_id=game_id, owner=request.user)
+    if not current_favorite_games:
+        UserFavoriteGames.objects.create(game_id=game_id, owner=request.user)
+    else:
+        current_favorite_games.restore()
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+def remove_from_favorites(request, game_id):
+    """
+    Remove games from favorites
+    """
+    favorite_games = UserFavoriteGames.objects.filter(game_id=game_id, owner=request.user)
+    if favorite_games:
+        favorite_games.delete()
+
+    return redirect(request.META.get('HTTP_REFERER'))

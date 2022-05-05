@@ -8,6 +8,7 @@ colorama==0.4.4
 crispy-bootstrap5==0.6
 cryptography==36.0.1
 distro==1.7.0
+dj-database-url==0.5.0
 Django==4.0.2
 django-crispy-forms==1.13.0
 djangorestframework==3.12.4
@@ -16,6 +17,7 @@ docker-compose==1.29.2
 dockerpty==0.4.1
 docopt==0.6.2
 fonttools==4.26.2
+gunicorn==20.1.0
 idna==3.3
 jsonschema==3.2.0
 mysql-connector-python==8.0.27
@@ -29,7 +31,7 @@ python-decouple==3.6
 python-dotenv==0.19.2
 python-gettext==4.0
 pytz==2021.1
-pywin32==227
+pywin32==227;platform_system == "Windows"
 PyYAML==5.4.1
 requests==2.27.1
 six==1.16.0
@@ -39,3 +41,4 @@ ttf2web==0.9.3
 tzdata==2021.5
 urllib3==1.26.8
 websocket-client==0.59.0
+whitenoise==6.0.0

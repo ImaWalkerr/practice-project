@@ -1,0 +1,145 @@
+/* Variables+plugins */
+@import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.must__main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.must__block {
+  padding: 25px;
+}
+.must__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: black;
+  margin: 0 15px 0 0;
+}
+.must__carts {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 25px 100px;
+}
+@media (max-width: 810px) {
+  .must__carts {
+    padding: 25px;
+  }
+}
+.must__games {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 230px;
+  margin: 20px;
+}
+
+.games__block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-bottom: 1px solid #808080;
+  border-right: 1px solid #808080;
+  border-left: 1px solid #808080;
+  width: 230px;
+}
+.games__block-left {
+  width: 50%;
+  text-align: left;
+}
+.games__block-right {
+  width: 50%;
+}
+.games__image {
+  border-top: 1px solid #808080;
+  border-right: 1px solid #808080;
+  border-left: 1px solid #808080;
+}
+.games__image img {
+  height: 210px;
+  width: 228px;
+  object-fit: cover;
+}
+.games__title {
+  margin: 5px;
+}
+.games__title-a {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: calc(14px + 2 * ((100vw - 420px) / 860));
+  color: black;
+}
+.games__genres, .games__users-added {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: black;
+  margin: 5px;
+}
+.games__buttons {
+  padding: 5px;
+}
+.games__button-submit {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+  background: limegreen;
+  padding: 10px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+.games__button-reset {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  background: #e23232;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+
+.add-to-favorites {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  background: limegreen;
+  padding: 10px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  cursor: pointer;
+}
+
+.add-to-favorites.added {
+  background: #e23232;
+}
+
+.test-sessions {
+  height: 300px;
+  width: fit-content;
+  padding: 25px;
+  background: grey;
+}
+.test-sessions div {
+  color: black;
+  background: white;
+  padding: 25px;
+}
+
+/*# sourceMappingURL=favorites_page.css.map */

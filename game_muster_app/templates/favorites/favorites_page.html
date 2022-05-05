@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load page_url %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="must">
+        <div class="must__block">
+            <div class="must__main">
+                <div class="must__title">My MUST</div>
+                <div class="must__clean-all"></div>
+            </div>
+            <div class="must__carts">
+                {% for game in page_obj %}
+                    <div class="must__games games">
+                        <div class="games__image">
+                            {% if game.cover.url %}
+                                <img class="games__cover" src="{{ game.cover.url }}" alt="game-cover">
+                            {% else %}
+                                <img class="games__default" src="{% static 'media/images/default_cover.png' %}" alt="default-game-cover">
+                            {% endif %}
+                        </div>
+                        <div class="games__block">
+                            <div class="games__block-left">
+                                <div class="games__title">
+                                    <a href="/{{ game.id }}" target="_blank" class="games__title-a">{{ game.name }}</a>
+                                </div>
+                                <div class="games__genres">
+                                    {% for genre in game.genres %}
+                                        {{ genre.name }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="games__block-right">
+                                <div class="games__buttons">
+                                    {% if game.id in favorite_game_list_ids %}
+                                        <a class="add-to-favorites added" href="{% url 'remove_from_favorites' game.id %}">UnMust</a>
+                                    {% else %}
+                                        <a class="add-to-favorites" href="{% url 'add_to_favorites' game.id %}">Must</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="content__pagination slider-favorites">
+                <div class="slider-favorites__block-left"></div>
+                <div class="slider-favorites__container">
+                    <div class="slider-favorites__navigation-prev">
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {% for page in num_of_pages %}
+                                <div class="swiper-slide">
+                                    <a class="slider-favorites__pagination" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="slider-favorites__navigation-next">
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+                <div class="slider__block-right"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

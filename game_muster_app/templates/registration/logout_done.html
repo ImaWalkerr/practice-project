@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+    {{ title }}
+{% endblock %}
+
 {% block content %}
     <div class="logout">
         <h3 class="logout__title">You have been successfully logged out.

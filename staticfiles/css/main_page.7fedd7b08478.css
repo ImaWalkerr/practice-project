@@ -1,0 +1,509 @@
+/* Variables+plugins */
+@import url("https://fonts.googleapis.com/css2?family=Volkhov&display=swap");
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.wrapper {
+  width: 100%;
+}
+@media (max-width: 810px) {
+  .wrapper {
+    padding: 70px 0;
+  }
+}
+
+.content {
+  display: flex;
+  max-width: 100%;
+}
+.content__sidebar {
+  min-height: auto;
+  min-width: 20%;
+}
+.content__sections {
+  display: flex;
+  flex-direction: column;
+  min-width: 60%;
+}
+.content__pass {
+  min-width: 20%;
+}
+.content__sections-sidebar {
+  min-width: 20%;
+}
+.content__sections-search {
+  min-height: 100px;
+  padding: 0 6%;
+}
+.content__carts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.content__pagination {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  height: 75px;
+  width: 100%;
+  padding: 20px;
+  background-color: #e23232;
+  border-bottom: 2px solid #808080;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__registration {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  margin: 0 10px;
+}
+.header__base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header__logo-image {
+  width: 70px;
+  height: 55px;
+  background-color: #e23232;
+  margin: -10px 0;
+}
+.header__name {
+  font-family: "Volkhov", serif;
+  display: inline-block;
+  font-size: 23px;
+  color: white;
+  font-weight: 700;
+}
+.header__link a {
+  margin: 0 10px 0 0;
+  color: white;
+}
+.header__search-label {
+  display: flex;
+  border-bottom: 2px solid #808080;
+}
+.header__search-input {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  margin: 20px 0 0 0;
+}
+.header__search-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 0 -10px 0;
+  object-fit: contain;
+  background-color: white;
+}
+@media (max-width: 810px) {
+  .header__search-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 0 -20px 0;
+  }
+}
+.header__profile, .header__register {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #e23232;
+  background: white;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  margin: 0 5px;
+}
+.header__profile a, .header__register a {
+  text-decoration: none;
+  color: #e23232;
+}
+.header__must {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  background: limegreen;
+  padding: 10px 15px;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+
+.favorites_statistics {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+}
+
+.sidebar li {
+  position: relative;
+}
+.sidebar__list {
+  display: flex;
+}
+.sidebar__sub-list {
+  display: none;
+  position: absolute;
+  top: 0;
+}
+.sidebar__sub-link {
+  font-size: 25px;
+  font-weight: 600;
+  font-family: "Volkhov", serif;
+  color: white;
+  background-color: #e23232;
+  display: inline-block;
+  padding: 25px;
+}
+@media (max-height: 1080px) {
+  .sidebar__sub-link {
+    height: 92vh;
+    width: 400px;
+  }
+}
+@media (min-height: 1080px) {
+  .sidebar__sub-link {
+    height: 100vh;
+    width: 400px;
+  }
+}
+.sidebar__arrow {
+  position: absolute;
+  border: 2px solid white;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background-color: #e23232;
+  z-index: 3;
+}
+@media (max-width: 810px) {
+  .sidebar__arrow {
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+  }
+}
+.sidebar__arrow span {
+  z-index: 999;
+  height: 3px;
+  margin: 1px;
+  width: 20px;
+  background: white;
+  transition: 0.4s ease;
+}
+@media (max-width: 810px) {
+  .sidebar__arrow span {
+    width: 15px;
+  }
+}
+.sidebar__arrow span:first-child {
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 25%;
+  bottom: 35%;
+}
+.sidebar__arrow span:nth-child(2) {
+  display: block;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 45%;
+  bottom: 35%;
+}
+.sidebar__arrow span:nth-child(3) {
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 25%;
+  bottom: 54%;
+}
+.sidebar__arrow span:nth-child(4) {
+  display: block;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 45%;
+  bottom: 54%;
+}
+
+.search__header {
+  text-align: center;
+  padding: 10px 0 15px 0;
+  border-bottom: 2px solid white;
+}
+.search__name {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  margin: 5% 0;
+}
+.search__block {
+  display: flex;
+}
+.search__label {
+  font-family: "Volkhov", serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+.search__input {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
+  background-color: #e23232;
+  border-bottom: 2px solid white;
+  margin: 20px 0 10px 10px;
+}
+.search__checkout {
+  display: flex;
+  flex-wrap: inherit;
+  height: 250px;
+  overflow: auto;
+}
+.search__search {
+  margin: 10px;
+}
+.search__button {
+  font-family: "Volkhov", serif;
+  font-size: 28px;
+  font-weight: 600;
+  padding: 10px 15px;
+  background-color: white;
+  color: #e23232;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  text-align: center;
+  margin: 0 33%;
+}
+.search__slider-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+}
+.search__slider-input {
+  font-family: "Volkhov", serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background: #e23232;
+}
+
+.search-platforms li {
+  transition: all ease 500ms;
+}
+
+.search-platforms li.hide {
+  display: none;
+}
+
+.search-genres li {
+  transition: all ease 500ms;
+}
+
+.search-genres li.hide {
+  display: none;
+}
+
+.games-cart {
+  transition: all ease 500ms;
+}
+
+.games-cart.hide {
+  display: none;
+}
+
+.checkout__input {
+  display: flex;
+  font-family: "Volkhov", serif;
+  font-size: 14px;
+  color: #e23232;
+  background-color: white;
+  border-radius: 30px;
+  padding: 5px 10px;
+  align-items: center;
+  margin: 5px;
+  width: fit-content;
+}
+.checkout__search {
+  margin: 0 5px 0 0;
+}
+
+li mark {
+  color: white;
+  background: none;
+}
+
+.noUi-target {
+  background: white;
+  border: none;
+  border-radius: 100px;
+  box-shadow: none;
+  height: 2px;
+  width: 90%;
+  margin: auto;
+}
+
+.noUi-connect {
+  background: white;
+}
+
+.noUi-handle:after, .noUi-handle:before {
+  display: none;
+}
+
+.noUi-handle {
+  box-shadow: none;
+  border-radius: 100%;
+  background: white;
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 10px;
+  height: 10px;
+  right: -6px;
+  top: -4px;
+}
+
+.noUi-tooltip {
+  display: block;
+  position: absolute;
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+  color: white;
+  background: none;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+  top: 10px;
+}
+
+.noUi-active .noUi-tooltip {
+  display: block;
+}
+
+body.mouse .sidebar__list > li:hover .sidebar__sub-list {
+  display: block;
+  z-index: 3;
+}
+
+body.touch .sidebar__sub-list.open {
+  display: block;
+}
+
+body.touch .sidebar__arrow {
+  display: block;
+}
+
+.games-cart {
+  position: relative;
+  margin: 0 3% 3% 3%;
+}
+.games-cart__image {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+}
+.games-cart__hover:hover .games-cart__block {
+  display: block;
+}
+.games-cart__block {
+  position: absolute;
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  text-align: left;
+  color: white;
+  left: 0;
+  bottom: 1%;
+  right: 0;
+  top: 45%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  display: none;
+}
+
+.block__main {
+  display: flex;
+  flex-wrap: wrap;
+}
+.block__title {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: left;
+  color: white;
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+.block__description {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: left;
+  color: white;
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+.block__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  color: black;
+}
+.block__links-open, .block__links-must {
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 35px;
+}
+.block__links-must {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+}
+.block__links-a {
+  font-family: "Volkhov", serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: black;
+}
+
+/*# sourceMappingURL=main_page.css.map */

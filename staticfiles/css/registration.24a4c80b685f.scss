@@ -1,0 +1,255 @@
+@import "base_variables";
+
+//Registration forms styles//
+.form {
+  &__header {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+    color: $font-color-dark;
+    padding: 10px 0;
+  }
+  &__container {
+    display: flex;
+    width: 100%;
+  }
+  &__block-up {
+    width: 100%;
+    min-height: 20vh;
+  }
+  &__block-left,
+  &__block-right {
+    width: 35%;
+  }
+  &__block-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+  }
+  &__block {}
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  &__button-style {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-light;
+    background: $font-color-main;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
+  &__information {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100%;
+  }
+  &__information-title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-dark;
+    margin: 0 15px 0 0;
+  }
+  &__information-link {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-light;
+    background: $font-color-main;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 55%;
+  color: $font-color-light;
+  border-left: 2px solid $font-color-border;
+  border-bottom: 2px solid $font-color-border;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 5px 0;
+}
+
+.control-label {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 20px;
+  color: $font-color-dark;
+  padding: 0 10px 0 0;
+}
+
+.dateinput,
+.emailinput,
+.textInput {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 20px;
+  color: $font-color-dark;
+  height: 30px;
+  background: $font-color-light;
+}
+
+.help-block {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 20px;
+  color: $font-color-main;
+}
+
+.alert {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center  ;
+  color: $font-color-main;
+  margin: 15px;
+}
+
+.select,
+.numberinput {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 20px;
+  color: $font-color-dark;
+  height: 30px;
+  option {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+  }
+}
+
+//Verify page//
+.verify {
+  &__invalid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 90vh;
+  }
+  &__invalid-title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+  }
+  &__invalid-link {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-light;
+    background: $font-color-main;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+  }
+}
+
+//Confirm page//
+.confirm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 90vh;
+  &__title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+  }
+}
+
+//Profile page//
+.profile {
+  &__header {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 28px;
+    color: $font-color-dark;
+    text-align: left;
+  }
+  &__block {
+    width: 100%;
+    padding: 25px;
+  }
+  &__user {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  &__user-info {
+    text-align: right;
+  }
+  &__user-info_load {
+    text-align: left;
+  }
+  &__name {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-border;
+    margin: 0 0 3px 0;
+  }
+  &__name-load {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+    margin: 0 0 3px 0;
+  }
+}
+
+//Logout page//
+.logout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 90vh;
+  &__title {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    color: $font-color-dark;
+  }
+  &__link {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: $font-color-light;
+    background: $font-color-main;
+    padding: 10px 15px;
+    border-right: 2px solid $font-color-border;
+    border-bottom: 2px solid $font-color-border;
+    margin: 0 10px 0 0;
+  }
+}

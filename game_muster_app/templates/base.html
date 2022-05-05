@@ -16,27 +16,43 @@
 <header class="header">
     <div class="header__base">
         <a href="/" class="header__logo">
-            <img src="{% static 'media/images/logo.png' %}" class="header__logo-image" alt="pacman_logo">
+            <img src="{% static 'media/images/logo.png' %}" class="header__logo-image" alt="header_logo">
         </a>
         <a href="/" class="header__name">
             <h2>GameMuster</h2>
         </a>
     </div>
+    <div class="menu__icon">
+        <span></span>
+    </div>
     <div class="header__registration">
         {% if user.is_authenticated %}
-            <a href="{% url 'profile' %}" class="header__profile">{{ user.username }}</a>
-            <a href="#" class="header__must">My MUSTs</a>
-            <a href="{% url 'logout' %}" class="header__register">Log out</a>
+            <div class="header__profile">
+                <a href="{% url 'profile' %}">{{ user.username }}</a>
+            </div>
+            <div class="header__must">
+                <div class="header__link">
+                    <a href="{% url 'my_favorites' %}">My MUSTs</a>
+                </div>
+            </div>
+            <div class="header__register">
+                <a href="{% url 'logout' %}">Log out</a>
+            </div>
         {% else %}
-            <a href="{% url 'sign_up_page' %}" class="header__register">Sign Up</a>
+            <div class="header__register">
+                <a href="{% url 'sign_up_page' %}">Sign Up</a>
+            </div>
             or
-            <a href="{% url 'login_page' %}" class="header__register">Log in</a>
+            <div class="header__register">
+                <a href="{% url 'login_page' %}">Log in</a>
+            </div>
         {% endif %}
     </div>
 </header>
 <main class="wrapper">
     {% block content %}{% endblock %}
 </main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="{% static 'js/swiper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/nouislider.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/slider_pagination.js' %}"></script>

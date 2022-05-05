@@ -24,7 +24,6 @@ class IGDBWrapper:
         )
         if response.status_code == 401:
             raise Exception("Incorrect client id or client secret")
-
         return {
             "Client-ID": self.CLIENT_ID,
             "Authorization": "Bearer {}".format(response.json()["access_token"]),
@@ -40,7 +39,8 @@ class IGDBWrapper:
     def get_games_count(self, search='', platforms='', genres='', ratings=''):
         data = ('fields id;'
                 'limit 500;'
-                + (f'where platforms = {platforms} & genres = {genres}' if platforms else '' if genres else '')
+                + (f'where platforms = {platforms};' if platforms else '')
+                + (f'where genres = {genres};' if genres else '')
                 + (f' & rating >= {ratings[0]} & rating <= {ratings[1]};' if any(ratings) and ratings != (0, 100) else ';')
                 + (f'search "{search}";' if search else ''))
         return len(requests.post(
@@ -57,9 +57,23 @@ class IGDBWrapper:
                 'platforms.name;'
                 f'limit {self.PAGE_GAMES_COUNT};'
                 f'offset {self.PAGE_GAMES_COUNT * page};'
-                + (f'where platforms = {platforms} & genres = {genres}' if platforms else '' if genres else '')
+                + (f'where platforms = {platforms};' if platforms else '')
+                + (f'where genres = {genres};' if genres else '')
                 + (f' & rating >= {ratings[0]} & rating <= {ratings[1]};' if any(ratings) and ratings != (0, 100) else ';')
                 + (f'search "{search}";' if search else ''))
+        return requests.post(
+            f"{self.GAME_URL}",
+            headers=self.headers,
+            data=data
+        ).json()
+
+    def get_games_for_favorites(self, games_id=''):
+        where_condition = 'where id=(' + ','.join(map(str, games_id)) + ');' if games_id else ''
+        data = ('fields name,'
+                'cover.url,'
+                'genres.name;'
+                'limit 500;'
+                + where_condition)
         return requests.post(
             f"{self.GAME_URL}",
             headers=self.headers,
@@ -85,6 +99,7 @@ class IGDBWrapper:
                  'aggregated_rating_count,'
                  'rating,'
                  'rating_count,'
+                 'cover.url,'
                  'screenshots.url;'
                  + where_condition
         ).json()
@@ -97,7 +112,7 @@ class IGDBWrapper:
             f"{self.GENRES_URL}",
             headers=self.headers,
             data='fields name;'
-                 'limit 23;'
+                 'limit 500;'
         ).json()
 
     def get_platforms(self):
@@ -105,7 +120,7 @@ class IGDBWrapper:
             f"{self.PLATFORMS_URL}",
             headers=self.headers,
             data='fields name;'
-                 'limit 182;'
+                 'limit 500;'
         ).json()
 
 
