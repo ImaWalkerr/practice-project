@@ -30,6 +30,7 @@ Project stack:
 - [x] Javascript (ES2015+)
 - [x] Celery 5.2.6 for tasks
 - [x] Celery-beat 2.2.1 for schedule tasks
+- [x] PostgreSQL 11
 - [x] Docker, docker-compose
 
 <div>
@@ -48,7 +49,10 @@ Games were taken from:
 
 Also:
 
-- [x] [Heroku](https://www.heroku.com/) deployment
+For deploy using:
+- [x] unicorn
+- [x] nginx
+- [x] [Heroku](https://www.heroku.com/)
 
 How to run website with Docker:
 -------------
